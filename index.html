@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Agenda de Tarefas</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!--Menu-->
+
+    <div class="top-menu">
+
+      <button class="menu-btn">Dashboard</button>
+      <button class="menu-btn">Chatbot</button>
+      <button class="menu-btn">Perfil</button>
+      <button class="menu-btn active">Agenda</button>
+      <button class="menu-btn">Consultas</button>
+
+    </div>
+
+    <div class="agenda-box">
+
+      <div class="top-area">
+
+        <button class="new-task" onclick="openModal()">
+          + Nova Tarefa
+        </button>
+
+        <div class="title">
+          <h1>Agenda de Tarefas</h1>
+          <p>Organize suas atividades diárias</p>
+        </div>
+
+        <div class="menu-icon" onclick="openMenu()">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+      </div>
+
+      <div class="tasks-grid" id="tasksContainer">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="modal" id="taskModal">
+
+    <div class="modal-content">
+
+      <h2>Adicionar Nova Tarefa</h2>
+
+      <div class="form-group">
+
+        <label>Título da tarefa</label>
+
+        <input 
+          type="text" 
+          id="taskTitle"
+          placeholder="Ex: Meditação Matinal"
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Data</label>
+
+        <input 
+          type="date"
+          id="taskDate"
+        >
+
+      </div>
+
+      <div class="modal-buttons">
+
+        <button class="add-btn" onclick="addTask()">
+          Adicionar
+        </button>
+
+        <button class="cancel-btn" onclick="closeModal()">
+          Cancelar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="side-menu" id="sideMenu">
+
+    <div class="side-header">
+
+      <h2>Pendências</h2>
+
+      <button class="close-menu" onclick="closeMenu()">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="month-item" onclick="toggleMonthTasks('Janeiro')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Janeiro"></div>
+
+    <span>Janeiro</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Janeiro"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Fevereiro')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Fevereiro"></div>
+
+    <span>Fevereiro</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Fevereiro"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Março')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Março"></div>
+
+    <span>Março</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Março"></div>
+
+
+<div class="month-item" onclick="toggleMonthTasks('Abril')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Abril"></div>
+
+    <span>Abril</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Abril"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Maio')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Maio"></div>
+
+    <span>Maio</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Maio"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Junho')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Junho"></div>
+
+    <span>Junho</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Junho"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Julho')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Julho"></div>
+
+    <span>Julho</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Julho"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Agosto')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Agosto"></div>
+
+    <span>Agosto</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Agosto"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Setembro')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Setembro"></div>
+
+    <span>Setembro</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Setembro"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Outubro')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Outubro"></div>
+
+    <span>Outubro</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Outubro"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Novembro')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Novembro"></div>
+
+    <span>Novembro</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Novembro"></div>
+
+
+
+<div class="month-item" onclick="toggleMonthTasks('Dezembro')">
+
+  <div class="month-left">
+
+    <div class="pending-dot" id="dot-Dezembro"></div>
+
+    <span>Dezembro</span>
+
+  </div>
+
+  <span>›</span>
+
+</div>
+
+<div class="month-tasks" id="tasks-Dezembro"></div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
