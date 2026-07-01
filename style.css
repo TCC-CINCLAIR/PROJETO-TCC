@@ -1,20 +1,35 @@
-*{
+
+html, body{
+    height: 100%;
     margin: 0;
+    
 }
 body{
-    background-color: #8D0000;
-    background: linear-gradient(341deg, rgba(141, 0, 0, 1) 54%, rgba(236, 231, 225, 1) 100%);
-}
-.caixa-principal{
-    width: 400px;
-    height: 800px;
+    background: #8D0000;
+    background: linear-gradient(341deg, rgba(141, 0, 0, 1) 54%, #ece7e1 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 500px;
+    display: flex;
+    background-color: #ece7e1;
+    position: absolute;
+
+    
+}
+.caixa-principal{
+    
 }
 .dados{
     display: flex;
     flex-direction: column;
-
 }
