@@ -34,12 +34,20 @@ body{
   display: flex;
   justify-content: center;
 }
+.top-menu img{
+  width: 20px;
+  padding-top: 0px;
+  margin-top: -13px;
+  padding-bottom: 2px;
+  
+}
 .top-menu button{
   border: none;
   background-color: #8D0000;
   color: whitesmoke;
   font-size: 14px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-style: none;
@@ -47,6 +55,8 @@ body{
   text-decoration: none;
   height: 30px;
   padding-top: 30px;
+  padding-bottom: 3px;
+  
   
 }
 
@@ -55,8 +65,8 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 150px;
-  height: 50px;
+  width: 160px;
+  height: 52px;
   background:#850000;
   color:white;
   border:none;
@@ -65,7 +75,7 @@ body{
   font-size: 14px;
   cursor:pointer;
   transition:0.3s;
-  border:3px solid whitesmoke;
+  
 }
 
 .menu-btn:hover{
@@ -74,10 +84,10 @@ body{
 
 .menu-btn-active{
   background:#9b0000;
-  box-shadow:0 0 0 4px #f0e4dc inset;
+  box-shadow:0 0 0 5px rgb(240, 228, 220, 0.8) ;
   border-radius: 25px;
-  width: 150px;
-  height: 50px;
+  width: 160px;
+  height: 52px;
   display: flex;
   justify-content: center;
   text-decoration: none;
