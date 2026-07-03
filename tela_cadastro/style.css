@@ -5,31 +5,88 @@ html, body{
     
 }
 body{
-    background: #8D0000;
-    background: linear-gradient(341deg, rgba(141, 0, 0, 1) 54%, #ece7e1 100%);
+    background: #8d0000;
+    background: linear-gradient(341deg, #8d0000 68%, #dfbbb5 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    font-family: Arial, Helvetica, sans-serif;
 }
 form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 500px;
-    display: flex;
+    width: 360px;
+    height: 520px;
     background-color: #ece7e1;
-    position: absolute;
-
-    
+    border: solid 15px #bca29977;
+    border-radius: 30px;
 }
 .caixa-principal{
-    
+    margin-top: -50px;
+}
+.logo-login{
+    margin-top: -40px;
+    width: 150px;
+    padding-bottom: 30px;
+}
+.mensagem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding-bottom: 7px;
+}
+.mensagem p, h2{
+    margin: 0; 
+}
+.mensagem p{
+    font-size: 13px;
+    padding-top: 4px;
+    color: #00000075;
 }
 .dados{
     display: flex;
     flex-direction: column;
+    margin-left: -30px;
+    padding-left: 29px;
+}
+.dados label{
+    font-size: 12px;
+    padding: 16px 0 3px 2px;
+}
+.dados input{
+    background-color: #ece7e1;
+    border: solid 2px #f4f1ea;
+    outline: none;
+    padding: 7px 0 7px 7px;
+    border-radius: 10px;
+    width: 310px;
+    height: 25px;
+    
+}
+.btn-enviar{
+    padding-top: 25px;
+}
+.btn-enviar button{
+    width: 320px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #8d0000;
+    color: #f4f1ea;
+    border: none;
+}
+.fazer-login{
+    margin-bottom: -20px;
+    padding-top: 25px;
+    font-size: 14px;
+}
+.fazer-login a{
+    color: #8d0000;
+    text-decoration: none;
+    font-weight: 600;
+    padding-left: 2px;
 }
