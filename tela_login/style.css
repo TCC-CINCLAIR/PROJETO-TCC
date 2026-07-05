@@ -1,0 +1,108 @@
+*{
+    font-family: 'Poppins';
+}
+
+body{
+    background: linear-gradient(341deg, #8d0000 68%, #dfbbb5 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 360px;
+    height: 430px;
+    background-color: #ece7e1;
+    border: solid 15px #bca29977;
+    border-radius: 30px;
+}
+header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -60px;
+    padding-top: 15px;
+}
+header img{
+    width: 65px;
+}
+.fundo-icone{
+    background-color: #8d0000;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: flex;
+}
+.mensagem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mensagem h2, p{
+    margin: 0;
+    padding: 5px 0 0 0 ; 
+}
+.mensagem p{
+    font-size: 14px;
+    color: #00000075;
+}
+.dados{
+    display: flex;
+    flex-direction: column;
+}
+.dados input{
+    width: 310px;
+    height: 25px;
+    border-radius: 10px;
+    border: solid 2px #f4f1ea;
+    background-color: #ece7e1;
+    outline: none;
+    padding: 7px 0 7px 10px;
+}
+.dados label{
+    font-size: 12px;
+    padding: 10px 0 3px 2px;
+}
+.dados a{
+    text-decoration: none;
+    color: #8d0000;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px 0 10px 0;
+
+}
+.btn-entrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    gap: 10px   ;
+}
+.btn-entrar button{
+    width: 320px;
+    height:40px;
+    border-radius: 10px;
+    padding: 8px;
+    border: none;
+    background-color: #8d0000;
+    color: #ece7e1;
+}
+.criar-conta{
+    margin-bottom: -60px;
+    font-size: 13px;
+    padding-top: 12px;
+    
+}
+.criar-conta a{
+    text-decoration: none;
+    color: #8d0000;
+    font-weight: 600;
+}
