@@ -339,25 +339,6 @@ body{
   background:#a50000;
 }
 
-@media(max-width:1000px){
-
-  .tasks-grid{
-    grid-template-columns:1fr;
-  }
-
-  .top-menu{
-    flex-wrap:wrap;
-  }
-
-  .title h1{
-    font-size:35px;
-  }
-
-  .modal-content{
-    width:90%;
-  }
-  
-
 .month-left{
   display:flex;
   align-items:center;
@@ -386,4 +367,23 @@ body{
   margin-top:8px;
   font-size:16px;
 }
+
+@media(max-width:1000px){
+
+  .tasks-grid{
+    grid-template-columns:1fr;
+  }
+
+  .top-menu{
+    flex-wrap:wrap;
+  }
+
+  .title h1{
+    font-size:35px;
+  }
+
+  .modal-content{
+    width:90%;
+  }
+
 }
