@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+ background: linear-gradient(341deg, #8d0000 68%, #dfbbb5 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* card central */
+.card {
+  width: 460px;
+  padding: 45px 40px;
+  text-align: center;
+
+  background-color: #ece7e1;
+  border: solid 15px #bca29977;
+  border-radius: 30px;
+}
+
+/* círculo com o ícone de chave */
+.icone-chave {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 20px;
+
+  background: #7a1414;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icone-chave svg {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.subtitulo {
+  font-size: 14px;
+  color: #7a7a7a;
+  margin-bottom: 30px;
+}
+
+/* bloco do campo de código */
+.campo {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.campo label {
+  display: block;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.campo-codigo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.3);
+
+  transition: border-color 0.2s;
+}
+
+.campo-codigo:focus-within {
+  border-color: #7a1414;
+}
+
+.campo-codigo svg {
+  width: 18px;
+  height: 18px;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.campo-codigo input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #333;
+}
+
+.campo-codigo input::placeholder {
+  color: #a8a8a8;
+}
+
+/* botão de validar */
+.btn-validar {
+  width: 100%;
+  padding: 15px;
+
+  background: #7a1414;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition: background 0.2s;
+}
+
+.btn-validar:hover {
+  background: #5c0f0f;
+}
