@@ -19,7 +19,7 @@ try{
         'senha' => $senha
     ]);
     if ($result){
-        echo "Usuário cadastrado com sucesso!";
+        header("Location: ../tela_bemvindo/index.html");
     }
 }
 catch(Exception $e){
