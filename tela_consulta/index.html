@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcar Consulta</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <nav class="top-menu">
+
+        <a href="#" class="menu-btn">
+            <img src="imagens_navbar/Config.png">
+            <span>Dashboard</span>
+        </a>
+
+        <a href="#" class="menu-btn">
+            <img src="imagens_navbar/Chat.png">
+            <span>Chatbot</span>
+        </a>
+
+        <a href="#" class="menu-btn">
+            <img src="imagens_navbar/User.png">
+            <span>Perfil</span>
+        </a>
+
+        <a href="#" class="menu-btn">
+            <img src="imagens_navbar/Calendário.png">
+            <span>Agenda</span>
+        </a>
+
+        <a href="#" class="menu-btn active">
+            <img src="imagens_navbar/Relógio.png">
+            <span>Consultas</span>
+        </a>
+    </nav>
+
+</header>
+
+<main class="container">
+    <section class="consulta-box">
+        <div class="top-area">
+            <div></div>
+            <div class="title">
+                <h1>Marcar Consulta</h1>
+                <p>Agende sua próxima consulta</p>
+            </div>
+            <button class="info-btn" onclick="mostrarAviso()">
+                <img src="imagens_consulta/img_info.png" alt="Informações">
+            </button>
+
+        </div>
+
+        <div class="consulta-content">
+            <div class="consulta-card">
+                <div class="form-group">
+                    <img src="imagens_consulta/img_user_preto.png" alt="IMG user" class="input-icon">
+                    <label>Profissional</label>
+                    <select id="profissional">
+                        <option value="">Selecione um profissional</option>
+                        <option>Dr. Miguel Vasconcelos</option>
+                        <option>Dra. Carla Vascovi</option>
+                        <option>Dr. Carlos Alberto</option>
+                        <option>Dra. Camila Carvalho</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <img src="imagens_consulta/img_calendario_preto.png" alt="IMG Calendario" class="input-icon">
+                    <label>Data</label>
+                    <input type="date" id="dataConsulta">
+                </div>
+
+                <div class="form-group">
+                    <img src="imagens_consulta/img_relógio_preto.png" alt="IMG Relógio" class="input-icon">
+                    <label>Horário</label>
+                    <select id="horario">
+                        <option>09:00</option>
+                        <option>10:00</option>
+                        <option>11:00</option>
+                        <option>13:00</option>
+                        <option>14:00</option>
+                        <option>15:00</option>
+                        <option>16:00</option>
+                        <option>17:00</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Observações (opcional)</label>
+                    <textarea id="observacoes"
+                        placeholder="Adicione informações adicionais sobre a consulta..."></textarea>
+                </div>
+
+                <button class="confirmar-btn" onclick="confirmarConsulta()">
+                    ConfIrmar Agendamento
+                </button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="overlay" id="overlay">
+    <div class="aviso-box">
+        <strong>Política de cancelamento:</strong>
+        Cancelamentos devem ser feitos com pelo menos 24 horas de antecedência.
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
