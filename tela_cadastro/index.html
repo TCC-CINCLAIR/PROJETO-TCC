@@ -6,35 +6,40 @@
     <title>Cadastro</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-     <form action="processar_cadastro.php" method="post">
+    <script src="./script.js" defer></script>
+    <form action="processar_cadastro.php" method="post">
         <img class="logo-login" src="../imagens/imagens_cadastro/logo-login.png" alt="">
         <main class="caixa-principal">
-       
+        
             <section class="mensagem">
                 
                 <h2>Criar Conta</h2>
                 <p>Comece sua jornada de autoconhecimento.</p>
             </section>
             <section class="dados">
-                <label for="email">Email</label><input type="email" name="email" id="email"  required placeholder= "seuemail@.gmail.com">
+                <label for="email">Email</label><input type="email" name="email" id="email"  required maxlength="50" placeholder= "seuemail@.gmail.com">
 
-                <label for="usuario">Nome/Usuario</label><input type="text" name="usuario" id="usuario" required placeholder="Seu Nome">
+                <label for="usuario">Nome/Usuario</label><input type="text" name="usuario" id="usuario" required  minlength="3" maxlength="50" placeholder="Seu Nome">
                 
-                <label for="senha">Senha</label><input type="password" name="senha" id="senha" required placeholder=" &bull; &bull; &bull; &bull; &bull; &bull; &bull;">
+                <label for="senha">Senha</label>
+                <div class="div-senha">
+                    <input type="password" name="senha" id="senha" required minlength="6" maxlength="20"  placeholder=" &bull; &bull; &bull; &bull; &bull; &bull; &bull;"><button type="button" id="exibir-senha"><img src="../imagens/imagens_cadastro/ocultar_senha.png" alt=""></button>
+                </div>
             </section>
             <section class="btn-enviar">
-                <button type="submit">Cadastrar</button>
+                <button id="btn-cadastrar" type="submit">Cadastrar</button>
             </section>    
         </main>
         <footer>
             <section class="fazer-login">
                 <p>Já tem uma conta? <a href="../tela_login/" target="_self"> Fazer Login.</a></p>
             </section>
-        </footer>    
+        </footer>
+        
+    </form>    
 </body>
 </html>

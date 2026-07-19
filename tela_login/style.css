@@ -78,6 +78,25 @@ header img{
     padding: 4px 0 10px 0;
 
 }
+#exibir-senha{
+    width: 30px;
+    border: none;
+    background-color: #ece7e1;
+    
+    position: absolute;
+    right: 8px;
+    top: 57%;
+    transform: translateY(-50%);
+
+}
+
+.div-senha{
+    position: relative;
+}
+#exibir-senha img{
+    width: 20px;
+
+}
 .btn-entrar{
     display: flex;
     flex-direction: column;

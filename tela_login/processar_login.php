@@ -2,31 +2,31 @@
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 
-try{
+try {
     $conn = new PDO ("pgsql:host = aws-1-us-east-2.pooler.supabase.com;dbname=postgres","postgres.oiqkryvqyoxjyaujrtcl", "cinclair@2026");
-    $conn ->setAttribute(
+    $conn -> setAttribute (
         PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION
     );
 
-    $sql = "SELECT email, senha FROM usuarios WHERE email = :email AND senha = :senha";
+    $sql = "SELECT email, senha FROM usuarios WHERE email = :email";
 
-    $stmt = $conn->prepare($sql);
+    $stmt = $conn -> prepare ($sql);
 
-    $stmt->execute([
+    $stmt -> execute ([
         'email' => $email,
-        'senha' => $senha
     ]);
-    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $usuario = $stmt -> fetch (PDO::FETCH_ASSOC);
     
-    if($usuario){
-        header("Location: ../agenda_tarefas/index.html");
+    if ($usuario && password_verify($senha, $usuario['senha'])) {
+        header ("Location: ../agenda_tarefas/index.html");
     }
-    else{
-        header("Location: ../tela_cadastro/index.html");
+    else {
+        header ("Location: ./index.html?aviso=dados-invalidos");
     }
 }
-catch(Exception $e){
-    echo 'Erro encontrado!', $e->getMessage(), "\n";
+catch (Exception $e) {
+    echo 'Erro encontrado!', $e -> getMessage(), "\n";
 }
-$conn=null;
+$conn = null;

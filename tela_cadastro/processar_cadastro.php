@@ -25,7 +25,7 @@ try {
     ]);
     $emailExiste = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($emailExiste) {
-        header("Location: ../tela_login/index.html");
+        header("Location: ../tela_login/index.html?aviso=email-existente");
         exit;
     }
     

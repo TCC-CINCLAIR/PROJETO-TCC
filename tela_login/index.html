@@ -6,9 +6,9 @@
     <title>Login</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <form action="processar_login.php" method="post">
@@ -24,10 +24,14 @@
         <main>
             <section class="dados">
                 <label for="email">Email</label><input placeholder="seuemail@gmail.com" type="email" name="email" id="email">
-                <label for="senha">Senha</label><input placeholder="&bull; &bull; &bull; &bull; &bull;" type="password" name="senha" id="senha">
+                <label for="senha">Senha</label>
+                <div class="div-senha">
+                    <input placeholder="&bull; &bull; &bull; &bull; &bull;" type="password" name="senha" id="senha">
+                    <button type="button" id="exibir-senha"><img src="../imagens/imagens_login/ocultar_senha.png" alt=""></button>
+                </div>
                 <div class="btn-entrar">
                     <a href="/Email_Redefinir_senha/index.html">Esqueci minha senha</a>
-                    <button>Entrar</button>
+                    <button type="submit">Entrar</button>
                 </div>
             </section>
         </main>
