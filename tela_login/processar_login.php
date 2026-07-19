@@ -9,15 +9,17 @@ try{
         PDO::ERRMODE_EXCEPTION
     );
 
-    $sql = "SELECT :email, :senha FROM usuarios";
+    $sql = "SELECT email, senha FROM usuarios WHERE email = :email AND senha = :senha";
 
     $stmt = $conn->prepare($sql);
 
-    $result = $stmt->execute([
+    $stmt->execute([
         'email' => $email,
         'senha' => $senha
     ]);
-    if($result){
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if($usuario){
         header("Location: ../agenda_tarefas/index.html");
     }
     else{
