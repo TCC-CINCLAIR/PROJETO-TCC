@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(341deg, #8d0000 68%, #dfbbb5 100%);
+}
+
+.moldura-cartao {
+  width: 420px;
+  max-width: 100%;
+  background-color: #ece7e1;
+  border: solid 15px #bca29977;
+  border-radius: 30px;
+}
+
+.cartao {
+  padding: 44px 40px 40px;
+  text-align: center;
+}
+
+.circulo-cadeado {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background-color: #8d0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circulo-cadeado svg {
+  width: 30px;
+  height: 30px;
+  fill: #ffffff;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 6px;
+}
+
+.subtitulo {
+  font-size: 14px;
+  color: #00000075;
+  margin-bottom: 26px;
+}
+
+.Grupo-confirmar-senha {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.Grupo-confirmar-senha label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333333;
+  padding: 0 0 6px 2px;
+}
+
+.Grupo-nova-senha {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.Grupo-nova-senha label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333333;
+  padding: 0 0 6px 2px;
+}
+
+.caixa-input-1 {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.caixa-input-1 svg.icone-cadeado {
+  position: absolute;
+  left: 16px;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: #9a9a9a;
+  stroke-width: 1.8;
+  pointer-events: none;
+}
+
+.caixa-input-1 input {
+  width: 100%;
+  height: 46px;
+  padding: 0 46px;
+  border-radius: 12px;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: #ece7e1;
+  outline: none;
+  font-size: 15px;
+  color: #333;
+}
+.caixa-input-1 input:focus-within {
+  border-color: #7a1414;
+}
+
+.caixa-input-2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.caixa-input-2 svg.icone-cadeado {
+  position: absolute;
+  left: 16px;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: #9a9a9a;
+  stroke-width: 1.8;
+  pointer-events: none;
+}
+
+.caixa-input-2 input {
+  width: 100%;
+  height: 46px;
+  padding: 0 46px;
+  border-radius: 12px;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: #ece7e1;
+  outline: none;
+  font-size: 15px;
+  color: #333;
+}
+.caixa-input-2 input:focus-within {
+  border-color: #7a1414;
+}
+
+.alternar-senha {
+  position: absolute;
+  right: 10px;
+  width: 32px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.alternar-senha svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: #9a9a9a;
+  stroke-width: 1.8;
+}
+
+.botao-confirmar {
+  width: 100%;
+  height: 48px;
+  margin-top: 18px;
+  border: none;
+  border-radius: 12px;
+  background-color: #8d0000;
+  color: #ece7e1;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botao-confirmar:hover {
+  filter: brightness(1.08);
+}
+
+.botao-confirmar:active {
+  transform: translateY(1px);
+}
+
+.botao-confirmar:focus-visible,
+.alternar-senha:focus-visible {
+  outline: 2px solid #8d0000;
+  outline-offset: 2px;
+}
