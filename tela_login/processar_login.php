@@ -1,5 +1,5 @@
 <?php
-$email = $_POST['email'];
+$email = strtolower(trim($_POST['email']));
 $senha = $_POST['senha'];
 
 try {
@@ -21,9 +21,11 @@ try {
     
     if ($usuario && password_verify($senha, $usuario['senha'])) {
         header ("Location: ../agenda_tarefas/index.html");
+        exit;
     }
     else {
         header ("Location: ./index.html?aviso=dados-invalidos");
+        exit;
     }
 }
 catch (Exception $e) {

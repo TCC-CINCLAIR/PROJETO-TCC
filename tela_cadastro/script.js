@@ -18,11 +18,3 @@ botaoCadastrar.addEventListener ("click", function(evento){
         evento.preventDefault();
     }
 });
-
-const parametros = new URLSearchParams(window.location.search);
-
-aviso = parametros.get("aviso");
-
-if (aviso === "email-inexistente"){
-    alert("Email não encontrado! Faça seu cadastro.")
-}
