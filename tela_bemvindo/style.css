@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f3e9e3, #8d0000);
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 800px;
+    background: #e9dcd5;
+    border-radius: 25px;
+    padding: 45px 55px 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.img-logo {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;
+}
+
+header h2 {
+    font-size: 30px;
+    color: #111;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 14px;
+    color: #555;
+}
+
+.img-msg,
+.img-digital {
+    width: 50px;
+    height: 50px;
+    background: #e1d0c8;
+    border-radius: 12px;
+    float: left;
+    margin-right: 20px;
+}
+
+.img-msg img,
+.img-digital img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.txt-um,
+.txt-dois {
+    min-height: 75px;
+    margin-bottom: 30px;
+}
+
+.txt-um h3,
+.txt-dois h3 {
+    font-size: 17px;
+    color: #222;
+    margin-bottom: 7px;
+}
+
+.txt-um p,
+.txt-dois p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.proximo-passo {
+    clear: both;
+    border: 1px solid white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.proximo-passo p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.proximo-passo strong {
+    color: #850000;
+}
+
+.continuar {
+    width: 100%;
+    background: #850000;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.continuar:hover {
+    background: #6f0000;
+}
