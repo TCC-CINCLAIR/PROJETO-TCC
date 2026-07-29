@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $email = strtolower(trim($_POST['email']));
 $senha = $_POST['senha'];
 

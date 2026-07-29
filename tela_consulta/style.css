@@ -15,14 +15,14 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
-    padding:18px 0 40px;
+    padding:30px 0 40px;
 }
 
 .container{
     width:100%;
     display:flex;
     justify-content:center;
-    margin-top:25px;
+    margin-top:0;
 }
 
 .consulta-box{
@@ -38,20 +38,21 @@ body{
 }
 
 .top-menu{
-    width:1040px;
-    height:68px;
+    width:1000px;
+    height:66px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    margin-bottom:30px;
     padding:7px;
-    border-radius:35px;
+    border-radius:25px;
     background:rgba(255,255,255,.35);
 }
 
 .menu-btn{
-    width:175px;
+    width:160px;
     height:52px;
-    border-radius:28px;
+    border-radius:25px;
     background:#850000;
     color:#fff;
     text-decoration:none;
@@ -59,18 +60,20 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    padding:0;
     transition:.25s;
 }
 
 .menu-btn img{
-    width:18px;
-    margin-bottom:4px;
+    width:20px;
+    height:20px;
+    object-fit:contain;
+    margin-bottom:2px;
 }
 
 .menu-btn span{
     font-size:14px;
     font-weight:400;
-    letter-spacing:.2px;
 }
 
 .menu-btn:hover{
@@ -78,7 +81,7 @@ body{
 }
 
 .menu-btn.active{
-    box-shadow:0 0 0 6px rgba(255,255,255,.55);
+    box-shadow:0 0 0 5px rgba(255,255,255,.55);
 }
 
 .top-area{
