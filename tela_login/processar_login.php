@@ -11,7 +11,7 @@ try {
         PDO::ERRMODE_EXCEPTION
     );
 
-    $sql = "SELECT email, senha FROM usuarios WHERE email = :email";
+    $sql = "SELECT id, email, senha FROM usuarios WHERE email = :email";
 
     $stmt = $conn -> prepare ($sql);
 
@@ -22,6 +22,7 @@ try {
     $usuario = $stmt -> fetch (PDO::FETCH_ASSOC);
     
     if ($usuario && password_verify($senha, $usuario['senha'])) {
+        $_SESSION['usuario_id'] = $usuario['id'];
         header ("Location: ../agenda_tarefas/index.html");
         exit;
     }
