@@ -9,6 +9,11 @@ if (aviso === "email-existente"){
 if (aviso === "dados-invalidos"){
     alert("Credenciais Inválidas! " + 'Tente novamente ou clique em "Criar Conta."');
 }
+
+if (aviso === "acesso-negado") {
+    alert("Faça login para acessar a página!");
+}
+
 const campoSenha = document.getElementById("senha");
 const botaoExibir = document.getElementById("exibir-senha");
 

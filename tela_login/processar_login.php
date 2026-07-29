@@ -22,8 +22,9 @@ try {
     $usuario = $stmt -> fetch (PDO::FETCH_ASSOC);
     
     if ($usuario && password_verify($senha, $usuario['senha'])) {
+        session_regenerate_id(true);
         $_SESSION['usuario_id'] = $usuario['id'];
-        header ("Location: ../agenda_tarefas/index.html");
+        header ("Location: ../agenda_tarefas/index.php");
         exit;
     }
     else {
