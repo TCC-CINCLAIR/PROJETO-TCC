@@ -88,3 +88,49 @@ body{
 .menu-btn-active button{
   background-color: transparent;
 }
+main{
+  display: flex;
+  flex-direction: row;
+  padding-top: 50px;
+  
+}
+.info-usuario{
+  width: 440px;
+  height: 620px;
+  background-color: #ece7e1;
+  border-radius: 30px 0 0 30px;
+  border-top: solid 15px #bca29977;
+  border-left: solid 15px #bca29977;
+  border-bottom: solid 15px #bca29977;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.opcoes-sistema{
+  width: 600px;
+  height: 620px;
+  border-radius: 0 30px 30px 0;
+  background-color: #cfcdc9;
+  border-top: solid 15px #D6C7BF;
+  border-right: solid 15px #D6C7BF;
+  border-bottom: solid 15px #D6C7BF;
+  -webkit-box-shadow: inset 5px 2px 27px -15px rgba(0,0,0,0.42); 
+  box-shadow: inset 5px 2px 27px -15px rgba(0,0,0,0.42);
+}
+.img-perfil img{
+  width: 165px;
+  height: 165px;
+}
+.img-perfil{
+  width: 165px;
+  height: 165px;
+  border-radius: 50%;
+  background-color: #8D0000;
+}
+.aba-botoes{
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
