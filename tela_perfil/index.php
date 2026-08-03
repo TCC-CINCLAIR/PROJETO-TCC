@@ -6,7 +6,23 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
+try {
+    $conn = new PDO ("pgsql:host = aws-1-us-east-2.pooler.supabase.com;dbname=postgres","postgres.oiqkryvqyoxjyaujrtcl", "cinclair@2026");
+    $conn -> setAttribute(
+      PDO::ATTR_ERRMODE,
+      PDO::ERRMODE_EXCEPTION  
+    );
 
+    $sql = "SELECT usuario, email FROM usuarios WHERE id = :id";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute([
+        'id' => $_SESSION['usuario_id']
+    ]);
+    $dadosUsuario = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+} catch (Exception $e) {
+    die($e);
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +52,7 @@ if (!isset($_SESSION['usuario_id'])) {
     <main>
         <section class="info-usuario">
             <div class="img-perfil"><img src="../imagens/imagens_navbar/User.png" alt="Imagem Usuário"></div>
+            <p>Olá, <?= htmlspecialchars($dadosUsuario['usuario'], ENT_QUOTES, 'UTF-8') ?></p>
         </section>
         <section class="opcoes-sistema">
             <h2>Configurações</h2>
