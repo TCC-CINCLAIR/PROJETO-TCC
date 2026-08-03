@@ -36,3 +36,4 @@ catch (Exception $e) {
     echo 'Erro encontrado!', $e -> getMessage(), "\n";
 }
 $conn = null;
+?>
