@@ -174,10 +174,29 @@ main{
   border-bottom: solid 15px #D6C7BF;
   -webkit-box-shadow: inset 5px 2px 27px -15px rgba(0,0,0,0.42); 
   box-shadow: inset 5px 2px 27px -15px rgba(0,0,0,0.42);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .aba-botoes{
 display: flex;
 flex-direction: column;
 gap: 20px;
+}
+.aba-botoes div{
+  width: 500px;
+  height: 50px;
+}
+.aba-botoes button{
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.aba-botoes img{
+  width: 70px;
+  height: 70px;
+}
+.btn-preferencias img{
+  
 }
