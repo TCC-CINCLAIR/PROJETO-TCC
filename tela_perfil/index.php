@@ -32,6 +32,9 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuário</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -51,8 +54,18 @@ try {
     </header>
     <main>
         <section class="info-usuario">
-            <div class="img-perfil"><img src="../imagens/imagens_navbar/User.png" alt="Imagem Usuário"></div>
-            <p>Olá, <?= htmlspecialchars($dadosUsuario['usuario'], ENT_QUOTES, 'UTF-8') ?></p>
+            <section class="saudacoes">
+                <div class="img-perfil"><img src="../imagens/imagens_navbar/User.png" alt="Imagem Usuário"></div>
+                <p>Olá, <?= htmlspecialchars($dadosUsuario['usuario'], ENT_QUOTES, 'UTF-8') ?></p>
+            </section>
+            <section class="dados-usuario">
+                <label for="nome">Nome</label><input type="text" value="<?= htmlspecialchars($dadosUsuario['usuario'], ENT_QUOTES, 'UTF-8') ?>">
+                <label for="nome">Email</label><input type="email" value="<?= htmlspecialchars($dadosUsuario['email'], ENT_QUOTES, 'UTF-8') ?>">
+                <label for="nome">Senha</label><input type="password" value="&bull">
+                <div class="btn-redefinir">
+                    <a href="../Redefinir_senha/index.html"><button class="btn-redefinir-senha">Redefinir Senha</button></a>
+                </div>
+            </section>
         </section>
         <section class="opcoes-sistema">
             <h2>Configurações</h2>

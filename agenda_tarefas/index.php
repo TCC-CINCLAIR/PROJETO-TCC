@@ -23,11 +23,11 @@ if (!isset($_SESSION['usuario_id'])) {
   <header>
     <nav class="top-menu">
 
-      <a href="" class="menu-btn"><button > <img src="../agenda_tarefas/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</button></a>
+      <a href="#" class="menu-btn"><button > <img src="../agenda_tarefas/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</button></a>
 
-      <a href="" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</button></a>
+      <a href="#" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</button></a>
 
-      <a href="../tela_perfil/index.html" class="menu-btn"><button ><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</button></a>
+      <a href="../tela_perfil/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</button></a>
 
       <a href="#" class="menu-btn-active"><button ><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</button></a>
       

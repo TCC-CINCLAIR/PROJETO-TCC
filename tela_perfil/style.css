@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins';
 }
 body{
   min-height:100vh;
@@ -12,6 +12,10 @@ body{
   align-items:center;
   padding-top: 30px;
   flex-direction: column;
+}
+a{
+  text-decoration: none;
+  color: black;
 }
 .top-menu{
   width: 1000px;
@@ -91,33 +95,20 @@ body{
 main{
   display: flex;
   flex-direction: row;
-  padding-top: 50px;
+  padding-top: 25px;
+  padding-bottom: 30px;
   
 }
 .info-usuario{
-  width: 440px;
-  height: 620px;
+  width: 385px;
+  height: 590px;
   background-color: #ece7e1;
   border-radius: 30px 0 0 30px;
   border-top: solid 15px #bca29977;
   border-left: solid 15px #bca29977;
   border-bottom: solid 15px #bca29977;
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding-top: 18px;
   
-}
-.opcoes-sistema{
-  width: 600px;
-  height: 620px;
-  border-radius: 0 30px 30px 0;
-  background-color: #cfcdc9;
-  border-top: solid 15px #D6C7BF;
-  border-right: solid 15px #D6C7BF;
-  border-bottom: solid 15px #D6C7BF;
-  -webkit-box-shadow: inset 5px 2px 27px -15px rgba(0,0,0,0.42); 
-  box-shadow: inset 5px 2px 27px -15px rgba(0,0,0,0.42);
 }
 .img-perfil img{
   width: 165px;
@@ -129,6 +120,62 @@ main{
   border-radius: 50%;
   background-color: #8D0000;
 }
+.saudacoes{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.saudacoes p{
+  padding-top: 7px
+}
+.dados-usuario {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px 0 0 18px;
+}
+.dados-usuario label{
+  font-size: 14px;
+  padding-top: 5px;
+  color: #2e2e2e;
+}
+.dados-usuario input{
+  width: 330px;
+  height: 42px;
+  border-radius: 10px;
+  border: solid 2px #f4f1ea;
+  background-color: #ece7e1;
+  outline: none;
+  padding: 7px 0 7px 10px;
+  font-size: 15px;
+  color: #444444;
+}
+.btn-redefinir{
+  padding-top: 15px;
+}
+.btn-redefinir button{
+  width: 330px;
+  height:40px;
+  border-radius: 10px;
+  padding: 8px;
+  border: none;
+  background-color: #8d0000;
+  color: #ece7e1;
+  font-weight: 500;
+  
+}
+.opcoes-sistema{
+  width: 640px;
+  height: 590px;
+  border-radius: 0 30px 30px 0;
+  background-color: #cfcdc9;
+  border-top: solid 15px #D6C7BF;
+  border-right: solid 15px #D6C7BF;
+  border-bottom: solid 15px #D6C7BF;
+  -webkit-box-shadow: inset 5px 2px 27px -15px rgba(0,0,0,0.42); 
+  box-shadow: inset 5px 2px 27px -15px rgba(0,0,0,0.42);
+}
+
 .aba-botoes{
 display: flex;
 flex-direction: column;
