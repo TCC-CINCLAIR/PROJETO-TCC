@@ -48,7 +48,7 @@ try {
 
             <a href="../agenda_tarefas/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</button></a>
       
-            <a href="../tela_consulta/index.html" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</button></a>
+            <a href="../tela_consulta/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</button></a>
 
         </nav>
     </header>
@@ -71,16 +71,16 @@ try {
             <h2>Configurações</h2>
             <section class="aba-botoes">
                 <div class="btn-relatorios">
-                    <a href="#"><button> <img src="../imagens/imagens_perfil/img-docs.png" alt=""><h3>Relatórios</h3> <br> <p>Revise seu histórico</p></button></a>
+                    <a href="#"><button><img src="../imagens/imagens_perfil/img-docs.png" alt=""><span>Relatórios <small>Revise seu histórico</small></span></button></a>
                 </div>
                 <div class="btn-preferencias">    
-                    <a href="#"><button><img src="../imagens/imagens_perfil/img-config.png" alt=""><h3>Preferências</h3> <br> <p>Personalize sua experiência</p></button></a>
+                    <a href="#"><button><img src="../imagens/imagens_perfil/img-config.png" alt=""><span>Preferências <small>Personalize sua experiência</small></span></button></a>
                 </div>
                 <div class="btn-notificacao">    
-                    <a href="#"><button><img src="../imagens/imagens_perfil/img-sino.png" alt=""><h3>Notificações</h3> <br> <p>Gerencia seus alertas</p></button></a>
+                    <a href="#"><button><img src="../imagens/imagens_perfil/img-sino.png" alt=""><span>Notificações <small>Gerencia seus alertas</small></span></button></a>
                 </div>
                 <div class="btn-privacidade">    
-                    <a href="#"><button> <img src="../imagens/imagens_perfil/img-escudo.png" alt=""><h3>Privacidade de Segurança</button> <br> <p>Controle seus dados</p></a>
+                    <a href="#"><button><img src="../imagens/imagens_perfil/img-escudo.png" alt=""><span>Privacidade de Segurança <small>Controle seus dados</small></span></button></a>
                 </div>
             </section>
             <div class="logout">
@@ -88,3 +88,5 @@ try {
             </div>
         </section>
     </main>
+</body>
+</html>

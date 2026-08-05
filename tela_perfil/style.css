@@ -176,13 +176,19 @@ main{
   box-shadow: inset 5px 2px 27px -15px rgba(0,0,0,0.42);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
+  color: #8D0000;
 }
-
+.opcoes-sistema h2{
+  color: #8D0000;
+  padding-top: 20px;
+}
 .aba-botoes{
-display: flex;
-flex-direction: column;
-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 40px;
 }
 .aba-botoes div{
   width: 500px;
@@ -190,13 +196,65 @@ gap: 20px;
 }
 .aba-botoes button{
   background-color: transparent;
-  border: none;
-  outline: none;
+  border: solid 2px #8D0000;
+  border-radius: 10px;
+  width: 500px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 14px;
+  text-align: left;
+  cursor: pointer;
 }
 .aba-botoes img{
-  width: 70px;
-  height: 70px;
+  width: 27px;
+  height: 27px;
+  flex-shrink: 0;
+}
+.aba-botoes button span{
+  display: flex;
+  flex-direction: column;
+}
+.aba-botoes button small{
+  font-size: 10px;
+  font-weight: 400;
+}
+.btn-preferencias{
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
 }
 .btn-preferencias img{
-  
+  width: 30px;
+}
+.btn-relatorios{
+  display: flex;
+  flex-direction: row;
+}
+.btn-notificacao{
+  display: flex;
+  flex-direction: row;
+}
+.btn-privacidade{
+  display: flex;
+  flex-direction: row;
+}
+.logout{
+  width: 200px;
+  margin-top: auto;
+  margin-bottom: 35px;
+}
+.logout a{
+  display: block;
+}
+.btn-logout{
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  background-color: #8d0000;
+  color: #ece7e1;
+  font-weight: 500;
+  cursor: pointer;
 }
