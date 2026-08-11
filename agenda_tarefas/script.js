@@ -164,3 +164,22 @@ function pendencias(){
         }
     }
 }
+
+document.addEventListener("change", function (event) {
+    if (event.target.type === "checkbox") {
+        const task = event.target.closest(".task-item");
+        const card = event.target.closest(".task-card");
+
+        if (event.target.checked && task) {
+            task.remove();
+
+            const taskList = card.querySelector(".task-list");
+
+            if (taskList.children.length === 0) {
+                card.remove();
+            }
+
+            pendencias();
+        }
+    }
+});
