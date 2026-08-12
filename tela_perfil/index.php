@@ -48,7 +48,7 @@ try {
 
             <a href="../agenda_tarefas/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</button></a>
       
-            <a href="../tela_consulta/index.html" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</button></a>
+            <a href="../tela_consulta/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</button></a>
 
         </nav>
     </header>
@@ -70,13 +70,26 @@ try {
         <section class="opcoes-sistema">
             <h2>Configurações</h2>
             <section class="aba-botoes">
-                <a href="#">Relatórios</a>
-                <a href="#">Preferências</a>
-                <a href="#">Notificações</a>
-                <a href="#">Privacidade de Segurança</a>
+                <div class="btn-relatorios">
+                    <a href="#"><button><img src="../imagens/imagens_perfil/img-docs.png" alt=""><span>Relatórios <small>Revise seu histórico</small></span></button></a>
+                </div>
+                <div class="btn-preferencias">    
+                    <a href="#"><button><img src="../imagens/imagens_perfil/img-config.png" alt=""><span>Preferências <small>Personalize sua experiência</small></span></button></a>
+                </div>
+                <div class="btn-notificacao">    
+                    <a href="#"><button><img src="../imagens/imagens_perfil/img-sino.png" alt=""><span>Notificações <small>Gerencia seus alertas</small></span></button></a>
+                </div>
+                <div class="btn-privacidade">    
+                    <a href="#"><button><img src="../imagens/imagens_perfil/img-escudo.png" alt=""><span>Privacidade de Segurança <small>Controle seus dados</small></span></button></a>
+                </div>
             </section>
             <div class="logout">
                 <a href="../tela_login/index.html"><button class="btn-logout"> &rarr;]  Sair da conta</button></a>
             </div>
+            <div class="contato">
+                <a target="_blank" href="https://www.instagram.com/cinclaair"><p>Fale Conosco</p></a>
+            </div>
         </section>
     </main>
+</body>
+</html>
