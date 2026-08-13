@@ -108,7 +108,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 </div>
 
                 <button class="confirmar-btn" onclick="confirmarConsulta()">
-                    ConfIrmar Agendamento
+                    Confirmar Agendamento
                 </button>
             </div>
         </div>
