@@ -24,7 +24,7 @@ try {
     if ($usuario && password_verify($senha, $usuario['senha'])) {
         session_regenerate_id(true);
         $_SESSION['usuario_id'] = $usuario['id'];
-        header ("Location: ../agenda_tarefas/index.php");
+        header ("Location: ../tela_bemvindo/index.php");
         exit;
     }
     else {

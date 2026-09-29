@@ -87,7 +87,7 @@ try {
                 <a href="../tela_login/index.html"><button class="btn-logout"> &rarr;]  Sair da conta</button></a>
             </div>
             <div class="contato">
-                <a target="_blank" href="https://www.instagram.com/cinclaair"><p>Fale Conosco</p></a>
+                <a target="_blank" href="https://www.instagram.com/cinclaair"><p>Fale Conosco</p></a>""
             </div>
         </section>
     </main>

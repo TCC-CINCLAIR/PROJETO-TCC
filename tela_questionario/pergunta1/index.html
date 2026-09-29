@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergunta 1 | Cinclair</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../script.js" defer></script>
+</head>
+<body>
+    <div class="caixa-questionario">
+        <!-- Progresso desta página -->
+        <div class="informacoes-progresso">
+            <p>Pergunta 1 de 7</p>
+            <span>0% completo</span>
+        </div>
+        <div class="barra-progresso">
+            <div class="progresso-0"></div>
+        </div>
+
+        <!-- O action informa qual é a próxima página -->
+        <form id="questionario" action="../pergunta2/index.html">
+            <h1 id="titulo-pergunta">Como você prefere ser chamado(a)?</h1>
+            <div class="opcoes" role="group" aria-labelledby="titulo-pergunta">
+                <label for="apelido">Nome ou apelido</label>
+                <input class="campo-texto" id="apelido" name="apelido" type="text" maxlength="50" pattern=".*\S.*" title="Digite um nome ou apelido, não apenas espaços." autocomplete="nickname" placeholder="Seu nome ou apelido" required>
+            </div>
+
+            <p id="aviso" class="mensagem-erro" role="alert"></p>
+            <div class="botoes">
+                <button class="btn-voltar" type="button" disabled>Voltar</button>
+                <button class="btn-proxima" type="submit">Próxima</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

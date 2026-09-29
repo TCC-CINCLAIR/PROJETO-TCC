@@ -39,7 +39,7 @@ try {
         'senha' => $senhaHash
     ]);
     if ($result) {
-        header ("Location: ../tela_bemvindo/index.html");
+        header ("Location: ../tela_bemvindo/index.php");
         exit;
         }      
 } catch (Exception $e) {

@@ -19,12 +19,12 @@ if (!isset($_SESSION['usuario_id'])) {
     
     <main>
         <header>
-        <img class="img-logo" src="" alt="">
+        <img class="img-logo" src="../imagens/imagens_cadastro/logo-login.png" alt="Logo Cinclair">
         <h2>Bem-vindo ao Cinclair</h2>
         <p>Sua jornada de autoconhecimento começa aqui.</p>
         </header>
 
-            <div class="img-msg"><img src="" alt=""></div>
+            <div class="img-msg"><img src="../imagens/imagens_bemvindo/mensagens.svg" alt=""></div>
             <section class="txt-um">
                 <h3>Funcionalidades Inteligentes</h3>
                 <p>
@@ -32,7 +32,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 </p>
             </section>
 
-            <div class="img-digital"><img src="" alt=""></div>
+            <div class="img-digital"><img src="../imagens/imagens_bemvindo/digital.svg" alt=""></div>
             <section class="txt-dois">
                 <h3>Sobre a Empresa e Objetivos</h3>
                 <p>
@@ -47,8 +47,8 @@ if (!isset($_SESSION['usuario_id'])) {
                 </p>
             </div>
             
-            <a href="../tela_login/index.html"><button class="continuar">
-                Continuar ->
+            <a href="../tela_questionario/pergunta1/index.html"><button class="continuar">
+                Continuar &rarr;
             </button></a>
     </main>
 </body>

@@ -27,9 +27,11 @@ header {
 }
 
 .img-logo {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 15px;
+    display: block;
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    margin: -20px auto 0;
 }
 
 header h2 {
@@ -45,8 +47,11 @@ header p {
 
 .img-msg,
 .img-digital {
-    width: 50px;
-    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
     background: #e1d0c8;
     border-radius: 12px;
     float: left;
@@ -55,8 +60,8 @@ header p {
 
 .img-msg img,
 .img-digital img {
-    width: 100%;
-    height: 100%;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
 }
 

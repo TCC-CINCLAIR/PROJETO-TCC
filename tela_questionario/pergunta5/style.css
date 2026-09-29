@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    background-color: #8d0000;
+    background-image:
+        radial-gradient(ellipse at top right, #ece7e1 0%, transparent 57%),
+        radial-gradient(ellipse at bottom left, #dfbbb5 0%, transparent 52%);
+}
+
+.caixa-questionario {
+    width: 650px;
+    max-width: 100%;
+    padding: 28px 32px 22px;
+    border: 15px solid #bca29977;
+    border-radius: 36px;
+    background: linear-gradient(120deg, #e9dcd5ed, #e9dcd5c9);
+    background-clip: padding-box;
+    box-shadow: 0 0 0 2px #f4f1ea40, 0 18px 45px #49000020;
+}
+
+.informacoes-progresso {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: #55453f;
+}
+
+.informacoes-progresso span {
+    color: #850000;
+}
+
+.barra-progresso {
+    display: block;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    overflow: hidden;
+    border: none;
+    border-radius: 10px;
+    background: #f4f1ea;
+    color: #850000;
+}
+
+.barra-progresso div {
+    height: 100%;
+    background: #850000;
+    border-radius: 10px;
+}
+
+.progresso-0 { width: 0; }
+.progresso-1 { width: 14%; }
+.progresso-2 { width: 29%; }
+.progresso-3 { width: 43%; }
+.progresso-4 { width: 57%; }
+.progresso-5 { width: 71%; }
+.progresso-6 { width: 86%; }
+.progresso-7 { width: 100%; }
+
+h1 {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 50px;
+    padding: 12px;
+    border: 1px solid #f4f1ea99;
+    border-radius: 11px;
+    font-size: 13px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background-color .15s, border-color .15s;
+}
+
+.opcao:hover {
+    background-color: #f4f1ea40;
+}
+
+.opcao:has(input:checked) {
+    border-color: #850000;
+    background-color: #f4f1ea60;
+}
+
+.opcao input {
+    appearance: none;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f4f1ea;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.opcao input:checked {
+    border-color: #850000;
+    background: radial-gradient(circle, #850000 0 45%, transparent 50%);
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.botoes button,
+.botoes a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    width: 40%;
+    min-height: 50px;
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-voltar {
+    border: 1px solid #85000080;
+    background-color: #f4f1ea;
+    color: #850000;
+    box-shadow: 0 2px 3px #49000015;
+}
+
+.btn-proxima {
+    border: 1px solid #850000;
+    background-color: #850000;
+    color: #f4f1ea;
+}
+
+.btn-voltar:hover {
+    background-color: #ece7e1;
+}
+
+.btn-proxima:hover {
+    background-color: #6f0000;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+ a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #850000;
+    outline-offset: 4px;
+}
+
+.campo-texto {
+    width: 100%;
+    min-height: 50px;
+    padding: 14px;
+    border: 1px solid #f4f1ea;
+    border-radius: 11px;
+    background-color: #f4f1ea60;
+    color: #111;
+    font: inherit;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.campo-texto::placeholder { color: #65534d; }
+.dica { color: #55453f; font-size: 13px; line-height: 1.5; }
+.mensagem-erro { margin-top: 12px; color: #850000; font-size: 13px; }
+.mensagem-erro:empty { display: none; }
+.botoes button:disabled { opacity: .45; cursor: default; }
+
+@media (max-width: 540px) {
+    .caixa-questionario {
+        padding: 24px 18px 20px;
+        border-width: 9px;
+        border-radius: 28px;
+    }
+
+    h1 {
+        font-size: 17px;
+    }
+
+    .botoes button,
+    .botoes a {
+        width: 46%;
+    }
+}

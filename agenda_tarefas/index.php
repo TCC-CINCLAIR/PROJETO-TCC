@@ -31,7 +31,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
       <a href="#" class="menu-btn-active"><button ><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</button></a>
       
-      <a href="../tela_consulta/index.html" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</button></a>
+      <a href="../tela_consulta/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</button></a>
 
     </nav>
   </header>
