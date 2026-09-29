@@ -1,4 +1,4 @@
-// Este arquivo só guarda e recupera respostas. Cada pergunta está no seu HTML.
+// Este arquivo só guarda e recupera respostas. Cada pergunta está na sua página PHP.
 const formulario = document.getElementById('questionario');
 const campos = formulario.querySelectorAll('input, textarea');
 const aviso = document.getElementById('aviso');

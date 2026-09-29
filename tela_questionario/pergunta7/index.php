@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../../tela_login/index.html?aviso=acesso-negado");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,7 +28,7 @@
         </div>
 
         <!-- O action informa qual é a próxima página -->
-        <form id="questionario" action="../conclusao/index.html">
+        <form id="questionario" action="../conclusao/index.php">
             <h1 id="titulo-pergunta">Há alguma preferência que você gostaria que o assistente respeitasse?</h1>
             <div class="opcoes" role="group" aria-labelledby="titulo-pergunta">
                 <label for="preferencias">Preferências adicionais (opcional)</label>
@@ -29,7 +38,7 @@
 
             <p id="aviso" class="mensagem-erro" role="alert"></p>
             <div class="botoes">
-                <a class="btn-voltar" href="../pergunta6/index.html">Voltar</a>
+                <a class="btn-voltar" href="../pergunta6/index.php">Voltar</a>
                 <button class="btn-proxima" type="submit">Concluir</button>
             </div>
         </form>

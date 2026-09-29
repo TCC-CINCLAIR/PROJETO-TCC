@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../../tela_login/index.html?aviso=acesso-negado");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,8 +27,8 @@
         <h1>Pronto! Você terminou o questionário.</h1>
         <p class="dica">As respostas preenchidas ficam neste navegador. Você pode voltar às perguntas para revisar ou alterar suas preferências.</p>
         <div class="botoes">
-            <a class="btn-voltar" href="../pergunta7/index.html">Voltar</a>
-            <a class="btn-proxima" href="../pergunta1/index.html">Revisar respostas</a>
+            <a class="btn-voltar" href="../pergunta7/index.php">Voltar</a>
+            <a class="btn-proxima" href="../pergunta1/index.php">Revisar respostas</a>
         </div>
     </div>
 </body>

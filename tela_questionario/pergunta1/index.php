@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../../tela_login/index.html?aviso=acesso-negado");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,7 +28,7 @@
         </div>
 
         <!-- O action informa qual é a próxima página -->
-        <form id="questionario" action="../pergunta2/index.html">
+        <form id="questionario" action="../pergunta2/index.php">
             <h1 id="titulo-pergunta">Como você prefere ser chamado(a)?</h1>
             <div class="opcoes" role="group" aria-labelledby="titulo-pergunta">
                 <label for="apelido">Nome ou apelido</label>

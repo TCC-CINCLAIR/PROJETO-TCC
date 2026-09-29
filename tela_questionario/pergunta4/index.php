@@ -1,9 +1,18 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../../tela_login/index.html?aviso=acesso-negado");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pergunta 6 | Cinclair</title>
+    <title>Pergunta 4 | Cinclair</title>
     <link rel="stylesheet" href="style.css">
     <script src="../script.js" defer></script>
 </head>
@@ -11,34 +20,34 @@
     <div class="caixa-questionario">
         <!-- Progresso desta página -->
         <div class="informacoes-progresso">
-            <p>Pergunta 6 de 7</p>
-            <span>71% completo</span>
+            <p>Pergunta 4 de 7</p>
+            <span>43% completo</span>
         </div>
         <div class="barra-progresso">
-            <div class="progresso-5"></div>
+            <div class="progresso-3"></div>
         </div>
 
         <!-- O action informa qual é a próxima página -->
-        <form id="questionario" action="../pergunta7/index.html">
-            <h1 id="titulo-pergunta">Quando não souber por onde começar, o que seria mais útil?</h1>
+        <form id="questionario" action="../pergunta5/index.php">
+            <h1 id="titulo-pergunta">Depois que você contar um acontecimento, o que prefere?</h1>
             <div class="opcoes" role="group" aria-labelledby="titulo-pergunta">
                 <label class="opcao">
-                    <input type="radio" name="inicio" value="pergunta" required>
-                    <span>Uma pergunta simples sobre o meu dia</span>
+                    <input type="radio" name="apoio" value="breve" required>
+                    <span>Uma breve mensagem de apoio</span>
                 </label>
                 <label class="opcao">
-                    <input type="radio" name="inicio" value="sugestoes" required>
-                    <span>Sugestões de assuntos, como rotina, trabalho, estudos ou relações pessoais</span>
+                    <input type="radio" name="apoio" value="confirmacao" required>
+                    <span>Apenas uma confirmação de que o relato foi registrado</span>
                 </label>
                 <label class="opcao">
-                    <input type="radio" name="inicio" value="sozinho" required>
-                    <span>Prefiro começar por conta própria</span>
+                    <input type="radio" name="apoio" value="sem_preferencia" required>
+                    <span>Não tenho preferência</span>
                 </label>
             </div>
 
             <p id="aviso" class="mensagem-erro" role="alert"></p>
             <div class="botoes">
-                <a class="btn-voltar" href="../pergunta5/index.html">Voltar</a>
+                <a class="btn-voltar" href="../pergunta3/index.php">Voltar</a>
                 <button class="btn-proxima" type="submit">Próxima</button>
             </div>
         </form>

@@ -47,7 +47,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 </p>
             </div>
             
-            <a href="../tela_questionario/pergunta1/index.html"><button class="continuar">
+            <a href="../tela_questionario/pergunta1/index.php"><button class="continuar">
                 Continuar &rarr;
             </button></a>
     </main>
