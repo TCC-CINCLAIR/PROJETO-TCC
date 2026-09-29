@@ -16,6 +16,7 @@ if (!isset($_SESSION['usuario_id'])) {
     <title>Marcar Consulta</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../modo_escuro.css">
 </head>
 
 <body>
@@ -123,6 +124,7 @@ if (!isset($_SESSION['usuario_id'])) {
 </div>
 
 <script src="script.js"></script>
+<script src="../modo_escuro.js"></script>
 
 </body>
 

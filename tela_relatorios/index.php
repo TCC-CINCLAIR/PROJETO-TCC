@@ -32,6 +32,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuário</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../modo_escuro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -126,6 +127,7 @@ try {
             </a>
         </section>
     </main>
+    <script src="../modo_escuro.js"></script>
 </body>
 </html>
 

@@ -47,7 +47,7 @@ if (!isset($_SESSION['usuario_id'])) {
                 </p>
             </div>
             
-            <a href="../tela_login/index.html"><button class="continuar">
+            <a href="../tela_login/index.php"><button class="continuar">
                 Continuar ->
             </button></a>
     </main>
