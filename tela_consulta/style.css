@@ -1,257 +1,49 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { min-height: 100vh; font-family: Arial, Helvetica, sans-serif; color: #352c29; background: linear-gradient(125deg, #dfc7be, #8d0000 75%); display: flex; flex-direction: column; align-items: center; }
+.container { width: 100%; max-width: 880px; }
+.consulta-box { background: #fcf8f4; border: 1px solid #ffffff80; border-radius: 28px; box-shadow: 0 18px 48px #49000020; overflow: hidden; }
+.top-area { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 30px 36px; border-bottom: 1px solid #e7d9d1; }
+.title { min-width: 0; flex: 1; }
+.pagina-consulta .title h1 { color: #7c1717; font-size: clamp(26px, 3vw, 34px); line-height: 1.2; letter-spacing: -.03em; overflow-wrap: normal; word-break: normal; }
+.title p { margin-top: 8px; color: #75645e; font-size: 15px; line-height: 1.5; }
+.info-btn { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border: 1px solid #dcc6b9; background: #f0e4db; color: #850000; border-radius: 13px; }
+.info-btn svg { width: 24px; height: 24px; }
+.consulta-content { padding: 32px 36px 36px; }
+.consulta-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 20px; }
+.form-group { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.form-full, .confirmar-btn { grid-column: 1 / -1; }
+.form-group label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 14px; font-weight: 600; line-height: 1.4; }
+.optional { color: #867269; font-size: 13px; font-weight: 400; }
+.input-icon { width: 17px; height: 17px; object-fit: contain; flex-shrink: 0; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; min-width: 0; min-height: 52px; border: 1px solid #cfb8ab; border-radius: 12px; background: #fff; color: #352c29; padding: 12px 14px; font-size: 16px; line-height: 1.5; }
+.form-group select { padding-right: 8px; }
+.form-group textarea { min-height: 128px; resize: vertical; }
+.form-group textarea::placeholder { color: #887970; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #850000; }
+.confirmar-btn { width: 100%; min-height: 52px; border: none; border-radius: 12px; padding: 14px 18px; background: #850000; color: #fff; font-size: 15px; font-weight: 600; line-height: 1.4; }
+.overlay { display: none; position: fixed; inset: 0; z-index: 1000; justify-content: center; align-items: center; padding: 24px; background: #2d141380; backdrop-filter: blur(4px); overflow-y: auto; overscroll-behavior: contain; }
+.aviso-box { width: 100%; max-width: 460px; max-height: calc(100dvh - 48px); overflow-y: auto; padding: 28px; background: #fcf8f4; border-radius: 24px; box-shadow: 0 24px 80px #21000040; }
+.aviso-box h2 { font-size: 22px; color: #7c1717; line-height: 1.3; }
+.aviso-box p { margin: 16px 0 24px; color: #75645e; font-size: 16px; line-height: 1.6; }
+body.dialog-open { overflow: hidden; }
+@media (hover: hover) {
+  .confirmar-btn:hover { background: #6f0000; }
+  .info-btn:hover { background: #e6d5c8; }
 }
-
-body{
-    min-height:100vh;
-    background:
-    radial-gradient(circle at top left,
-    rgba(255,255,255,.18) 0,
-    rgba(255,255,255,0) 22%),
-    linear-gradient(90deg,#e8ddd5 0%,#a23527 35%,#850000 100%);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:30px 0 40px;
+@media (max-width: 640px) {
+  .consulta-box { border-radius: 22px; }
+  .top-area { padding: 24px 20px; gap: 12px; align-items: flex-start; }
+  .pagina-consulta .title h1 { font-size: 27px; }
+  .title p { font-size: 14px; }
+  .consulta-content { padding: 24px 20px; }
+  .consulta-card { gap: 22px 12px; }
+  .form-group input, .form-group select { padding-inline: 10px; }
+  .form-group textarea { min-height: 116px; }
+  .overlay { align-items: flex-end; padding: 0; }
+  .aviso-box { max-width: none; max-height: calc(100dvh - 16px); padding: 28px 20px calc(24px + env(safe-area-inset-bottom)); border-radius: 24px 24px 0 0; }
 }
-
-.container{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    margin-top:0;
-}
-
-.consulta-box{
-    width:1120px;
-    min-height:720px;
-    background:#efe5dc;
-    border-radius:35px;
-    border:2px solid rgba(255,255,255,.35);
-    overflow:hidden;
-    box-shadow:
-    0 20px 45px rgba(0,0,0,.18),
-    inset 0 0 0 3px rgba(255,255,255,.15);
-}
-
-.top-menu{
-    width:1000px;
-    height:66px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-    padding:7px;
-    border-radius:25px;
-    background:rgba(255,255,255,.35);
-}
-
-.menu-btn{
-    width:160px;
-    height:52px;
-    border-radius:25px;
-    background:#850000;
-    color:#fff;
-    text-decoration:none;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:0;
-    transition:.25s;
-}
-
-.menu-btn img{
-    width:20px;
-    height:20px;
-    object-fit:contain;
-    margin-bottom:2px;
-}
-
-.menu-btn span{
-    font-size:14px;
-    font-weight:400;
-}
-
-.menu-btn:hover{
-    transform:scale(1.03);
-}
-
-.menu-btn.active{
-    box-shadow:0 0 0 5px rgba(255,255,255,.55);
-}
-
-.top-area{
-    width:100%;
-    height:105px;
-    background:#f7f4f1;
-    display:grid;
-    grid-template-columns:1fr auto 1fr;
-    align-items:center;
-    padding:0 45px;
-    box-shadow:0 6px 18px rgba(0,0,0,.08);
-}
-
-.title{
-    text-align:center;
-}
-
-.title h1{
-    color:#850000;
-    font-size:38px;
-    font-weight:700;
-}
-
-.title p{
-    color:#8c7d79;
-    font-size:15px;
-    margin-top:6px;
-}
-
-.consulta-content{
-    width:100%;
-    min-height:595px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#eadfd8;
-    padding:45px;
-}
-
-.consulta-card{
-    width:690px;
-    background:#ffffff;
-    border-radius:28px;
-    padding:38px;
-    box-shadow:
-    0 12px 30px rgba(0,0,0,.12),
-    inset 0 0 0 2px rgba(255,255,255,.5);
-}
-
-.form-group{
-    display:flex;
-    flex-direction:column;
-    margin-bottom:22px;
-}
-
-.form-group label{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-bottom:10px;
-}
-
-.input-icon{
-    width:18px;
-    height:18px;
-    object-fit:contain;
-}
-
-.form-group select,
-.form-group input,
-.form-group textarea{
-    width:100%;
-    height:60px;
-    border:2px solid #e0d4cb;
-    border-radius:16px;
-    background:#ffffff;
-    padding:0 18px;
-    font-size:15px;
-    outline:none;
-    transition:.25s;
-}
-
-.form-group textarea{
-    height:120px;
-    padding:16px 18px;
-    resize:none;
-}
-
-.form-group select:focus,
-.form-group input:focus,
-.form-group textarea:focus{
-    border-color:#850000;
-    box-shadow:0 0 0 4px rgba(133,0,0,.10);
-}
-
-.confirmar-btn{
-    width:100%;
-    height:56px;
-    border:none;
-    border-radius:14px;
-    background:#850000;
-    color:white;
-    font-size:17px;
-    font-weight:500;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.confirmar-btn:hover{
-    background:#a00000;
-    transform:translateY(-2px);
-}
-
-.info-btn{
-    width:42px;
-    height:42px;
-    border:none;
-    background:#850000;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    justify-self:end;
-    cursor:pointer;
-    transition:.25s;
-    box-shadow:0 6px 16px rgba(0,0,0,.18);
-}
-
-.info-btn:hover{
-    transform:scale(1.08);
-}
-
-.info-btn img{
-    width:22px;
-    height:22px;
-    object-fit:contain;
-}
-
-.overlay{
-    position:fixed;
-    inset:0;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    background:rgba(0,0,0,.18);
-    z-index:999;
-}
-
-.aviso-box{
-    width:960px;
-    background:#850000;
-    color:white;
-    padding:22px 35px;
-    border-radius:18px;
-    font-size:23px;
-    box-shadow:0 12px 35px rgba(0,0,0,.35);
-    animation:aparecer .3s ease;
-}
-
-.aviso-box strong{
-    font-weight:700;
-}
-
-@keyframes aparecer{
-    from{
-        opacity:0;
-        transform:translateY(-30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+@media (max-width: 380px) {
+  .consulta-card { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .top-area, .consulta-content { padding: 22px 16px; }
+  .pagina-consulta .title h1 { font-size: 25px; }
 }

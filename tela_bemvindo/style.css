@@ -105,6 +105,9 @@ header p {
 }
 
 .continuar {
+    display: block;
+    text-align: center;
+    text-decoration: none;
     width: 100%;
     background: #850000;
     color: white;
@@ -117,4 +120,38 @@ header p {
 
 .continuar:hover {
     background: #6f0000;
+}
+
+/* Espaço para rolagem em celulares e telas baixas. */
+body {
+    padding: 32px 20px;
+}
+
+main {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 800px;
+    margin-block: auto;
+    padding: clamp(24px, 5vw, 45px) clamp(20px, 6vw, 55px);
+}
+
+header h2 {
+    font-size: clamp(24px, 5vw, 30px);
+    line-height: 1.25;
+}
+
+.txt-um, .txt-dois {
+    display: flow-root;
+}
+
+@media (max-width: 540px) {
+    body { padding: 20px 12px; }
+    main { border-radius: 24px; }
+    header { margin-bottom: 28px; }
+    .img-logo { width: 120px; height: 120px; margin-top: -8px; }
+    .img-msg, .img-digital { margin-right: 12px; width: 36px; height: 36px; }
+    .img-msg img, .img-digital img { width: 24px; height: 24px; }
+    .txt-um h3, .txt-dois h3 { line-height: 1.4; }
+    .txt-um p, .txt-dois p { line-height: 1.7; }
+    .proximo-passo { padding: 16px; }
 }

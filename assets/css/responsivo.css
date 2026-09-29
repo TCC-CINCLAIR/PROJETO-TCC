@@ -1,0 +1,483 @@
+/* Base compartilhada. Carregada depois do estilo de cada tela. */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: auto;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100svh;
+}
+
+img, svg {
+    max-width: 100%;
+}
+
+input, select, textarea {
+    min-width: 0;
+    max-width: 100%;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+button, a, input, select, textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, a {
+    touch-action: manipulation;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+p, h1, h2, h3, label {
+    overflow-wrap: anywhere;
+}
+
+a:focus-visible, button:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid #a34436;
+    outline-offset: 3px;
+}
+
+/* Login, cadastro e recuperação: cartões fluidos e altura pelo conteúdo. */
+.pagina-acesso {
+    padding: 32px 20px;
+}
+
+.pagina-acesso, .pagina-acesso * {
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.pagina-acesso > form,
+.pagina-acesso > .moldura-cartao,
+.pagina-acesso > .card {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    margin: auto 0;
+    border-width: 12px;
+    border-radius: 30px;
+    box-shadow: 0 18px 48px #49000026;
+}
+
+.pagina-acesso > form,
+.pagina-acesso > .card {
+    padding: 30px 28px;
+}
+
+.pagina-acesso header,
+.pagina-acesso main,
+.pagina-acesso footer,
+.pagina-acesso .dados,
+.pagina-acesso .div-senha,
+.pagina-acesso .btn-entrar,
+.pagina-acesso .btn-enviar {
+    width: 100%;
+    min-width: 0;
+}
+
+.pagina-acesso header,
+.pagina-acesso .caixa-principal,
+.pagina-acesso .dados {
+    margin: 0;
+    padding: 0;
+}
+
+.pagina-acesso header {
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.pagina-acesso .mensagem {
+    text-align: center;
+}
+
+.pagina-acesso .mensagem h2,
+.pagina-acesso h1 {
+    font-size: clamp(21px, 5vw, 26px);
+    line-height: 1.3;
+}
+
+.pagina-acesso .mensagem p,
+.pagina-acesso .subtitulo {
+    color: #65534d;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.pagina-acesso .dados label {
+    padding-top: 16px;
+    padding-bottom: 6px;
+    font-size: 13px;
+}
+
+.pagina-acesso .dados input {
+    width: 100%;
+    height: 48px;
+    padding: 10px 12px;
+    font-size: 16px;
+}
+
+.pagina-acesso .div-senha input {
+    padding-right: 52px;
+}
+
+.pagina-acesso #exibir-senha {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    right: 3px;
+    top: 50%;
+    padding: 0;
+    border-radius: 8px;
+    background: transparent;
+}
+
+.pagina-acesso .btn-entrar button,
+.pagina-acesso .btn-enviar button {
+    width: 100%;
+    min-height: 48px;
+    height: auto;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.pagina-acesso .btn-enviar {
+    margin-top: 0;
+    padding-top: 24px;
+}
+
+.pagina-acesso .btn-entrar a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 0;
+}
+
+.pagina-acesso .criar-conta,
+.pagina-acesso .fazer-login {
+    margin: 0;
+    padding-top: 24px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.pagina-acesso .logo-login {
+    width: 130px;
+    height: 100px;
+    object-fit: contain;
+    margin: 0 auto 16px;
+    padding: 0;
+}
+
+.pagina-acesso .dados .campo-email {
+    width: 100%;
+    height: auto;
+    min-height: 48px;
+}
+
+.pagina-acesso .dados .campo-email input {
+    padding-inline: 0;
+}
+
+.pagina-acesso .cartao {
+    padding: 30px 28px;
+}
+
+.pagina-acesso .caixa-input-1 input,
+.pagina-acesso .caixa-input-2 input,
+.pagina-acesso .campo-codigo input {
+    font-size: 16px;
+    min-width: 0;
+}
+
+.pagina-acesso .alternar-senha {
+    width: 44px;
+    height: 44px;
+    right: 2px;
+}
+
+/* Navegação comum ao perfil, agenda e consultas. */
+.pagina-interna {
+    padding: 28px 24px 40px;
+}
+
+.pagina-interna > header {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.pagina-interna .top-menu {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    margin-bottom: 28px;
+    border-radius: 24px;
+    background: #ffffff59;
+}
+
+.pagina-interna .top-menu > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    height: auto;
+    padding: 8px 4px;
+    border-radius: 17px;
+    gap: 4px;
+    color: #fff;
+    background: #850000;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.3;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.pagina-interna .top-menu,
+.pagina-interna .top-menu * {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pagina-interna .top-menu > a span {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.pagina-interna .top-menu img {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin: 0;
+}
+
+.pagina-interna .top-menu .menu-btn-active,
+.pagina-interna .top-menu .active {
+    background: #9b0000;
+    box-shadow: 0 0 0 3px #f0e4dccc;
+}
+
+.pagina-interna .top-menu > a:focus-visible {
+    outline-color: #fff;
+}
+
+/* As sete perguntas usam a mesma escala de espaçamento. */
+.pagina-questionario {
+    padding: 32px 20px;
+}
+
+.pagina-questionario .caixa-questionario {
+    flex-shrink: 0;
+    margin-block: auto;
+}
+
+.pagina-questionario .informacoes-progresso {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    line-height: 1.5;
+}
+
+.pagina-questionario h1 {
+    font-size: clamp(19px, 3vw, 23px);
+    line-height: 1.45;
+}
+
+.pagina-questionario .opcao {
+    min-height: 56px;
+    padding: 14px;
+    gap: 12px;
+    font-size: 15px;
+}
+
+.pagina-questionario .opcao span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.pagina-questionario .campo-texto {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.pagina-questionario .botoes {
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.pagina-questionario .botoes > * {
+    width: auto;
+    flex: 1;
+    min-width: 0;
+    min-height: 48px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .pagina-interna {
+        padding: 16px 12px 28px;
+    }
+
+    .pagina-interna .top-menu {
+        gap: 6px;
+        padding: 8px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .pagina-interna .top-menu > a,
+    .pagina-interna .top-menu > a span {
+        font-size: 11px;
+    }
+
+    .pagina-interna .top-menu > a {
+        min-height: 58px;
+        padding: 7px 2px;
+        border-radius: 13px;
+    }
+
+    .pagina-interna .top-menu .menu-btn-active,
+    .pagina-interna .top-menu .active {
+        box-shadow: 0 0 0 2px #f0e4dccc;
+    }
+
+    .pagina-questionario {
+        padding: 24px 12px;
+    }
+
+    .pagina-questionario .caixa-questionario {
+        padding: 24px 18px;
+        border-width: 8px;
+        border-radius: 26px;
+    }
+}
+
+@media (max-width: 400px) {
+    .pagina-acesso {
+        padding: 20px 12px;
+    }
+
+    .pagina-acesso > form,
+    .pagina-acesso > .card,
+    .pagina-acesso .cartao {
+        padding: 24px 18px;
+    }
+
+    .pagina-acesso > form,
+    .pagina-acesso > .card,
+    .pagina-acesso > .moldura-cartao {
+        border-width: 8px;
+        border-radius: 24px;
+    }
+
+    .pagina-questionario .botoes {
+        gap: 10px;
+    }
+
+    .pagina-questionario .botoes > * {
+        padding-inline: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .pagina-interna .top-menu > a,
+    .pagina-interna .top-menu > a span {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Campos de 16px evitam zoom automático ao digitar no celular. */
+    .pagina-interna input,
+    .pagina-interna select,
+    .pagina-interna textarea {
+        font-size: 16px;
+    }
+}
+
+@media (hover: hover) and (min-width: 641px) {
+    .pagina-interna .top-menu > a:hover {
+        background: #6f0000;
+    }
+}
+
+/* Nas três telas, só o conteúdo rola; a navegação permanece no rodapé. */
+@media (max-width: 640px) {
+    body.pagina-interna {
+        padding: 20px 12px calc(96px + env(safe-area-inset-bottom));
+    }
+
+    body:is(.pagina-agenda, .pagina-consulta) {
+        background: linear-gradient(160deg, #e8d4c9 0%, #bd8274 100%);
+    }
+
+    body.pagina-interna > header {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+    }
+
+    body.pagina-interna .top-menu {
+        margin: 0;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        gap: 2px;
+        border-radius: 22px 22px 0 0;
+        background: #740e0e;
+        box-shadow: 0 -4px 24px #49000020;
+    }
+
+    body.pagina-interna .top-menu > a,
+    body.pagina-interna .top-menu > a span {
+        font-size: 11px;
+        line-height: 1.3;
+    }
+
+    body.pagina-interna .top-menu > a {
+        min-height: 56px;
+        gap: 6px;
+        padding: 6px 0;
+        background: transparent;
+        border-radius: 12px;
+        transform: none;
+        overflow-wrap: normal;
+    }
+
+    body.pagina-interna .top-menu > a[aria-current="page"] {
+        background: #ffffff24;
+        box-shadow: inset 0 0 0 1px #ffffff50;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}

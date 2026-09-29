@@ -8,8 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/responsivo.css">
 </head>
-<body>
+<body class="pagina-acesso">
     <script src="./script.js" defer></script>
     <form action="processar_cadastro.php" method="post">
         <img class="logo-login" src="../imagens/imagens_cadastro/logo-login.png" alt="">
@@ -27,7 +28,7 @@
                 
                 <label for="senha">Senha</label>
                 <div class="div-senha">
-                    <input type="password" name="senha" id="senha" required minlength="6" maxlength="20"  placeholder=" &bull; &bull; &bull; &bull; &bull; &bull; &bull;"><button type="button" id="exibir-senha"><img src="../imagens/imagens_cadastro/ocultar_senha.png" alt=""></button>
+                    <input type="password" name="senha" id="senha" required minlength="6" maxlength="20"  placeholder=" &bull; &bull; &bull; &bull; &bull; &bull; &bull;"><button type="button" id="exibir-senha" aria-label="Mostrar ou ocultar senha"><img src="../imagens/imagens_cadastro/ocultar_senha.png" alt=""></button>
                 </div>
             </section>
             <section class="btn-enviar">

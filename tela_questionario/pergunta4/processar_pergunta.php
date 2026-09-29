@@ -1,9 +1,58 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['sessao_id'])) {
     header("Location: ../../tela_login/index.html?aviso=acesso-negado");
     exit;
 }
 
-// TODO: adicionar o processamento da resposta e a conexao com o banco de dados.
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: index.php");
+    exit;
+}
+
+try {
+    $conn = new PDO ("pgsql:host = aws-1-us-east-2.pooler.supabase.com;dbname=postgres","postgres.oiqkryvqyoxjyaujrtcl", "cinclair@2026");
+    $conn -> setAttribute (
+    PDO::ATTR_ERRMODE,
+    PDO::ERRMODE_EXCEPTION
+    );
+
+    $apoio = $_POST['apoio'] ?? '';
+    $usuario_id = $_SESSION['sessao_id'];
+
+    if (!is_string($apoio)) {
+        header("Location: index.php");
+        exit;
+    }
+
+    $apoio = trim($apoio);
+
+    if (!in_array($apoio, ['breve', 'confirmacao', 'sem_preferencia'], true)) {
+        header("Location: index.php");
+        exit;
+    }
+
+    $sql = "UPDATE preferencias_usuario SET reacao_chat = :apoio, atualizado_em = NOW() WHERE usuario_id = :sessao_id";
+
+    $stmt = $conn -> prepare($sql);
+
+    $result = $stmt -> execute([
+        'sessao_id' => $usuario_id,
+        'apoio' => $apoio,
+    ]);
+
+    if ($stmt -> rowCount() === 0) {
+        header("Location: ../pergunta1/index.php");
+        exit;
+    }
+
+    if ($result) {
+        header("Location: ../pergunta5/index.php");
+        exit;
+    }
+}catch (Exception $e){
+    die($e);
+}
+$conn = null;
+?>

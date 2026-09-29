@@ -1,12 +1,31 @@
 const overlay = document.getElementById("overlay");
+let ultimoFoco = null;
 
 function mostrarAviso() {
+    ultimoFoco = document.activeElement;
     overlay.style.display = "flex";
+    document.body.classList.add("dialog-open");
+    overlay.querySelector("button").focus();
+}
+
+function fecharAviso() {
+    overlay.style.display = "none";
+    document.body.classList.remove("dialog-open");
+    ultimoFoco?.focus();
 }
 
 overlay.addEventListener("click", function (event) {
     if (event.target === overlay) {
-        overlay.style.display = "none";
+        fecharAviso();
+    }
+});
+
+document.addEventListener("keydown", function (event) {
+    if (overlay.style.display !== "flex") return;
+    if (event.key === "Escape") fecharAviso();
+    if (event.key === "Tab") {
+        event.preventDefault();
+        overlay.querySelector("button").focus();
     }
 });
 

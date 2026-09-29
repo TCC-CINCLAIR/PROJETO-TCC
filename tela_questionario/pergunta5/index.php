@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['sessao_id'])) {
     header("Location: ../../tela_login/index.html?aviso=acesso-negado");
     exit;
 }
@@ -14,9 +14,9 @@ if (!isset($_SESSION['usuario_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pergunta 5 | Cinclair</title>
     <link rel="stylesheet" href="style.css">
-    <script src="../script.js" defer></script>
+    <link rel="stylesheet" href="../../assets/css/responsivo.css">
 </head>
-<body>
+<body class="pagina-questionario">
     <div class="caixa-questionario">
         <!-- Progresso desta página -->
         <div class="informacoes-progresso">
@@ -27,8 +27,8 @@ if (!isset($_SESSION['usuario_id'])) {
             <div class="progresso-4"></div>
         </div>
 
-        <!-- O action informa qual é a próxima página -->
-        <form id="questionario" action="../pergunta6/index.php">
+        <!-- Envia a resposta para o processamento -->
+        <form id="questionario" action="processar_pergunta.php" method="post">
             <h1 id="titulo-pergunta">O assistente pode fazer perguntas para ajudar a completar seu relato?</h1>
             <div class="opcoes" role="group" aria-labelledby="titulo-pergunta">
                 <label class="opcao">

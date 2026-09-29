@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['sessao_id'])) {
   header("Location: ../tela_login/index.html?aviso=acesso-negado");
   exit;
 }
@@ -14,8 +14,9 @@ if (!isset($_SESSION['usuario_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-Vindo!</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/responsivo.css">
 </head>
-<body>
+<body class="pagina-bemvindo">
     
     <main>
         <header>
@@ -47,9 +48,9 @@ if (!isset($_SESSION['usuario_id'])) {
                 </p>
             </div>
             
-            <a href="../tela_questionario/pergunta1/index.php"><button class="continuar">
+            <a class="continuar" href="../tela_questionario/pergunta1/index.php">
                 Continuar &rarr;
-            </button></a>
+            </a>
     </main>
 </body>
 </html>

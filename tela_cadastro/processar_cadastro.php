@@ -46,3 +46,4 @@ try {
     echo 'Possível erro de Excessão: ', $e -> getMessage(), "\n";
 }
 $conn = null;
+?>

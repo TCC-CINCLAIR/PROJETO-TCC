@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['sessao_id'])) {
   header("Location: ../tela_login/index.html?aviso=acesso-negado");
   exit;
 }
@@ -15,23 +15,24 @@ if (!isset($_SESSION['usuario_id'])) {
 
   <title>Agenda de Tarefas</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
+    <link rel="stylesheet" href="../assets/css/responsivo.css?v=<?= filemtime(__DIR__ . '/../assets/css/responsivo.css') ?>">
 </head>
 
-<body>
+<body class="pagina-interna pagina-agenda">
 
   <header>
-    <nav class="top-menu">
+    <nav class="top-menu" aria-label="Navegação principal">
 
-      <a href="#" class="menu-btn"><button > <img src="../agenda_tarefas/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</button></a>
+      <a href="#" class="menu-btn"> <img src="../agenda_tarefas/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
 
-      <a href="#" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</button></a>
+      <a href="#" class="menu-btn"><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</a>
 
-      <a href="../tela_perfil/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</button></a>
+      <a href="../tela_perfil/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</a>
 
-      <a href="#" class="menu-btn-active"><button ><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</button></a>
+      <a href="#" class="menu-btn-active" aria-current="page"><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</a>
       
-      <a href="../tela_consulta/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</button></a>
+      <a href="../tela_consulta/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</a>
 
     </nav>
   </header>
@@ -41,41 +42,48 @@ if (!isset($_SESSION['usuario_id'])) {
 
       <div class="top-area">
 
-        <button class="new-task" onclick="openModal()">
-          + Nova Tarefa
-        </button>
-
         <div class="title">
           <h1>Agenda de Tarefas</h1>
           <p>Organize suas atividades diárias</p>
         </div>
-
-        <div class="menu-icon" onclick="openMenu()">
-          <div></div>
-          <div></div>
-          <div></div>
+        <div class="agenda-actions">
+          <button class="new-task" onclick="openModal()"><span aria-hidden="true">+</span> Nova tarefa</button>
+          <button type="button" class="menu-icon" onclick="openMenu()" aria-controls="sideMenu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6h12M9 12h12M9 18h12M3 6h1M3 12h1M3 18h1" stroke-linecap="round"/></svg>
+            Pendências
+          </button>
         </div>
 
       </div>
 
-      <div class="tasks-grid" id="tasksContainer">
-
-      </div>
+      <section class="tasks-section" aria-labelledby="tasks-heading">
+        <h2 id="tasks-heading">Suas tarefas</h2>
+        <div class="tasks-grid" id="tasksContainer"></div>
+        <div class="empty-state" id="emptyTasks">
+          <div class="empty-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="11" width="30" height="29" rx="5"/><path d="M16 7v8m16-8v8M9 21h30m-23 8 5 5 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Um dia de cada vez</h3>
+          <p>Suas tarefas aparecerão aqui.<br>Toque em <strong>Nova tarefa</strong> para começar.</p>
+        </div>
+      </section>
 
     </div>
 
   </main>
 
 
-  <div class="modal" id="taskModal">
+  <div class="modal" id="taskModal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title">
 
     <div class="modal-content">
 
-      <h2>Adicionar Nova Tarefa</h2>
+      <div class="dialog-heading">
+        <h2 id="task-modal-title">Nova tarefa</h2>
+        <button class="close-dialog" type="button" onclick="closeModal()" aria-label="Fechar nova tarefa">&times;</button>
+      </div>
+      <p class="dialog-description">Reserve um momento para o que importa.</p>
 
       <div class="form-group">
 
-        <label>Título da tarefa</label>
+        <label for="taskTitle">Título da tarefa</label>
 
         <input 
           type="text" 
@@ -87,7 +95,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
       <div class="form-group">
 
-        <label>Data</label>
+        <label for="taskDate">Data</label>
 
         <input 
           type="date"
@@ -112,13 +120,14 @@ if (!isset($_SESSION['usuario_id'])) {
 
   </div>
 
-  <div class="side-menu" id="sideMenu">
+  <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+  <div class="side-menu" id="sideMenu" role="dialog" aria-modal="true" aria-labelledby="pending-title">
 
     <div class="side-header">
 
-      <h2>Pendências</h2>
+      <h2 id="pending-title">Pendências</h2>
 
-      <button class="close-menu" onclick="closeMenu()">
+      <button class="close-menu" onclick="closeMenu()" aria-label="Fechar pendências">
         ✕
       </button>
 

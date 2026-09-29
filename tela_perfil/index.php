@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['sessao_id'])) {
     header("Location: ../tela_login/index.html?aviso=acesso-negado");
     exit;
 }
@@ -16,7 +16,7 @@ try {
     $sql = "SELECT usuario, email FROM usuarios WHERE id = :id";
     $stmt = $conn -> prepare($sql);
     $stmt -> execute([
-        'id' => $_SESSION['usuario_id']
+        'id' => $_SESSION['sessao_id'],
     ]);
     $dadosUsuario = $stmt -> fetch(PDO::FETCH_ASSOC);
 
@@ -31,24 +31,25 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuário</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/responsivo.css?v=<?= filemtime(__DIR__ . '/../assets/css/responsivo.css') ?>">
 </head>
-<body>
+<body class="pagina-interna pagina-perfil">
     <header>
-        <nav class="top-menu">
+        <nav class="top-menu" aria-label="Navegação principal">
 
-            <a href="" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</button></a>
+            <a href="" class="menu-btn"><img src="../imagens/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
 
-            <a href="" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</button></a>
+            <a href="" class="menu-btn"><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</a>
 
-            <a href="" class="menu-btn-active"><button ><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</button></a>
+            <a href="" class="menu-btn-active" aria-current="page"><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</a>
 
-            <a href="../agenda_tarefas/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</button></a>
+            <a href="../agenda_tarefas/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</a>
       
-            <a href="../tela_consulta/index.php" class="menu-btn"><button ><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</button></a>
+            <a href="../tela_consulta/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</a>
 
         </nav>
     </header>
@@ -87,7 +88,7 @@ try {
                 <a href="../tela_login/index.html"><button class="btn-logout"> &rarr;]  Sair da conta</button></a>
             </div>
             <div class="contato">
-                <a target="_blank" href="https://www.instagram.com/cinclaair"><p>Fale Conosco</p></a>""
+                <a target="_blank" href="https://www.instagram.com/cinclaair"><p>Fale Conosco</p></a>
             </div>
         </section>
     </main>
