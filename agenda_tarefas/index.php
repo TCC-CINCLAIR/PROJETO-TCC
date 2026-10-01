@@ -26,7 +26,7 @@ if (!isset($_SESSION['sessao_id'])) {
 
       <a href="#" class="menu-btn"> <img src="../agenda_tarefas/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
 
-      <a href="#" class="menu-btn"><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</a>
+      <a href="../tela_chatbot/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</a>
 
       <a href="../tela_perfil/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</a>
 

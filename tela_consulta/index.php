@@ -30,7 +30,7 @@ if (!isset($_SESSION['sessao_id'])) {
             <span>Dashboard</span>
         </a>
 
-        <a href="#" class="menu-btn">
+        <a href="../tela_chatbot/index.php" class="menu-btn">
             <img src="imagens_navbar/Chat.png">
             <span>Chatbot</span>
         </a>

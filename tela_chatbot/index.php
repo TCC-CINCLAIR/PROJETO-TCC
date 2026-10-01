@@ -1,0 +1,75 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['sessao_id'])) {
+    header("Location: ../tela_login/index.html?aviso=acesso-negado");
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot | Clarice</title>
+    <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
+    <link rel="stylesheet" href="../assets/css/responsivo.css?v=<?= filemtime(__DIR__ . '/../assets/css/responsivo.css') ?>">
+</head>
+<body class="pagina-interna pagina-chatbot">
+    <header>
+        <nav class="top-menu" aria-label="Navegação principal">
+            <a href="#" class="menu-btn"><img src="../imagens/imagens_navbar/Config.png" alt=""><span>Dashboard</span></a>
+            <a href="index.php" class="menu-btn active" aria-current="page"><img src="../imagens/imagens_navbar/Chat.png" alt=""><span>Chatbot</span></a>
+            <a href="../tela_perfil/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/User.png" alt=""><span>Perfil</span></a>
+            <a href="../agenda_tarefas/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Calendário.png" alt=""><span>Agenda</span></a>
+            <a href="../tela_consulta/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Relógio.png" alt=""><span>Consultas</span></a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="chat-moldura" aria-labelledby="chat-title">
+            <div class="chat-box">
+                <header class="chat-header">
+                    <img class="clarice-icon" src="../imagens/imagens_cadastro/logo-login.png" alt="Cinclair" width="48" height="48">
+                    <div>
+                        <h1 id="chat-title">Clarice</h1>
+                        <p class="chat-status"><span aria-hidden="true"></span>Assistente de bem-estar</p>
+                    </div>
+                </header>
+
+                <div class="chat-mensagens" id="mensagens" role="log" aria-label="Conversa com Clarice" aria-live="polite" aria-relevant="additions" tabindex="0">
+                    <div class="mensagem mensagem-clarice">
+                        <span class="sr-only">Clarice: </span>
+                        <p>Olá! Sou seu assistente de bem-estar. Estou aqui para ouvir você e ajudar no seu acompanhamento emocional.<br>Como você está se sentindo hoje?</p>
+                    </div>
+                </div>
+
+                <div class="chat-rodape">
+                    <p class="aviso-previa" id="aviso-previa" role="status" hidden>Prévia: sua mensagem aparece apenas nesta tela. As respostas da Clarice ainda não estão conectadas.</p>
+                    <form class="chat-form" id="chat-form">
+                        <div class="emoji-container">
+                            <button class="chat-btn" id="emoji-btn" type="button" aria-label="Escolher emoji" aria-expanded="false" aria-controls="emoji-picker">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14a4 4 0 0 0 8 0M8 8.5h.01M16 8.5h.01" stroke-linecap="round"/></svg>
+                            </button>
+                            <div class="emoji-picker" id="emoji-picker" role="group" aria-label="Emojis" hidden>
+                                <button type="button" aria-label="Sorriso">😊</button>
+                                <button type="button" aria-label="Coração">❤️</button>
+                                <button type="button" aria-label="Triste">😔</button>
+                                <button type="button" aria-label="Abraço">🤗</button>
+                                <button type="button" aria-label="Pensativo">🤔</button>
+                                <button type="button" aria-label="Feliz">😄</button>
+                            </div>
+                        </div>
+                        <label class="sr-only" for="mensagem">Digite sua mensagem</label>
+                        <input id="mensagem" name="mensagem" type="text" placeholder="Digite sua mensagem..." maxlength="2000" autocomplete="off" required>
+                        <button class="chat-btn" type="submit" aria-label="Enviar mensagem">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4 3 17 9-17 9 4-9-4-9Zm4 9h13" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js?v=<?= filemtime(__DIR__ . '/script.js') ?>"></script>
+</body>
+</html>

@@ -12,6 +12,11 @@ body {
     height: auto;
     min-height: 100vh;
     min-height: 100svh;
+    /* Mesmo fundo em todas as telas, no desktop e no celular. */
+    background:
+        radial-gradient(ellipse at top left, #f0eee0 0%, transparent 57%),
+        radial-gradient(ellipse at bottom right, #d9bcb1 0%, transparent 48%),
+        #790e06;
 }
 
 img, svg {
@@ -429,10 +434,6 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 @media (max-width: 640px) {
     body.pagina-interna {
         padding: 20px 12px calc(96px + env(safe-area-inset-bottom));
-    }
-
-    body:is(.pagina-agenda, .pagina-consulta) {
-        background: linear-gradient(160deg, #e8d4c9 0%, #bd8274 100%);
     }
 
     body.pagina-interna > header {
