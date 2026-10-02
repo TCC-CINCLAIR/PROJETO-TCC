@@ -5,6 +5,19 @@ if (!isset($_SESSION['usuario_id'])) {
   header("Location: ../tela_login/index.html?aviso=acesso-negado");
   exit;
 }
+require_once "../conexao.php";
+
+$usuario_id = $_SESSION['usuario_id'];
+
+$sql = "SELECT profissional, data_consulta, horario, observacoes
+        FROM marcar_consulta
+        WHERE id_usuario = :usuario_id
+        ORDER BY data_consulta, horario";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute(['usuario_id' => $usuario_id]);
+
+$consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -338,6 +351,9 @@ if (!isset($_SESSION['usuario_id'])) {
 
 <div class="month-tasks" id="tasks-Dezembro"></div>
   </div>
+  <script>
+    const consultasBanco = <?= json_encode($consultas, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+  </script>
 
   <script src="script.js"></script>
   <script src="../modo_escuro.js"></script>
