@@ -26,6 +26,7 @@ if (empty($_SESSION['chat_csrf']) || !hash_equals($_SESSION['chat_csrf'], $token
     responderJSON(403, ['erro' => 'Atualize a página antes de enviar sua mensagem.']);
 }
 // Libera a sessão enquanto aguarda a API, permitindo navegar em outras telas.
+$usuarioId = $_SESSION['sessao_id'];
 session_write_close();
 
 // 2. Lê o JSON enviado pelo fetch e confere o campo mensagem.
@@ -40,11 +41,18 @@ $dados = json_decode($corpo, true);
 if (!is_array($dados) || !isset($dados['mensagem']) || !is_string($dados['mensagem'])) {
     responderJSON(400, ['erro' => 'Envie uma mensagem de texto válida.']);
 }
+// Rejeita entradas inválidas antes de consultar o banco.
+if (preg_match('/^\s*$/u', $dados['mensagem']) || mb_strlen($dados['mensagem'], 'UTF-8') > 2000) {
+    responderJSON(422, ['erro' => 'Escreva uma mensagem de até 2.000 caracteres.']);
+}
 
 // 3. Usa a função do bloco 2 e devolve o resultado ao navegador.
 try {
     require_once __DIR__ . '/servico_ia.php';
-    $resposta = consultarIA($dados['mensagem']);
+    require_once __DIR__ . '/preferencias_usuario.php';
+    // ID vem da sessão; não aceita ID ou preferências enviados pelo navegador.
+    $preferencias = carregarPreferenciasUsuario($usuarioId);
+    $resposta = consultarIA($dados['mensagem'], $preferencias);
     responderJSON(200, ['resposta' => $resposta]);
 } catch (InvalidArgumentException $erro) {
     responderJSON(422, ['erro' => $erro->getMessage()]);

@@ -11,6 +11,11 @@ if (empty($_SESSION['chat_csrf'])) {
     $_SESSION['chat_csrf'] = bin2hex(random_bytes(32));
 }
 header('Cache-Control: no-store');
+$tokenChat = $_SESSION['chat_csrf'];
+$usuarioId = $_SESSION['sessao_id'];
+session_write_close();
+require_once __DIR__ . '/preferencias_usuario.php';
+$preferencias = carregarPreferenciasUsuario($usuarioId);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -46,13 +51,13 @@ header('Cache-Control: no-store');
                 <div class="chat-mensagens" id="mensagens" role="log" aria-label="Conversa com Clarice" aria-live="polite" aria-relevant="additions" tabindex="0">
                     <div class="mensagem mensagem-clarice">
                         <span class="sr-only">Clarice: </span>
-                        <p>Olá! Sou seu assistente de bem-estar. Estou aqui para ouvir você e ajudar no seu acompanhamento emocional.<br>Como você está se sentindo hoje?</p>
+                        <p><?= htmlspecialchars(saudacaoClarice($preferencias), ENT_QUOTES, 'UTF-8') ?></p>
                     </div>
                 </div>
 
                 <div class="chat-rodape">
                     <p class="chat-aviso" id="chat-aviso" role="status" hidden></p>
-                    <form class="chat-form" id="chat-form" action="processar_mensagem.php" method="post" data-csrf="<?= htmlspecialchars($_SESSION['chat_csrf'], ENT_QUOTES, 'UTF-8') ?>">
+                    <form class="chat-form" id="chat-form" action="processar_mensagem.php" method="post" data-csrf="<?= htmlspecialchars($tokenChat, ENT_QUOTES, 'UTF-8') ?>">
                         <div class="emoji-container">
                             <button class="chat-btn" id="emoji-btn" type="button" aria-label="Escolher emoji" aria-expanded="false" aria-controls="emoji-picker">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14a4 4 0 0 0 8 0M8 8.5h.01M16 8.5h.01" stroke-linecap="round"/></svg>

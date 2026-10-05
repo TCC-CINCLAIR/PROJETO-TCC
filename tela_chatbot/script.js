@@ -56,6 +56,25 @@ function adicionarMensagem(texto, remetente) {
     return mensagem;
 }
 
+function mostrarDigitacao() {
+    const balao = document.createElement('div');
+    balao.className = 'mensagem mensagem-clarice mensagem-digitando';
+    const descricao = document.createElement('span');
+    descricao.className = 'sr-only';
+    descricao.textContent = 'Clarice está preparando uma resposta…';
+    balao.appendChild(descricao);
+
+    for (let i = 0; i < 3; i++) {
+        const ponto = document.createElement('span');
+        ponto.className = 'ponto-digitacao';
+        ponto.setAttribute('aria-hidden', 'true');
+        balao.appendChild(ponto);
+    }
+    mensagens.appendChild(balao);
+    mensagens.scrollTop = mensagens.scrollHeight;
+    return balao;
+}
+
 formulario.addEventListener('submit', async (evento) => {
     // Evita que o formulário recarregue a página.
     evento.preventDefault();
@@ -74,9 +93,11 @@ formulario.addEventListener('submit', async (evento) => {
     formulario.setAttribute('aria-busy', 'true');
     fecharEmojis();
     aviso.classList.remove('erro');
-    aviso.textContent = 'Aguardando resposta…';
-    aviso.hidden = false;
+    aviso.textContent = '';
+    aviso.hidden = true;
     const mensagemEnviada = adicionarMensagem(texto, 'usuario');
+    const balaoDigitacao = mostrarDigitacao();
+    const inicioResposta = performance.now();
     campoMensagem.value = '';
 
     const controle = new AbortController();
@@ -102,6 +123,16 @@ formulario.addEventListener('submit', async (evento) => {
             throw new Error('A resposta não chegou completa. Tente novamente.');
         }
 
+        // Mostra os pontos por 1,6 a 3 segundos, conforme o tamanho da resposta.
+        // O tempo que a API já levou conta nessa pausa, evitando espera extra
+        // quando a conexão estiver lenta. Falhas não recebem atraso artificial.
+        clearTimeout(tempoLimite);
+        const tempoMinimo = Math.min(3000, 1600 + dados.resposta.length * 8);
+        const tempoRestante = tempoMinimo - (performance.now() - inicioResposta);
+        if (tempoRestante > 0) {
+            await new Promise((resolver) => setTimeout(resolver, tempoRestante));
+        }
+        balaoDigitacao.remove();
         adicionarMensagem(dados.resposta, 'clarice');
         aviso.hidden = true;
     } catch (erro) {
@@ -117,6 +148,7 @@ formulario.addEventListener('submit', async (evento) => {
         aviso.hidden = false;
     } finally {
         clearTimeout(tempoLimite);
+        balaoDigitacao.remove();
         enviando = false;
         botaoEnviar.disabled = false;
         botaoEmoji.disabled = false;

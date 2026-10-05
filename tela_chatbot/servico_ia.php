@@ -1,8 +1,10 @@
 <?php
 
+require_once __DIR__ . '/personalidade_clarice.php';
+
 // Esta função é chamada por processar_mensagem.php.
 // Ela recebe um texto e devolve somente o texto da resposta da IA.
-function consultarIA(string $mensagem): string
+function consultarIA(string $mensagem, array $preferencias = []): string
 {
     // 1. Confere a mensagem antes de fazer uma chamada à API.
     $mensagem = trim($mensagem);
@@ -38,7 +40,8 @@ function consultarIA(string $mensagem): string
     $dados = [
         'model' => trim($modelo),
         'messages' => [
-            ['role' => 'system', 'content' => 'Responda em português brasileiro, de forma breve e em texto simples.'],
+            // Apenas instruções geradas a partir das quatro opções reconhecidas.
+            ['role' => 'system', 'content' => instrucoesClarice($preferencias)],
             ['role' => 'user', 'content' => $mensagem],
         ],
         'max_completion_tokens' => 700,
