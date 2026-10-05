@@ -1,0 +1,2 @@
+# Chave privada da IA: deve ficar somente no servidor local.
+/tela_chatbot/config.local.php
