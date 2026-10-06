@@ -32,6 +32,9 @@ body {
 .chat-aviso.erro { color: #850000; }
 .chat-btn:disabled { opacity: .55; }
 .mensagem p { white-space: pre-wrap; }
+.historico-anteriores { align-self: center; flex-shrink: 0; padding: 10px 14px; border: 1px solid #b38b7f; border-radius: 14px; background: #eee4d9; color: #790e06; font-size: 12px; }
+.historico-anteriores[hidden] { display: none; }
+.chat-nota { margin-top: 8px; font-size: 11px; line-height: 1.4; color: #75645e; text-align: center; }
 .mensagem.mensagem-digitando { display: flex; align-items: center; gap: 6px; min-height: 52px; padding: 18px 22px; }
 .ponto-digitacao { width: 7px; height: 7px; border-radius: 50%; background: #986b60; animation: digitando 1.2s ease-in-out infinite; }
 .ponto-digitacao:nth-of-type(3) { animation-delay: .15s; }

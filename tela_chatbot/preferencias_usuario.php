@@ -3,9 +3,9 @@ require_once __DIR__ . '/personalidade_clarice.php';
 
 function buscarPreferenciasUsuario(PDO $conexao, int|string $usuarioId): array
 {
-    // Só as quatro escolhas autorizadas. Não lê apelido, idade ou observações.
+    // Apelido e quatro escolhas de conversa. Não lê idade ou observações.
     $consulta = $conexao->prepare(
-        'SELECT tom_conversa, reacao_chat, pergunta_chat, inicio_chat
+        'SELECT apelido, tom_conversa, reacao_chat, pergunta_chat, inicio_chat
          FROM preferencias_usuario
          WHERE usuario_id = :usuario_id
          ORDER BY atualizado_em DESC NULLS LAST

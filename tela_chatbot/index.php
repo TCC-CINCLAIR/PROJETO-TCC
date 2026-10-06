@@ -15,7 +15,15 @@ $tokenChat = $_SESSION['chat_csrf'];
 $usuarioId = $_SESSION['sessao_id'];
 session_write_close();
 require_once __DIR__ . '/preferencias_usuario.php';
+require_once __DIR__ . '/historico_chat.php';
 $preferencias = carregarPreferenciasUsuario($usuarioId);
+$historico = ['mensagens' => [], 'ha_anteriores' => false, 'antes' => null];
+$erroHistorico = false;
+try {
+    $historico = carregarHistoricoChat(conectarBancoPreferencias(), $usuarioId);
+} catch (Throwable $erro) {
+    $erroHistorico = true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -49,17 +57,26 @@ $preferencias = carregarPreferenciasUsuario($usuarioId);
                 </header>
 
                 <div class="chat-mensagens" id="mensagens" role="log" aria-label="Conversa com Clarice" aria-live="polite" aria-relevant="additions" tabindex="0">
+                    <button type="button" class="historico-anteriores" id="historico-anteriores" data-antes="<?= (int) ($historico['antes'] ?? 0) ?>" <?= !$historico['ha_anteriores'] ? 'hidden' : '' ?>>Carregar mensagens anteriores</button>
+                    <?php if (!$historico['mensagens'] && !$erroHistorico): ?>
                     <div class="mensagem mensagem-clarice">
                         <span class="sr-only">Clarice: </span>
                         <p><?= htmlspecialchars(saudacaoClarice($preferencias), ENT_QUOTES, 'UTF-8') ?></p>
                     </div>
+                    <?php endif; ?>
+                    <?php foreach ($historico['mensagens'] as $mensagem): ?>
+                    <div class="mensagem <?= $mensagem['remetente'] === 'user' ? 'mensagem-usuario' : 'mensagem-clarice' ?>" data-id="<?= (int) $mensagem['id'] ?>">
+                        <span class="sr-only"><?= $mensagem['remetente'] === 'user' ? 'Você: ' : 'Clarice: ' ?></span>
+                        <p><?= htmlspecialchars($mensagem['conteudo'], ENT_QUOTES, 'UTF-8') ?></p>
+                    </div>
+                    <?php endforeach; ?>
                 </div>
 
                 <div class="chat-rodape">
-                    <p class="chat-aviso" id="chat-aviso" role="status" hidden></p>
-                    <form class="chat-form" id="chat-form" action="processar_mensagem.php" method="post" data-csrf="<?= htmlspecialchars($tokenChat, ENT_QUOTES, 'UTF-8') ?>">
+                    <p class="chat-aviso<?= $erroHistorico ? ' erro' : '' ?>" id="chat-aviso" role="status" <?= !$erroHistorico ? 'hidden' : '' ?>><?= $erroHistorico ? 'Não foi possível recuperar sua conversa. Atualize a página para tentar novamente.' : '' ?></p>
+                    <form class="chat-form" id="chat-form" action="processar_mensagem.php" method="post" data-historico-pronto="<?= $erroHistorico ? 'false' : 'true' ?>" data-csrf="<?= htmlspecialchars($tokenChat, ENT_QUOTES, 'UTF-8') ?>">
                         <div class="emoji-container">
-                            <button class="chat-btn" id="emoji-btn" type="button" aria-label="Escolher emoji" aria-expanded="false" aria-controls="emoji-picker">
+                            <button class="chat-btn" id="emoji-btn" type="button" aria-label="Escolher emoji" aria-expanded="false" aria-controls="emoji-picker" <?= $erroHistorico ? 'disabled' : '' ?>>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14a4 4 0 0 0 8 0M8 8.5h.01M16 8.5h.01" stroke-linecap="round"/></svg>
                             </button>
                             <div class="emoji-picker" id="emoji-picker" role="group" aria-label="Emojis" hidden>
@@ -72,11 +89,12 @@ $preferencias = carregarPreferenciasUsuario($usuarioId);
                             </div>
                         </div>
                         <label class="sr-only" for="mensagem">Digite sua mensagem</label>
-                        <input id="mensagem" name="mensagem" type="text" placeholder="Digite sua mensagem..." maxlength="2000" autocomplete="off" required>
-                        <button class="chat-btn" type="submit" aria-label="Enviar mensagem">
+                        <input id="mensagem" name="mensagem" type="text" placeholder="Digite sua mensagem..." maxlength="2000" autocomplete="off" required <?= $erroHistorico ? 'disabled' : '' ?>>
+                        <button class="chat-btn" type="submit" aria-label="Enviar mensagem" <?= $erroHistorico ? 'disabled' : '' ?>>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4 3 17 9-17 9 4-9-4-9Zm4 9h13" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </button>
                     </form>
+                    <p class="chat-nota">As mensagens enviadas à IA e suas respostas são salvas na sua conta.</p>
                 </div>
             </div>
         </section>

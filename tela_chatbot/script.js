@@ -5,7 +5,12 @@ const botaoEmoji = document.getElementById('emoji-btn');
 const seletorEmoji = document.getElementById('emoji-picker');
 const botaoEnviar = formulario.querySelector('button[type="submit"]');
 const aviso = document.getElementById('chat-aviso');
+const botaoAnteriores = document.getElementById('historico-anteriores');
 let enviando = false;
+let carregandoHistorico = false;
+let envioPendente = null;
+
+requestAnimationFrame(() => { mensagens.scrollTop = mensagens.scrollHeight; });
 
 function fecharEmojis() {
     seletorEmoji.hidden = true;
@@ -42,7 +47,7 @@ document.addEventListener('keydown', (evento) => {
 });
 
 // Usa textContent para exibir mensagens como texto, sem executar HTML.
-function adicionarMensagem(texto, remetente) {
+function criarMensagem(texto, remetente, id = null) {
     const mensagem = document.createElement('div');
     mensagem.className = `mensagem mensagem-${remetente}`;
     const autor = document.createElement('span');
@@ -51,10 +56,51 @@ function adicionarMensagem(texto, remetente) {
     const conteudo = document.createElement('p');
     conteudo.textContent = texto;
     mensagem.append(autor, conteudo);
+    if (id !== null) mensagem.dataset.id = String(id);
+    return mensagem;
+}
+
+function adicionarMensagem(texto, remetente) {
+    const mensagem = criarMensagem(texto, remetente);
     mensagens.appendChild(mensagem);
     mensagens.scrollTop = mensagens.scrollHeight;
     return mensagem;
 }
+
+botaoAnteriores.addEventListener('click', async () => {
+    if (carregandoHistorico || enviando) return;
+    carregandoHistorico = true;
+    botaoAnteriores.disabled = true;
+    botaoAnteriores.textContent = 'Carregando…';
+    const controle = new AbortController();
+    const limite = setTimeout(() => controle.abort(), 15000);
+    try {
+        const url = new URL('carregar_historico.php', window.location.href);
+        url.searchParams.set('antes', botaoAnteriores.dataset.antes);
+        const retorno = await fetch(url, { credentials: 'same-origin', signal: controle.signal });
+        const dados = await retorno.json();
+        if (!retorno.ok || !Array.isArray(dados.mensagens)) throw new Error('Falha no histórico.');
+        const alturaAntes = mensagens.scrollHeight;
+        const fragmento = document.createDocumentFragment();
+        const ids = new Set(Array.from(mensagens.querySelectorAll('[data-id]'), (m) => m.dataset.id));
+        for (const m of dados.mensagens) {
+            if (!ids.has(String(m.id))) {
+                fragmento.appendChild(criarMensagem(m.conteudo, m.remetente === 'user' ? 'usuario' : 'clarice', m.id));
+            }
+        }
+        botaoAnteriores.after(fragmento);
+        botaoAnteriores.dataset.antes = String(dados.antes || 0);
+        botaoAnteriores.hidden = !dados.ha_anteriores;
+        mensagens.scrollTop += mensagens.scrollHeight - alturaAntes;
+        botaoAnteriores.textContent = 'Carregar mensagens anteriores';
+    } catch (erro) {
+        botaoAnteriores.textContent = 'Não foi possível carregar. Tentar novamente';
+    } finally {
+        clearTimeout(limite);
+        carregandoHistorico = false;
+        botaoAnteriores.disabled = false;
+    }
+});
 
 function mostrarDigitacao() {
     const balao = document.createElement('div');
@@ -78,7 +124,7 @@ function mostrarDigitacao() {
 formulario.addEventListener('submit', async (evento) => {
     // Evita que o formulário recarregue a página.
     evento.preventDefault();
-    if (enviando) return;
+    if (enviando || carregandoHistorico || formulario.dataset.historicoPronto !== 'true') return;
 
     const texto = campoMensagem.value.trim();
     if (!texto) {
@@ -86,10 +132,18 @@ formulario.addEventListener('submit', async (evento) => {
         return;
     }
 
+    // Reutiliza o identificador ao tentar novamente o mesmo texto após falha.
+    // Nenhuma conversa ou mensagem é gravada no armazenamento do navegador.
+    if (!envioPendente || envioPendente.texto !== texto) {
+        const bytes = crypto.getRandomValues(new Uint8Array(16));
+        envioPendente = { texto, id: Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('') };
+    }
+
     enviando = true;
     botaoEnviar.disabled = true;
     botaoEmoji.disabled = true;
     campoMensagem.disabled = true;
+    botaoAnteriores.disabled = true;
     formulario.setAttribute('aria-busy', 'true');
     fecharEmojis();
     aviso.classList.remove('erro');
@@ -112,7 +166,7 @@ formulario.addEventListener('submit', async (evento) => {
                 'Content-Type': 'application/json',
                 'X-CSRF-Token': formulario.dataset.csrf,
             },
-            body: JSON.stringify({ mensagem: texto }),
+            body: JSON.stringify({ mensagem: texto, envio_id: envioPendente.id }),
             signal: controle.signal,
         });
         const dados = await retorno.json();
@@ -133,7 +187,10 @@ formulario.addEventListener('submit', async (evento) => {
             await new Promise((resolver) => setTimeout(resolver, tempoRestante));
         }
         balaoDigitacao.remove();
-        adicionarMensagem(dados.resposta, 'clarice');
+        mensagemEnviada.dataset.id = String(dados.usuario_id_mensagem);
+        const resposta = adicionarMensagem(dados.resposta, 'clarice');
+        resposta.dataset.id = String(dados.ia_id_mensagem);
+        envioPendente = null;
         aviso.hidden = true;
     } catch (erro) {
         // Devolve o texto ao campo para tentar novamente sem duplicar a mensagem.
@@ -153,6 +210,7 @@ formulario.addEventListener('submit', async (evento) => {
         botaoEnviar.disabled = false;
         botaoEmoji.disabled = false;
         campoMensagem.disabled = false;
+        botaoAnteriores.disabled = false;
         formulario.removeAttribute('aria-busy');
         campoMensagem.focus();
     }

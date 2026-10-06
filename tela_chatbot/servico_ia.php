@@ -1,10 +1,11 @@
 <?php
 
 require_once __DIR__ . '/personalidade_clarice.php';
+require_once __DIR__ . '/historico_chat.php';
 
 // Esta função é chamada por processar_mensagem.php.
 // Ela recebe um texto e devolve somente o texto da resposta da IA.
-function consultarIA(string $mensagem, array $preferencias = []): string
+function consultarIA(string $mensagem, array $preferencias = [], array $historico = []): string
 {
     // 1. Confere a mensagem antes de fazer uma chamada à API.
     $mensagem = trim($mensagem);
@@ -39,11 +40,12 @@ function consultarIA(string $mensagem, array $preferencias = []): string
     }
     $dados = [
         'model' => trim($modelo),
-        'messages' => [
-            // Apenas instruções geradas a partir das quatro opções reconhecidas.
+        'messages' => array_merge([
+            // Quatro opções reconhecidas e apelido normalizado da conta autenticada.
             ['role' => 'system', 'content' => instrucoesClarice($preferencias)],
+        ], limitarContextoChat($historico), [
             ['role' => 'user', 'content' => $mensagem],
-        ],
+        ]),
         'max_completion_tokens' => 700,
         'stream' => false,
     ];
@@ -74,7 +76,7 @@ function consultarIA(string $mensagem, array $preferencias = []): string
         throw new RuntimeException('Não foi possível conectar à Groq. Confira a conexão e a configuração HTTPS do PHP.');
     }
     if ($status === 429) {
-        throw new RuntimeException('O limite de uso da IA foi atingido. Aguarde antes de tentar novamente.');
+        throw new RuntimeException('O limite de uso da IA foi atingido. Aguarde antes de tentar novamente.', 429);
     }
     if ($status === 401 || $status === 403) {
         throw new RuntimeException('A Groq recusou o acesso. Confira sua chave e as permissões da conta.');

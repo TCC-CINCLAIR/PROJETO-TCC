@@ -47,16 +47,25 @@ if (preg_match('/^\s*$/u', $dados['mensagem']) || mb_strlen($dados['mensagem'], 
 }
 
 // 3. Usa a função do bloco 2 e devolve o resultado ao navegador.
+$envioId = $dados['envio_id'] ?? null;
+if (!is_string($envioId) || !preg_match('/^[a-f0-9]{32}$/D', $envioId)) {
+    responderJSON(400, ['erro' => 'Atualize a página para identificar corretamente seu envio.']);
+}
 try {
     require_once __DIR__ . '/servico_ia.php';
     require_once __DIR__ . '/preferencias_usuario.php';
     // ID vem da sessão; não aceita ID ou preferências enviados pelo navegador.
     $preferencias = carregarPreferenciasUsuario($usuarioId);
-    $resposta = consultarIA($dados['mensagem'], $preferencias);
-    responderJSON(200, ['resposta' => $resposta]);
+    $banco = conectarBancoPreferencias();
+    $resultado = processarTrocaChat($banco, $usuarioId, $envioId, trim($dados['mensagem']),
+        static fn(string $texto, array $contexto): string => consultarIA($texto, $preferencias, $contexto));
+    responderJSON(200, $resultado);
 } catch (InvalidArgumentException $erro) {
     responderJSON(422, ['erro' => $erro->getMessage()]);
 } catch (Throwable $erro) {
+    if (in_array($erro->getCode(), [409, 429], true)) {
+        responderJSON($erro->getCode(), ['erro' => $erro->getMessage()]);
+    }
     // Detalhes de configuração e da API não são enviados ao navegador.
     responderJSON(502, ['erro' => 'Não foi possível obter uma resposta agora. Aguarde um pouco e tente novamente.']);
 }
