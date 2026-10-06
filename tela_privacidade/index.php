@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['sessao_id'])) {
     header("Location: ../tela_login/index.html?aviso=acesso-negado");
     exit;
 }
@@ -16,7 +16,7 @@ try {
     $sql = "SELECT usuario, email FROM usuarios WHERE id = :id";
     $stmt = $conn -> prepare($sql);
     $stmt -> execute([
-        'id' => $_SESSION['usuario_id']
+        'id' => $_SESSION['sessao_id']
     ]);
     $dadosUsuario = $stmt -> fetch(PDO::FETCH_ASSOC);
 

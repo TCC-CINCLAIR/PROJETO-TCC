@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['sessao_id'])) {
     header("Location: ../tela_login/index.html?aviso=acesso-negado");
     exit;
 }
 
 require_once "../conexao.php";
 
-$usuario_id = $_SESSION['usuario_id'];
+$usuario_id = $_SESSION['sessao_id'];
 $profissional = $_POST['profissional'] ?? '';
 $data = $_POST['data'] ?? '';
 $horario = $_POST['horario'] ?? '';

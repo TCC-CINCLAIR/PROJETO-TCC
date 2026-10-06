@@ -15,6 +15,7 @@ if (!isset($_SESSION['sessao_id'])) {
     <title>Bem-Vindo!</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../assets/css/responsivo.css">
+    <link rel="stylesheet" href="../modo_escuro.css">
 </head>
 <body class="pagina-bemvindo">
     
@@ -52,5 +53,6 @@ if (!isset($_SESSION['sessao_id'])) {
                 Continuar &rarr;
             </a>
     </main>
+    <script src="../modo_escuro.js"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@ if (!isset($_SESSION['sessao_id'])) {
     <title>Questionário concluído | Cinclair</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../assets/css/responsivo.css">
+    <link rel="stylesheet" href="../../modo_escuro.css">
 </head>
 <body class="pagina-conclusao">
     <main class="caixa-questionario" aria-labelledby="titulo-conclusao">
@@ -44,5 +45,6 @@ if (!isset($_SESSION['sessao_id'])) {
         </div>
         <p class="rodape">Um passo de cada vez, no seu ritmo.</p>
     </main>
+    <script src="../../modo_escuro.js"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@ if (!isset($_SESSION['sessao_id'])) {
     <title>Pergunta 1 | Cinclair</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../assets/css/responsivo.css">
+    <link rel="stylesheet" href="../../modo_escuro.css">
 </head>
 <body class="pagina-questionario">
     <div class="caixa-questionario">
@@ -42,5 +43,6 @@ if (!isset($_SESSION['sessao_id'])) {
             </div>
         </form>
     </div>
+    <script src="../../modo_escuro.js"></script>
 </body>
 </html>
