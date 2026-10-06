@@ -12,9 +12,18 @@ botaoExibir.addEventListener ("click", function() {
 
 const botaoCadastrar = document.getElementById("btn-cadastrar");
 
-botaoCadastrar.addEventListener ("click", function(evento){
+botaoCadastrar.form.addEventListener ("submit", function(evento){
     const confirmar = confirm("Verifique se os dados foram preenchidos corretamente");
     if (!confirmar){
         evento.preventDefault();
+        return;
     }
+    botaoCadastrar.disabled = true;
+    botaoCadastrar.textContent = "Cadastrando…";
+});
+
+// Restaura o formulário se a pessoa voltar pelo histórico do navegador.
+window.addEventListener("pageshow", function () {
+    botaoCadastrar.disabled = false;
+    botaoCadastrar.textContent = "Cadastrar";
 });

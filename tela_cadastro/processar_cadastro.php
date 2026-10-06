@@ -1,4 +1,5 @@
 <?php
+session_start();
 $email = strtolower(trim($_POST['email']));
 $usuario = mb_convert_case(trim($_POST['usuario']), MB_CASE_TITLE, "UTF-8");
 $senha = $_POST['senha'];
@@ -29,7 +30,7 @@ try {
         exit;
     }
     
-    $sqlInsert = "INSERT INTO usuarios (email, usuario, senha) VALUES (:email, :usuario, :senha)";
+    $sqlInsert = "INSERT INTO usuarios (email, usuario, senha) VALUES (:email, :usuario, :senha) RETURNING id";
 
     $stmt = $conn -> prepare($sqlInsert);
 
@@ -39,6 +40,14 @@ try {
         'senha' => $senhaHash
     ]);
     if ($result) {
+        $usuarioId = $stmt->fetchColumn();
+        if ($usuarioId === false) {
+            throw new RuntimeException('Cadastro sem identificador de usuário.');
+        }
+        // Só autentica depois que o banco confirma a criação e devolve o ID.
+        session_regenerate_id(true);
+        $_SESSION = ['sessao_id' => $usuarioId];
+        session_write_close();
         header ("Location: ../tela_bemvindo/index.php");
         exit;
         }      
