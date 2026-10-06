@@ -7,7 +7,7 @@ if (!isset($_SESSION['sessao_id'])) {
 }
 require_once "../conexao.php";
 
-$usuario_id = $_SESSION['usuario_id'];
+$usuario_id = $_SESSION['sessao_id'];
 
 $sql = "SELECT profissional, data_consulta, horario, observacoes
         FROM marcar_consulta
