@@ -5,6 +5,53 @@ const tasksContainer = document.getElementById("tasksContainer");
 var listaTarefas = [];
 let ultimoFoco = null;
 
+
+
+function carregarConsultas(){
+    for(var i = 0; i < consultasBanco.length; i++){
+        var consulta = consultasBanco[i];
+
+        var titulo = "Consulta com " + consulta.profissional + " - " + consulta.horario.substring(0,5);
+        var mesDaConsulta = getMes(consulta.data_consulta);
+
+        var consultaTarefa = {
+            titulo: titulo,
+            mes: mesDaConsulta,
+            concluida: false
+        };
+
+        listaTarefas.push(consultaTarefa);
+
+        var card = document.createElement("div");
+        card.classList.add("task-card");
+
+        card.innerHTML = `
+            <div class="task-header">
+                ${formatDate(consulta.data_consulta)}
+            </div>
+            <div class="task-list">
+                <div class="task-item">
+                    <input type="checkbox">
+                    <span>${titulo}</span>
+                </div>
+            </div>
+        `;
+
+        var checkbox = card.querySelector("input[type='checkbox']");
+
+        checkbox.onchange = function(){
+            consultaTarefa.concluida = checkbox.checked;
+            pendencias();
+        };
+
+        tasksContainer.appendChild(card);
+    }
+
+    pendencias();
+}
+
+carregarConsultas();
+
 function openModal() {
     ultimoFoco = document.activeElement;
     document.getElementById("taskModal").style.display = "flex";

@@ -53,18 +53,31 @@ function confirmarConsulta() {
     const partes = data.split("-");
     const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
 
-    alert(
-`Consulta agendada com sucesso!
+    const dados = new FormData();
 
-Profissional: ${profissional}
+dados.append("profissional", profissional);
+dados.append("data", data);
+dados.append("horario", horario);
+dados.append("observacoes", observacoes);
 
-Data: ${dataFormatada}
+fetch("salvar_consulta.php", {
+    method: "POST",
+    body: dados
+})
+.then(response => response.json())
+.then(resultado => {
+    if(resultado.sucesso){
+        alert("Consulta agendada com sucesso!");
 
-Horário: ${horario}`
-    );
-
-    document.getElementById("profissional").selectedIndex = 0;
-    document.getElementById("dataConsulta").value = "";
-    document.getElementById("horario").selectedIndex = 0;
-    document.getElementById("observacoes").value = "";
+        document.getElementById("profissional").selectedIndex = 0;
+        document.getElementById("dataConsulta").value = "";
+        document.getElementById("horario").selectedIndex = 0;
+        document.getElementById("observacoes").value = "";
+    }else{
+        alert(resultado.mensagem);
+    }
+})
+.catch(() => {
+    alert("Não foi possível salvar a consulta.");
+});
 }

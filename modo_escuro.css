@@ -1,0 +1,88 @@
+body.modo-escuro{
+  background:#1a1a1a;
+  color:#ffffff;
+}
+body.modo-escuro .top-menu{
+  background-color:rgba(40,40,40,0.8);
+}
+body.modo-escuro .menu-btn{
+  background:#2b2b2b;
+}
+body.modo-escuro .menu-btn-active{
+  background:#3a3a3a;
+  box-shadow:0 0 0 5px rgba(255,255,255,0.2);
+}
+body.modo-escuro .info-usuario,
+body.modo-escuro .opcoes-sistema,
+body.modo-escuro .relatorios-box,
+body.modo-escuro .preferencias-box,
+body.modo-escuro .privacidade-box{
+  background-color:#252525;
+  border-color:#333333;
+}
+body.modo-escuro .dados-usuario input{
+  background-color:#252525;
+  color:#ffffff;
+  border-color:#444444;
+}
+body.modo-escuro .titulo h1,
+body.modo-escuro .opcoes-sistema h2{
+  color:#ffffff;
+}
+body.modo-escuro .opcao{
+  border-color:#ffffff;
+}
+body.modo-escuro .opcao strong,
+body.modo-escuro .informacoes strong{
+  color:#ffffff;
+}
+body.modo-escuro .opcao p,
+body.modo-escuro .informacoes p{
+  color:#cccccc;
+}
+body.modo-escuro .texto-privacidade{
+  border-color:#ffffff;
+}
+body.modo-escuro .texto-privacidade h2{
+  color:#ffffff;
+}
+body.modo-escuro .texto-privacidade p{
+  color:#cccccc;
+}
+body.modo-escuro .voltar,
+body.modo-escuro .contato a{
+  color:#ffffff;
+}
+body.modo-escuro .aba-botoes button{
+  border-color:#ffffff;
+  color:#ffffff;
+}
+body.modo-escuro .btn-redefinir button,
+body.modo-escuro .btn-logout{
+  background-color:#3a3a3a;
+  color:#ffffff;
+}
+body.modo-escuro .download{
+  color:#ffffff;
+}
+body.modo-escuro .data{
+  background-color:#3a3a3a;
+}
+body.modo-escuro .consulta-card{
+  color:#333333;
+}
+body.modo-escuro .consulta-card label,
+body.modo-escuro .consulta-card p,
+body.modo-escuro .consulta-card span,
+body.modo-escuro .consulta-card strong{
+  color:#333333;
+}
+body.modo-escuro .consulta-card select,
+body.modo-escuro .consulta-card input,
+body.modo-escuro .consulta-card textarea{
+  color:#333333;
+}
+body.modo-escuro .consulta-card select option{
+  color:#333333;
+  
+}

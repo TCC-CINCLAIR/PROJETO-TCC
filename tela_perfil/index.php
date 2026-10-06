@@ -32,6 +32,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuário</title>
     <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
+    <link rel="stylesheet" href="../modo_escuro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -72,16 +73,16 @@ try {
             <h2>Configurações</h2>
             <section class="aba-botoes">
                 <div class="btn-relatorios">
-                    <a href="#"><button><img src="../imagens/imagens_perfil/img-docs.png" alt=""><span>Relatórios <small>Revise seu histórico</small></span></button></a>
+                    <a href="../tela_relatorios/index.php"><button><img src="../imagens/imagens_perfil/img-docs.png" alt=""><span>Relatórios <small>Revise seu histórico</small></span></button></a>
                 </div>
                 <div class="btn-preferencias">    
-                    <a href="#"><button><img src="../imagens/imagens_perfil/img-config.png" alt=""><span>Preferências <small>Personalize sua experiência</small></span></button></a>
+                    <a href="../tela_preferencias/index.php"><button><img src="../imagens/imagens_perfil/img-config.png" alt=""><span>Preferências <small>Personalize sua experiência</small></span></button></a>
                 </div>
                 <div class="btn-notificacao">    
                     <a href="#"><button><img src="../imagens/imagens_perfil/img-sino.png" alt=""><span>Notificações <small>Gerencia seus alertas</small></span></button></a>
                 </div>
                 <div class="btn-privacidade">    
-                    <a href="#"><button><img src="../imagens/imagens_perfil/img-escudo.png" alt=""><span>Privacidade de Segurança <small>Controle seus dados</small></span></button></a>
+                    <a href="../tela_privacidade/index.php"><button><img src="../imagens/imagens_perfil/img-escudo.png" alt=""><span>Privacidade de Segurança <small>Controle seus dados</small></span></button></a>
                 </div>
             </section>
             <div class="logout">
@@ -92,5 +93,7 @@ try {
             </div>
         </section>
     </main>
-</body>
+    <script src="../modo_escuro.js"></script>
+
+    </body>
 </html>
