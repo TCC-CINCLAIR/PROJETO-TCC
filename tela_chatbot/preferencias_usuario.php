@@ -19,7 +19,13 @@ function conectarBancoPreferencias(): PDO
 {
     $arquivo = __DIR__ . '/config.banco.local.php';
     if (!is_file($arquivo)) {
-        throw new RuntimeException('Configuração local do banco ausente.');
+        // Em outra máquina, usa a mesma conexão da agenda e das consultas.
+        // Uma configuração local, quando existir, continua tendo prioridade.
+        require __DIR__ . '/../conexao.php';
+        if (!isset($conn) || !$conn instanceof PDO) {
+            throw new RuntimeException('Conexão compartilhada do banco indisponível.');
+        }
+        return $conn;
     }
     $config = require $arquivo;
     return new PDO($config['dsn'], $config['usuario'], $config['senha'], [
