@@ -291,6 +291,82 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline-color: #fff;
 }
 
+/* Telas acessadas pelo perfil: dimensões fluidas e conteúdo sem sobreposição. */
+.pagina-configuracao main {
+    width: 100%;
+    max-width: 1000px;
+    min-width: 0;
+    padding: 0;
+}
+.pagina-configuracao :is(.relatorios-box, .preferencias-box, .privacidade-box) {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 590px;
+    padding: 24px 28px;
+    gap: 24px;
+}
+.pagina-configuracao .titulo {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+.pagina-configuracao .titulo img { flex-shrink: 0; }
+.pagina-configuracao .titulo h1 {
+    font-size: clamp(22px, 4vw, 27px);
+    line-height: 1.4;
+}
+.pagina-configuracao :is(.lista-relatorios, .opcoes, .texto-privacidade) {
+    width: 100%;
+    max-width: 800px;
+    min-width: 0;
+    padding-top: 0;
+}
+.pagina-configuracao :is(.relatorio, .opcao) {
+    width: 100%;
+    height: auto;
+    min-height: 85px;
+    gap: 14px;
+}
+.pagina-configuracao :is(.informacoes, .opcao > div) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.pagina-configuracao .informacoes { margin-left: 0; flex: 1; }
+.pagina-configuracao .download {
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
+}
+.pagina-configuracao .switch { flex-shrink: 0; }
+.pagina-configuracao .texto-privacidade {
+    height: auto;
+    overflow-y: visible;
+    padding: 20px;
+}
+.pagina-configuracao .voltar {
+    position: static;
+    margin-top: auto;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+@media (max-width: 640px) {
+    .pagina-configuracao :is(.relatorios-box, .preferencias-box, .privacidade-box) {
+        min-height: 0;
+        border-width: 8px;
+        border-radius: 26px;
+        padding: 24px 16px;
+    }
+    .pagina-configuracao :is(.relatorio, .opcao) { padding: 12px; gap: 10px; }
+    .pagina-configuracao .relatorio { flex-wrap: wrap; }
+    .pagina-configuracao .informacoes { flex-basis: 100px; }
+    .pagina-configuracao .data { width: 48px; height: 54px; }
+    .pagina-configuracao .download { margin-left: auto; }
+    .pagina-configuracao .texto-privacidade { padding: 16px; }
+}
+
 /* As sete perguntas usam a mesma escala de espaçamento. */
 .pagina-questionario {
     padding: 32px 20px;

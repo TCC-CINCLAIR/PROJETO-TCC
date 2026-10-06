@@ -263,3 +263,22 @@ body.modo-escuro.pagina-agenda .top-menu > a[aria-current="page"]{
 body.modo-escuro.pagina-agenda .top-menu > a[aria-current="page"]:hover{
   background:#505050;
 }
+
+/* Mantém o tema das telas do perfil ao compartilhar o menu responsivo. */
+body.modo-escuro.pagina-configuracao .top-menu{
+  background:#252525;
+}
+body.modo-escuro.pagina-configuracao .top-menu > a{
+  background:#2b2b2b;
+  color:#ffffff;
+}
+body.modo-escuro.pagina-configuracao .top-menu > a[aria-current="page"]{
+  background:#3a3a3a;
+  box-shadow:0 0 0 2px rgba(255,255,255,0.6);
+}
+body.modo-escuro.pagina-configuracao .top-menu > a:hover{
+  background:#505050;
+}
+body.modo-escuro.pagina-configuracao .relatorio{
+  border-color:#777777;
+}

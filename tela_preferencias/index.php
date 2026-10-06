@@ -32,19 +32,20 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preferências</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../assets/css/responsivo.css">
     <link rel="stylesheet" href="../modo_escuro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="pagina-interna pagina-configuracao">
     <header>
-        <nav class="top-menu">
-            <a href="" class="menu-btn"><button><img src="../imagens/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</button></a>
-            <a href="" class="menu-btn"><button><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</button></a>
-            <a href="../tela_perfil/index.php" class="menu-btn-active"><button><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</button></a>
-            <a href="../agenda_tarefas/index.php" class="menu-btn"><button><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</button></a>
-            <a href="../tela_consulta/index.php" class="menu-btn"><button><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</button></a>
+        <nav class="top-menu" aria-label="Navegação principal">
+            <a href="" class="menu-btn"><img src="../imagens/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
+            <a href="" class="menu-btn"><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</a>
+            <a href="../tela_perfil/index.php" class="menu-btn-active" aria-current="page"><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</a>
+            <a href="../agenda_tarefas/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</a>
+            <a href="../tela_consulta/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Relógio.png" alt="IMG Consultas">Consultas</a>
         </nav>
     </header>
     <main>
