@@ -9,7 +9,6 @@ const botaoAnteriores = document.getElementById('historico-anteriores');
 let enviando = false;
 let carregandoHistorico = false;
 let envioPendente = null;
-
 requestAnimationFrame(() => { mensagens.scrollTop = mensagens.scrollHeight; });
 
 function fecharEmojis() {
@@ -57,6 +56,7 @@ function criarMensagem(texto, remetente, id = null) {
     conteudo.textContent = texto;
     mensagem.append(autor, conteudo);
     if (id !== null) mensagem.dataset.id = String(id);
+
     return mensagem;
 }
 
@@ -188,10 +188,12 @@ formulario.addEventListener('submit', async (evento) => {
         }
         balaoDigitacao.remove();
         mensagemEnviada.dataset.id = String(dados.usuario_id_mensagem);
+
         const resposta = adicionarMensagem(dados.resposta, 'clarice');
         resposta.dataset.id = String(dados.ia_id_mensagem);
         envioPendente = null;
         aviso.hidden = true;
+        document.dispatchEvent(new CustomEvent('clarice:mensagem-enviada', { detail: { texto } }));
     } catch (erro) {
         // Devolve o texto ao campo para tentar novamente sem duplicar a mensagem.
         mensagemEnviada.remove();

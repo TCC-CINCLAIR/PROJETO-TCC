@@ -14,10 +14,20 @@ function consultarIA(string $mensagem, array $preferencias = [], array $historic
         throw new InvalidArgumentException('Escreva uma mensagem de até 2.000 caracteres.');
     }
 
+    return chamarModeloClarice(array_merge([
+        ['role' => 'system', 'content' => instrucoesClarice($preferencias)],
+    ], limitarContextoChat($historico), [
+        ['role' => 'user', 'content' => $mensagem],
+    ]), 700);
+}
+
+// Mesmo transporte e configuração privada para o chat e os resumos autorizados.
+function chamarModeloClarice(array $mensagens, int $limiteTokens): string
+{
     // 2. Carrega a chave privada usando o caminho desta pasta.
     $arquivoConfig = __DIR__ . '/config.local.php';
     if (!is_file($arquivoConfig)) {
-        throw new RuntimeException('Crie o arquivo config.local.php a partir de config.exemplo.php.');
+        throw new RuntimeException('Configure a conexão com a IA no arquivo config.local.php.');
     }
     $config = require $arquivoConfig;
     $chave = is_array($config) ? ($config['api_key'] ?? '') : '';
@@ -40,13 +50,8 @@ function consultarIA(string $mensagem, array $preferencias = [], array $historic
     }
     $dados = [
         'model' => trim($modelo),
-        'messages' => array_merge([
-            // Quatro opções reconhecidas e apelido normalizado da conta autenticada.
-            ['role' => 'system', 'content' => instrucoesClarice($preferencias)],
-        ], limitarContextoChat($historico), [
-            ['role' => 'user', 'content' => $mensagem],
-        ]),
-        'max_completion_tokens' => 700,
+        'messages' => $mensagens,
+        'max_completion_tokens' => $limiteTokens,
         'stream' => false,
     ];
     if (str_starts_with($modelo, 'qwen/')) {
@@ -69,7 +74,6 @@ function consultarIA(string $mensagem, array $preferencias = [], array $historic
     ]);
     $corpo = curl_exec($curl);
     $status = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    curl_close($curl);
 
     // 5. Trata falhas sem revelar a chave ou a resposta técnica do provedor.
     if ($corpo === false) {

@@ -74,6 +74,10 @@ try {
                 </div>
 
                 <div class="chat-rodape">
+                    <div class="acontecimento-atalho">
+                        <button type="button" id="guardar-acontecimento" <?= $erroHistorico ? 'disabled' : '' ?>>＋ Guardar acontecimento</button>
+                        <span>Junte os detalhes do que acabou de contar.</span>
+                    </div>
                     <p class="chat-aviso<?= $erroHistorico ? ' erro' : '' ?>" id="chat-aviso" role="status" <?= !$erroHistorico ? 'hidden' : '' ?>><?= $erroHistorico ? 'Não foi possível recuperar sua conversa. Atualize a página para tentar novamente.' : '' ?></p>
                     <form class="chat-form" id="chat-form" action="processar_mensagem.php" method="post" data-historico-pronto="<?= $erroHistorico ? 'false' : 'true' ?>" data-csrf="<?= htmlspecialchars($tokenChat, ENT_QUOTES, 'UTF-8') ?>">
                         <div class="emoji-container">
@@ -95,12 +99,32 @@ try {
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4 3 17 9-17 9 4-9-4-9Zm4 9h13" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </button>
                     </form>
-                    <p class="chat-nota">As mensagens enviadas à IA e suas respostas são salvas na sua conta.</p>
+                    <p class="chat-nota">Use “Guardar acontecimento” ou peça na conversa. Você confere a prévia antes de guardar. Dia semanal em <a href="../tela_preferencias/index.php">Preferências</a>.</p>
                 </div>
             </div>
         </section>
     </main>
+    <dialog id="previa-acontecimento" aria-labelledby="previa-titulo">
+        <form id="form-acontecimento">
+            <h2 id="previa-titulo">Guardar acontecimento</h2>
+            <p>Confira se a Clarice reuniu os detalhes certos.</p>
+            <p id="previa-status" role="status" hidden></p>
+            <div id="previa-campos" hidden>
+                <label for="acontecimento-titulo">Título</label>
+                <input id="acontecimento-titulo" maxlength="120" required readonly>
+                <label for="acontecimento-resumo">Resumo do acontecimento</label>
+                <textarea id="acontecimento-resumo" maxlength="2000" rows="6" required readonly></textarea>
+                <p id="previa-quantidade"></p>
+            </div>
+            <div class="previa-acoes">
+                <button type="button" id="cancelar-acontecimento">Cancelar</button>
+                <button type="button" id="editar-acontecimento" hidden>Editar</button>
+                <button type="submit" id="confirmar-acontecimento" hidden>Guardar</button>
+            </div>
+        </form>
+    </dialog>
     <script src="script.js?v=<?= filemtime(__DIR__ . '/script.js') ?>"></script>
+    <script src="acontecimentos.js?v=<?= filemtime(__DIR__ . '/acontecimentos.js') ?>"></script>
     <script src="../modo_escuro.js"></script>
 </body>
 </html>
