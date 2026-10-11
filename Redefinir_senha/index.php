@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+header('Cache-Control: no-store');
+$sucesso = $_SESSION['senha_redefinida_sucesso'] ?? false;
+unset($_SESSION['senha_redefinida_sucesso']);
+
+$autorizacao = $_SESSION['recuperacao_autorizada'] ?? null;
+$expira = $_SESSION['recuperacao_expira'] ?? 0;
+
+if (!$sucesso && (!$autorizacao || time() >= $expira)) {
+    unset(
+        $_SESSION['recuperacao_id'],
+        $_SESSION['recuperacao_autorizada'],
+        $_SESSION['recuperacao_expira'],
+        $_SESSION['recuperacao_csrf']
+    );
+
+    header('Location: ../Email_Redefinir_senha/index.html');
+    exit;
+}
+
+if (empty($_SESSION['recuperacao_csrf'])) {
+    $_SESSION['recuperacao_csrf'] = bin2hex(random_bytes(32));
+}
+?>
+
+
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -26,10 +54,51 @@
           </svg>
         </div>
 
+        <?php if ($sucesso): ?>
+
+          <h1>Senha alterada!</h1>
+
+          <p class="subtitulo">
+            Sua senha foi redefinida com sucesso.
+            Entre com sua nova senha.
+          </p>
+
+          
+          
+          <a
+          href="../tela_login/index.html"
+          style="display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 48px;
+            box-sizing: border-box;
+            background-color: #990000;
+            color: white;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            "
+          >
+            Ir para o login
+          </a>
+
+
+
+        <?php else: ?>
+
         <h1>Redefinição de senha</h1>
         <p class="subtitulo">Informe a nova senha</p>
 
-        <form id="form-redefinicao" novalidate>
+        <form id="form-redefinicao" action="salvar_senha.php" method="post">
+          <input
+            type="hidden"
+            name="csrf"
+            value="<?= htmlspecialchars($_SESSION['recuperacao_csrf'], ENT_QUOTES, 'UTF-8') ?>"
+          >
           <div class="Grupo-nova-senha">
             <label for="nova-senha">Nova Senha</label>
             <div class="caixa-input-1">
@@ -44,7 +113,8 @@
                 name="nova-senha"
                 placeholder="Digite a nova senha"
                 required
-                minlength="6"
+                minlength="8"
+                autocomplete="new-password"
               />
 
               <button
@@ -75,7 +145,8 @@
                 name="confirma-senha"
                 placeholder="Confirme a nova senha"
                 required
-                minlength="6"
+                minlength="8"
+                autocomplete="new-password"
               />
 
               <button
@@ -94,10 +165,14 @@
 
           <button type="submit" class="botao-confirmar">Confirmar</button>
         </form>
+        <?php endif; ?>
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <?php if (!$sucesso): ?>
+      <script src="script.js?v=2"></script>
+    <?php endif; ?>
+    
       <script src="../modo_escuro.js"></script>
 </body>
 </html>
