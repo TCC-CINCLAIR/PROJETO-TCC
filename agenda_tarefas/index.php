@@ -18,6 +18,14 @@ $stmt = $conn->prepare($sql);
 $stmt->execute(['usuario_id' => $usuario_id]);
 
 $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$sqlTarefas = "SELECT id, titulo_tarefa, data 
+              FROM agenda_tarefas 
+              WHERE  id_usuario = :usuario_id
+              ORDER BY data";
+$stmtTarefas = $conn->prepare($sqlTarefas);
+$stmtTarefas->execute(['usuario_id' => $usuario_id]);
+$tarefasBanco = $stmtTarefas->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -362,6 +370,7 @@ $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </div>
   <script>
     const consultasBanco = <?= json_encode($consultas, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+    const tarefasBanco = <?= json_encode($tarefasBanco, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
   </script>
 
   <script src="script.js"></script>
