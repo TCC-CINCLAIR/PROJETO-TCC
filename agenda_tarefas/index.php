@@ -375,6 +375,6 @@ $tarefasBanco = $stmtTarefas->fetchAll(PDO::FETCH_ASSOC);
 
   <script src="script.js"></script>
   <script src="../modo_escuro.js"></script>
-
+  <script src="../lembretes.js?v=1"></script>
 </body>
 </html>
