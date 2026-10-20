@@ -94,6 +94,6 @@ try {
         </section>
     </main>
     <script src="../modo_escuro.js"></script>
-    <script src="../lembretes.js?v=1"></script>
+    <script src="../tela_notificacoes/lembretes.js?v=2"></script>
     </body>
 </html>

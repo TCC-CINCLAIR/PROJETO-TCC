@@ -3,7 +3,7 @@
     window.lembretesCinclairCarregados = true;
 
     const enderecoScript = document.currentScript.src;
-    const api = new URL("tela_notificacoes/api.php", enderecoScript);
+    const api = new URL("api.php", enderecoScript);
 
     const interruptor = document.getElementById("notificacoes-consultas");
     const status = document.getElementById("status-notificacoes");

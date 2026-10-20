@@ -123,7 +123,7 @@ if (!isset($_SESSION['sessao_id'])) {
 
 <script src="script.js?v=<?= filemtime(__DIR__ . '/script.js') ?>"></script>
 <script src="../modo_escuro.js"></script>
-<script src="../lembretes.js?v=1"></script>
+<script src="../tela_notificacoes/lembretes.js?v=2"></script>
 </body>
 
 </html>

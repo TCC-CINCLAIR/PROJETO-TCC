@@ -127,6 +127,6 @@ if (!isset($_SESSION['sessao_id'])) {
     </main>
 
     <script src="../modo_escuro.js"></script>
-    <script src="../lembretes.js?v=1"></script>
+    <script src="lembretes.js?v=2"></script>
 </body>
 </html>
