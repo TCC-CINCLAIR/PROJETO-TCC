@@ -34,6 +34,7 @@ try {
     <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
     <link rel="stylesheet" href="../assets/css/responsivo.css?v=<?= filemtime(__DIR__ . '/../assets/css/responsivo.css') ?>">
     <link rel="stylesheet" href="../modo_escuro.css">
+    <link rel="stylesheet" href="../fonte_adaptativa.css">
 </head>
 <body class="pagina-interna pagina-chatbot">
     <header>
@@ -127,5 +128,6 @@ try {
     <script src="acontecimentos.js?v=<?= filemtime(__DIR__ . '/acontecimentos.js') ?>"></script>
     <script src="../modo_escuro.js"></script>
     <script src="../tela_notificacoes/lembretes.js?v=2"></script>
+    <script src="../fonte_adaptativa.js"></script>
 </body>
 </html>

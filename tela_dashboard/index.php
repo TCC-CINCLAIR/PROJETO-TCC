@@ -62,6 +62,7 @@ if (isset($conn)) {
     <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
     <link rel="stylesheet" href="../assets/css/responsivo.css">
     <link rel="stylesheet" href="../modo_escuro.css">
+    <link rel="stylesheet" href="../fonte_adaptativa.css">
 </head>
 <body class="pagina-interna pagina-dashboard" data-usuario-id="<?= $usuarioId ?>">
     <header>
@@ -143,5 +144,6 @@ if (isset($conn)) {
     </script>
     <script src="script.js"></script>
     <script src="../modo_escuro.js"></script>
+    <script src="../fonte_adaptativa.js"></script>
 </body>
 </html>

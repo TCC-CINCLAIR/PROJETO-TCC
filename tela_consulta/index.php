@@ -18,6 +18,7 @@ if (!isset($_SESSION['sessao_id'])) {
     <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
     <link rel="stylesheet" href="../assets/css/responsivo.css?v=<?= filemtime(__DIR__ . '/../assets/css/responsivo.css') ?>">
     <link rel="stylesheet" href="../modo_escuro.css">
+    <link rel="stylesheet" href="../fonte_adaptativa.css">
 </head>
 
 <body class="pagina-interna pagina-consulta">
@@ -124,6 +125,7 @@ if (!isset($_SESSION['sessao_id'])) {
 <script src="script.js?v=<?= filemtime(__DIR__ . '/script.js') ?>"></script>
 <script src="../modo_escuro.js"></script>
 <script src="../tela_notificacoes/lembretes.js?v=2"></script>
+<script src="../fonte_adaptativa.js"></script>
 </body>
 
 </html>

@@ -37,6 +37,7 @@ try {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/responsivo.css?v=<?= filemtime(__DIR__ . '/../assets/css/responsivo.css') ?>">
+    <link rel="stylesheet" href="../fonte_adaptativa.css">
 </head>
 <body class="pagina-interna pagina-perfil">
     <header>
@@ -94,6 +95,7 @@ try {
         </section>
     </main>
     <script src="../modo_escuro.js"></script>
+    <script src="../fonte_adaptativa.js"></script>
     <script src="../tela_notificacoes/lembretes.js?v=2"></script>
     </body>
 </html>

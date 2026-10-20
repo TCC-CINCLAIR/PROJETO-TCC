@@ -38,6 +38,7 @@ try {
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="../assets/css/responsivo.css">
     <link rel="stylesheet" href="../modo_escuro.css">
+    <link rel="stylesheet" href="../fonte_adaptativa.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -72,7 +73,7 @@ try {
             <strong>Fonte adaptativa</strong>
         </div>
         <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" id="fonteAdaptativa">
             <span></span>
         </label>
     </div>
@@ -106,5 +107,6 @@ try {
         </section>
     </main>
     <script src="../modo_escuro.js"></script>
+    <script src="../fonte_adaptativa.js"></script>
 </body>
 </html>

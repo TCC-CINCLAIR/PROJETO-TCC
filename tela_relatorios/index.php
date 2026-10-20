@@ -27,6 +27,7 @@ $relatorios = array_slice($relatorios, 0, 10);
     <link rel="stylesheet" href="../assets/css/responsivo.css">
     <link rel="stylesheet" href="../modo_escuro.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../fonte_adaptativa.css">
 </head>
 <body class="pagina-interna pagina-configuracao">
     <header>
@@ -71,5 +72,6 @@ $relatorios = array_slice($relatorios, 0, 10);
         </section>
     </main>
     <script src="../modo_escuro.js"></script>
+    <script src="../fonte_adaptativa.js"></script>
 </body>
 </html>

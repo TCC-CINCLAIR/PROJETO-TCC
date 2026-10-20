@@ -19,12 +19,12 @@ if (!isset($_SESSION['sessao_id'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-        rel="stylesheet"
-    >
-
+        rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/responsivo.css">
     <link rel="stylesheet" href="../modo_escuro.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../fonte_adaptativa.css">
+    
 </head>
 
 <body class="pagina-interna pagina-notificacoes">
@@ -128,5 +128,6 @@ if (!isset($_SESSION['sessao_id'])) {
 
     <script src="../modo_escuro.js"></script>
     <script src="lembretes.js?v=2"></script>
+    <script src="../fonte_adaptativa.js"></script>
 </body>
 </html>

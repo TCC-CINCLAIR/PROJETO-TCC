@@ -1,0 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/opendyslexic');
+
+body.fonte-adaptativa,
+body.fonte-adaptativa * {
+    font-family: 'OpenDyslexic', sans-serif !important;
+}
