@@ -45,7 +45,7 @@ try {
 <body class="pagina-interna pagina-configuracao">
     <header>
         <nav class="top-menu" aria-label="Navegação principal">
-            <a href="" class="menu-btn"><img src="../imagens/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
+            <a href="../tela_dashboard/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
             <a href="../tela_chatbot/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</a>
             <a href="../tela_perfil/index.php" class="menu-btn-active" aria-current="page"><img src="../imagens/imagens_navbar/User.png" alt="IMG Perfil">Perfil</a>
             <a href="../agenda_tarefas/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Calendário.png" alt="IMG Agenda">Agenda</a>

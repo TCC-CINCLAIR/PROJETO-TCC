@@ -26,7 +26,7 @@ if (!isset($_SESSION['sessao_id'])) {
 
     <nav class="top-menu" aria-label="Navegação principal">
 
-        <a href="#" class="menu-btn">
+        <a href="../tela_dashboard/index.php" class="menu-btn">
             <img src="imagens_navbar/Config.png">
             <span>Dashboard</span>
         </a>

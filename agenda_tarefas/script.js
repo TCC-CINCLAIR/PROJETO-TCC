@@ -50,6 +50,50 @@ function carregarConsultas(){
     pendencias();
 }
 
+function salvarTarefas() {
+    try {
+        TarefasCinclair.salvar(listaTarefas.filter(tarefa => tarefa.origem === 'manual'));
+        document.getElementById('storageWarning').hidden = true;
+    } catch (erro) {
+        document.getElementById('storageWarning').hidden = false;
+    }
+}
+
+function renderizarTarefa(tarefa) {
+    const card = document.createElement('div');
+    card.className = 'task-card';
+    const cabecalho = document.createElement('div');
+    cabecalho.className = 'task-header';
+    cabecalho.textContent = formatDate(tarefa.data);
+    const lista = document.createElement('div');
+    lista.className = 'task-list';
+    const item = document.createElement('label');
+    item.className = 'task-item';
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    const titulo = document.createElement('span');
+    titulo.textContent = tarefa.titulo;
+    checkbox.onchange = function () {
+        tarefa.concluida = checkbox.checked;
+        salvarTarefas();
+        pendencias();
+    };
+    item.append(checkbox, titulo);
+    lista.appendChild(item);
+    card.append(cabecalho, lista);
+    tasksContainer.appendChild(card);
+}
+
+try {
+    TarefasCinclair.carregar().forEach(tarefa => {
+        tarefa.origem = 'manual';
+        tarefa.mes = getMes(tarefa.data);
+        listaTarefas.push(tarefa);
+        if (!tarefa.concluida) renderizarTarefa(tarefa);
+    });
+} catch (erro) {
+    document.getElementById('storageWarning').hidden = false;
+}
 carregarConsultas();
 
 function openModal() {
@@ -74,39 +118,19 @@ function addTask(){
         return;
     }
 
-    const formattedDate = formatDate(date);
     const mesDaTarefa = getMes(date);
 
     var novaTarefa = {
         titulo: title,
+        data: date,
+        origem: 'manual',
         mes: mesDaTarefa,
         concluida: false
     };
     listaTarefas.push(novaTarefa);
 
-    const card = document.createElement("div");
-    card.classList.add("task-card");
-    card.innerHTML = `
-        <div class="task-header">
-            ${formattedDate}
-        </div>
-
-        <div class="task-list">
-            <label class="task-item">
-                <input type="checkbox">
-                <span></span>
-            </label>
-        </div>
-    `;
-    card.querySelector('.task-item span').textContent = title;
-
-    const checkbox = card.querySelector("input[type='checkbox']");
-    checkbox.onchange = function() {
-        novaTarefa.concluida = checkbox.checked;
-        pendencias();
-    };
-
-    tasksContainer.appendChild(card);
+    renderizarTarefa(novaTarefa);
+    salvarTarefas();
 
     document.getElementById("taskTitle").value = "";
     document.getElementById("taskDate").value = "";

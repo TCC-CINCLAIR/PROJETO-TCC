@@ -42,7 +42,7 @@ try {
     <header>
         <nav class="top-menu" aria-label="Navegação principal">
 
-            <a href="" class="menu-btn"><img src="../imagens/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
+            <a href="../tela_dashboard/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
 
             <a href="../tela_chatbot/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</a>
 

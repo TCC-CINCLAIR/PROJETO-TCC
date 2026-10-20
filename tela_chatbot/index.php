@@ -38,7 +38,7 @@ try {
 <body class="pagina-interna pagina-chatbot">
     <header>
         <nav class="top-menu" aria-label="Navegação principal">
-            <a href="#" class="menu-btn"><img src="../imagens/imagens_navbar/Config.png" alt=""><span>Dashboard</span></a>
+            <a href="../tela_dashboard/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Config.png" alt=""><span>Dashboard</span></a>
             <a href="index.php" class="menu-btn active" aria-current="page"><img src="../imagens/imagens_navbar/Chat.png" alt=""><span>Chatbot</span></a>
             <a href="../tela_perfil/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/User.png" alt=""><span>Perfil</span></a>
             <a href="../agenda_tarefas/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Calendário.png" alt=""><span>Agenda</span></a>

@@ -33,12 +33,12 @@ $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="../modo_escuro.css">
 </head>
 
-<body class="pagina-interna pagina-agenda">
+<body class="pagina-interna pagina-agenda" data-usuario-id="<?= (int) $usuario_id ?>">
 
   <header>
     <nav class="top-menu" aria-label="Navegação principal">
 
-      <a href="#" class="menu-btn"> <img src="../agenda_tarefas/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
+      <a href="../tela_dashboard/index.php" class="menu-btn"> <img src="../agenda_tarefas/imagens_navbar/Config.png" alt="IMG dashboard">Dashboard</a>
 
       <a href="../tela_chatbot/index.php" class="menu-btn"><img src="../imagens/imagens_navbar/Chat.png" alt="IMG Chat">Chatbot</a>
 
@@ -72,6 +72,7 @@ $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <section class="tasks-section" aria-labelledby="tasks-heading">
         <h2 id="tasks-heading">Suas tarefas</h2>
+        <p id="storageWarning" role="status" hidden>Não foi possível acessar as tarefas salvas. As alterações podem não ser mantidas ao sair desta página.</p>
         <div class="tasks-grid" id="tasksContainer"></div>
         <div class="empty-state" id="emptyTasks">
           <div class="empty-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="11" width="30" height="29" rx="5"/><path d="M16 7v8m16-8v8M9 21h30m-23 8 5 5 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -364,7 +365,8 @@ $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     const consultasBanco = <?= json_encode($consultas, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
   </script>
 
-  <script src="script.js"></script>
+  <script src="../assets/js/tarefas.js"></script>
+  <script src="script.js?v=<?= filemtime(__DIR__ . '/script.js') ?>"></script>
   <script src="../modo_escuro.js"></script>
 
 </body>
