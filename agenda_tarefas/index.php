@@ -38,7 +38,7 @@ $tarefasBanco = $stmtTarefas->fetchAll(PDO::FETCH_ASSOC);
 
   <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
     <link rel="stylesheet" href="../assets/css/responsivo.css?v=<?= filemtime(__DIR__ . '/../assets/css/responsivo.css') ?>">
-  <link rel="stylesheet" href="../modo_escuro.css">
+  <link rel="stylesheet" href="../modo_escuro.css?v=<?= filemtime(__DIR__ . '/../modo_escuro.css') ?>">
   <link rel="stylesheet" href="../fonte_adaptativa.css">
 </head>
 

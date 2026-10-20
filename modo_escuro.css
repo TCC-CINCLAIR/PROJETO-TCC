@@ -166,15 +166,30 @@ body.modo-escuro.pagina-chatbot .emoji-picker button:hover{
 }
 
 /* Consulta e agenda: complemento sem alterar as regras originais. */
-body.modo-escuro.pagina-consulta :is(.consulta-box, .consulta-card, .aviso-box),
+body.modo-escuro.pagina-consulta .consulta-box,
+body.modo-escuro.pagina-consulta .consulta-card,
+body.modo-escuro.pagina-consulta .aviso-box,
 body.modo-escuro.pagina-agenda :is(.agenda-box, .task-card, .modal-content, .side-menu, .empty-state){
   background:#252525;
   border-color:#444444;
   color:#ffffff;
 }
-body.modo-escuro:is(.pagina-consulta, .pagina-agenda) .top-area{
+body.modo-escuro.pagina-consulta .top-area,
+body.modo-escuro.pagina-agenda .top-area{
   background:#252525;
   border-color:#444444;
+  box-shadow:0 6px 18px #00000014;
+}
+body.modo-escuro.pagina-consulta .optional{
+  color:#cccccc;
+}
+body.modo-escuro.pagina-agenda .task-item{
+  border-color:#777777;
+}
+body.modo-escuro.pagina-consulta .top-menu > a[aria-current="page"]{
+  background:#3a3a3a;
+  color:#ffffff;
+  box-shadow:0 0 0 3px rgba(255,255,255,0.6);
 }
 body.modo-escuro.pagina-consulta :is(.title h1, .aviso-box h2, .consulta-card, .consulta-card label, .consulta-card strong),
 body.modo-escuro.pagina-agenda :is(.title h1, .empty-state h3, .empty-state strong, .dialog-heading h2, .side-header h2){
@@ -282,4 +297,56 @@ body.modo-escuro.pagina-configuracao .top-menu > a:hover{
 }
 body.modo-escuro.pagina-configuracao .relatorio{
   border-color:#777777;
+}
+
+/* Notificacoes: acompanha a preferencia de tema das demais telas. */
+body.modo-escuro.pagina-notificacoes{
+  background:#1a1a1a;
+  color:#ffffff;
+  color-scheme:dark;
+}
+body.modo-escuro.pagina-notificacoes .moldura-notificacoes{
+  background:#2b2b2b;
+  border-color:#444444;
+  box-shadow:0 14px 35px #00000030;
+}
+body.modo-escuro.pagina-notificacoes .cartao-notificacoes{
+  background:#252525;
+}
+body.modo-escuro.pagina-notificacoes :is(.opcao-notificacao, .item-notificacao){
+  border-color:#777777;
+}
+body.modo-escuro.pagina-notificacoes :is(.texto-notificacao p, .orientacao, .item-notificacao time){
+  color:#cccccc;
+}
+body.modo-escuro.pagina-notificacoes :is(.fechar, .icone-consulta){
+  background:#3a3a3a;
+  color:#ffffff;
+}
+body.modo-escuro.pagina-notificacoes .trilho{
+  background:#666666;
+}
+body.modo-escuro.pagina-notificacoes .trilho::before{
+  background:#ffffff;
+}
+body.modo-escuro.pagina-notificacoes .interruptor input:checked + .trilho{
+  background:#a80000;
+}
+body.modo-escuro.pagina-notificacoes .interruptor input:disabled + .trilho{
+  opacity:0.5;
+}
+body.modo-escuro.pagina-notificacoes .interruptor input:focus-visible + .trilho,
+body.modo-escuro.pagina-notificacoes .fechar:focus-visible{
+  outline-color:#ffffff;
+}
+body.modo-escuro.pagina-notificacoes .top-menu > a{
+  background:#2b2b2b;
+  color:#ffffff;
+}
+body.modo-escuro.pagina-notificacoes .top-menu > .menu-btn-active{
+  background:#3a3a3a;
+  box-shadow:0 0 0 3px rgba(255,255,255,0.6);
+}
+body.modo-escuro.pagina-notificacoes :is(.fechar, .top-menu > a):hover{
+  background:#505050;
 }
