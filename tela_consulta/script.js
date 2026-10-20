@@ -50,34 +50,37 @@ function confirmarConsulta() {
         return;
     }
 
-    const partes = data.split("-");
-    const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
-
     const dados = new FormData();
+    dados.append("profissional", profissional);
+    dados.append("data", data);
+    dados.append("horario", horario);
+    dados.append("observacoes", observacoes);
 
-dados.append("profissional", profissional);
-dados.append("data", data);
-dados.append("horario", horario);
-dados.append("observacoes", observacoes);
+    fetch("salvar_consulta.php", {
+        method: "POST",
+        body: dados
+    })
+    .then(async response => {
+        const text = await response.text();
+        try {
+            return JSON.parse(text);
+        } catch (e) {
+            throw new Error("Resposta do servidor não é um JSON válido: " + text);
+        }
+    })
+    .then(resultado => {
+        if (resultado.sucesso) {
+            alert(resultado.mensagem);
 
-fetch("salvar_consulta.php", {
-    method: "POST",
-    body: dados
-})
-.then(response => response.json())
-.then(resultado => {
-    if(resultado.sucesso){
-        alert("Consulta agendada com sucesso!");
-
-        document.getElementById("profissional").selectedIndex = 0;
-        document.getElementById("dataConsulta").value = "";
-        document.getElementById("horario").selectedIndex = 0;
-        document.getElementById("observacoes").value = "";
-    }else{
-        alert(resultado.mensagem);
-    }
-})
-.catch(() => {
-    alert("Não foi possível salvar a consulta.");
-});
+            document.getElementById("profissional").selectedIndex = 0;
+            document.getElementById("dataConsulta").value = "";
+            document.getElementById("horario").selectedIndex = 0;
+            document.getElementById("observacoes").value = "";
+        } else {
+            alert("Erro: " + resultado.mensagem);
+        }
+    })
+    .catch((error) => {
+        alert("Erro no processamento: " + error.message);
+    });
 }

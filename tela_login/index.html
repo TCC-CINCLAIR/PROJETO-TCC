@@ -1,48 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="./script.js" defer></script>
-    <link rel="stylesheet" href="../assets/css/responsivo.css">
-    <link rel="stylesheet" href="../modo_escuro.css">
-</head>
-<body class="pagina-acesso">
+    <link rel="stylesheet" href="../assets/css/responsivo.css" />
+    <link rel="stylesheet" href="../modo_escuro.css" />
+  </head>
+  <body class="pagina-acesso">
     <form action="processar_login.php" method="post">
-        <header>
-            <div class="fundo-icone"> 
-                <img src="../imagens/imagens_login/img-login.png">
-            </div>
-            <section class="mensagem">
-                <h2>Bem-Vindo de volta</h2>
-                <p>Acesse sua conta</p>
-            </section>
-        </header>
-        <main>
-            <section class="dados">
-                <label for="email">Email</label><input placeholder="seuemail@gmail.com" type="email" name="email" id="email">
-                <label for="senha">Senha</label>
-                <div class="div-senha">
-                    <input placeholder="&bull; &bull; &bull; &bull; &bull;" type="password" name="senha" id="senha">
-                    <button type="button" id="exibir-senha" aria-label="Mostrar ou ocultar senha"><img src="../imagens/imagens_login/ocultar_senha.png" alt=""></button>
-                </div>
-                <div class="btn-entrar">
-                    <a href="/Email_Redefinir_senha/index.html">Esqueci minha senha</a>
-                    <button type="submit">Entrar</button>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <section class="criar-conta">
-                <p>Não tem uma conta? <a href="../tela_cadastro/index.html" target="_self"> Criar Conta.</a></p>
-            </section>
-        </footer>
+      <header>
+        <div class="fundo-icone">
+          <img src="../imagens/imagens_login/img-login.png" />
+        </div>
+        <section class="mensagem">
+          <h2>Bem-Vindo de volta</h2>
+          <p>Acesse sua conta</p>
+        </section>
+      </header>
+      <main>
+        <section class="dados">
+          <label for="email">Email</label
+          ><input
+            placeholder="seuemail@gmail.com"
+            type="email"
+            name="email"
+            id="email"
+          />
+          <label for="senha">Senha</label>
+          <div class="div-senha">
+            <input
+              placeholder="&bull; &bull; &bull; &bull; &bull;"
+              type="password"
+              name="senha"
+              id="senha"
+            />
+            <button
+              type="button"
+              id="exibir-senha"
+              aria-label="Mostrar ou ocultar senha"
+            >
+              <img src="../imagens/imagens_login/ocultar_senha.png" alt="" />
+            </button>
+          </div>
+          <div class="btn-entrar">
+            <a href="../Email_Redefinir_senha/index.html"
+              >Esqueci minha senha</a
+            >
+            <button type="submit">Entrar</button>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <section class="criar-conta">
+          <p>
+            Não tem uma conta?
+            <a href="../tela_cadastro/index.html" target="_self">
+              Criar Conta.</a
+            >
+          </p>
+        </section>
+      </footer>
     </form>
     <script src="../modo_escuro.js"></script>
-</body>
+  </body>
 </html>

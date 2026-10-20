@@ -13,6 +13,8 @@ $consulta = null;
 $relatorio = null;
 $erroConsulta = false;
 $erroRelatorio = false;
+$erroTarefas = false;
+$tarefas = [];
 function escaparDashboard(string $texto): string
 {
     return htmlspecialchars($texto, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
@@ -20,9 +22,17 @@ function escaparDashboard(string $texto): string
 try {
     require_once __DIR__ . '/../conexao.php';
 } catch (Throwable $e) {
-    $erroConsulta = $erroRelatorio = true;
+    $erroConsulta = $erroRelatorio = $erroTarefas = true;
 }
 if (isset($conn)) {
+    try {
+        $stmt = $conn->prepare('SELECT titulo_tarefa AS titulo, data FROM agenda_tarefas
+            WHERE id_usuario = :usuario AND data >= :hoje ORDER BY data, id LIMIT 3');
+        $stmt->execute(['usuario' => $usuarioId, 'hoje' => $agora->format('Y-m-d')]);
+        $tarefas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Throwable $e) {
+        $erroTarefas = true;
+    }
     try {
         $stmt = $conn->prepare('SELECT profissional, data_consulta, horario FROM marcar_consulta
             WHERE id_usuario = :usuario AND (data_consulta > :hoje OR (data_consulta = :hoje_horario AND horario >= :horario))
@@ -86,7 +96,7 @@ if (isset($conn)) {
                         <h3>Espaço para um novo passo</h3>
                         <p>Adicione tarefas à sua agenda e acompanhe as próximas por aqui.</p>
                     </div>
-                    <p class="storage-warning" id="storage-warning" role="status" hidden>Não foi possível carregar as tarefas salvas neste navegador.</p>
+                    <p class="storage-warning" id="storage-warning" role="status" hidden>Não foi possível carregar as tarefas salvas. Atualize a página para tentar novamente.</p>
                     <noscript><p>Ative o JavaScript para consultar suas tarefas.</p></noscript>
                     <a class="window-link" href="../agenda_tarefas/index.php">Ver minha agenda <span aria-hidden="true">→</span></a>
                 </section>
@@ -127,7 +137,10 @@ if (isset($conn)) {
             </div>
         </section>
     </main>
-    <script src="../assets/js/tarefas.js"></script>
+    <script>
+        const tarefasDashboard = <?= json_encode($tarefas, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const erroTarefasDashboard = <?= json_encode($erroTarefas) ?>;
+    </script>
     <script src="script.js"></script>
     <script src="../modo_escuro.js"></script>
 </body>

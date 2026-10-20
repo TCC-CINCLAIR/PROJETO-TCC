@@ -126,5 +126,6 @@ try {
     <script src="script.js?v=<?= filemtime(__DIR__ . '/script.js') ?>"></script>
     <script src="acontecimentos.js?v=<?= filemtime(__DIR__ . '/acontecimentos.js') ?>"></script>
     <script src="../modo_escuro.js"></script>
+    <script src="../lembretes.js?v=1"></script>
 </body>
 </html>

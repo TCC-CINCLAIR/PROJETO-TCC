@@ -1,0 +1,264 @@
+* {
+    box-sizing: border-box;
+}
+
+body.pagina-notificacoes {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34px;
+    font-family: "Poppins", Arial, sans-serif;
+    color: #8d0000;
+    background:
+        radial-gradient(
+            ellipse at top left,
+            #f3f1e5 0%,
+            transparent 57%
+        ),
+        radial-gradient(
+            ellipse at bottom right,
+            #e4c3b7 0%,
+            transparent 48%
+        ),
+        #8d0000;
+}
+
+.pagina-notificacoes header {
+    width: 100%;
+    max-width: 1160px;
+}
+
+.pagina-notificacoes .top-menu {
+    width: 100%;
+}
+
+.moldura-notificacoes {
+    width: 100%;
+    max-width: 1160px;
+    padding: 18px;
+    border: 1px solid #ffffff80;
+    border-radius: 42px;
+    background: #ffffff38;
+    box-shadow: 0 14px 35px #46000030;
+}
+
+.cartao-notificacoes {
+    position: relative;
+    min-height: 610px;
+    padding: 38px 9% 60px;
+    border-radius: 27px;
+    background: #f0eee1;
+}
+
+.cartao-notificacoes h1 {
+    margin: 0 45px 30px;
+    font-size: clamp(25px, 3vw, 36px);
+    font-weight: 500;
+    text-align: center;
+}
+
+.fechar {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #8d0000;
+    color: #fff;
+    text-decoration: none;
+    font: 36px/1 Arial, sans-serif;
+}
+
+.opcao-notificacao {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 12px 24px 12px 14px;
+    border: 1.5px solid #ad5757;
+    border-radius: 28px;
+}
+
+.icone-consulta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: #8d0000;
+    color: #fff;
+}
+
+.icone-consulta svg {
+    width: 36px;
+    height: 36px;
+}
+
+.texto-notificacao {
+    flex: 1;
+    min-width: 0;
+}
+
+.texto-notificacao label {
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.texto-notificacao p {
+    margin: 3px 0 0;
+    color: #665252;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.interruptor {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 60px;
+    height: 44px;
+    cursor: pointer;
+}
+
+.interruptor input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.trilho {
+    width: 60px;
+    height: 32px;
+    border-radius: 999px;
+    background: #a99c96;
+    pointer-events: none;
+    transition: background 0.2s;
+}
+
+.trilho::before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+    border-radius: 50%;
+    background: #fffdf4;
+    box-shadow: 0 1px 4px #0003;
+    transition: transform 0.2s;
+}
+
+.interruptor input:checked + .trilho {
+    background: #8d0000;
+}
+
+.interruptor input:checked + .trilho::before {
+    transform: translateX(28px);
+}
+
+.interruptor input:focus-visible + .trilho,
+.fechar:focus-visible {
+    outline: 3px solid #ba7000;
+    outline-offset: 4px;
+}
+
+.orientacao {
+    max-width: 620px;
+    margin: 18px auto 0;
+    color: #665252;
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    body.pagina-notificacoes {
+        padding: 20px 12px;
+        gap: 24px;
+    }
+
+    .moldura-notificacoes {
+        padding: 10px;
+        border-radius: 28px;
+    }
+
+    .cartao-notificacoes {
+        min-height: 450px;
+        padding: 70px 16px 30px;
+        border-radius: 20px;
+    }
+
+    .cartao-notificacoes h1 {
+        margin: 0 0 25px;
+    }
+
+    .fechar {
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .opcao-notificacao {
+        gap: 12px;
+        padding: 12px;
+        border-radius: 20px;
+    }
+
+    .icone-consulta {
+        width: 44px;
+        height: 44px;
+        border-radius: 13px;
+    }
+
+    .icone-consulta svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+.historico-notificacoes {
+    margin-top: 32px;
+}
+
+.historico-notificacoes h2 {
+    margin: 0 0 16px;
+    color: inherit;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.item-notificacao {
+    margin-bottom: 12px;
+    padding: 16px 18px;
+    border: 1px solid #ad5757;
+    border-left: 5px solid #8d0000;
+    border-radius: 16px;
+    background: transparent;
+    color: inherit;
+}
+
+.item-notificacao p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.item-notificacao time {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.8;
+}

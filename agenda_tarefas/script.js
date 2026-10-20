@@ -50,50 +50,6 @@ function carregarConsultas(){
     pendencias();
 }
 
-function salvarTarefas() {
-    try {
-        TarefasCinclair.salvar(listaTarefas.filter(tarefa => tarefa.origem === 'manual'));
-        document.getElementById('storageWarning').hidden = true;
-    } catch (erro) {
-        document.getElementById('storageWarning').hidden = false;
-    }
-}
-
-function renderizarTarefa(tarefa) {
-    const card = document.createElement('div');
-    card.className = 'task-card';
-    const cabecalho = document.createElement('div');
-    cabecalho.className = 'task-header';
-    cabecalho.textContent = formatDate(tarefa.data);
-    const lista = document.createElement('div');
-    lista.className = 'task-list';
-    const item = document.createElement('label');
-    item.className = 'task-item';
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    const titulo = document.createElement('span');
-    titulo.textContent = tarefa.titulo;
-    checkbox.onchange = function () {
-        tarefa.concluida = checkbox.checked;
-        salvarTarefas();
-        pendencias();
-    };
-    item.append(checkbox, titulo);
-    lista.appendChild(item);
-    card.append(cabecalho, lista);
-    tasksContainer.appendChild(card);
-}
-
-try {
-    TarefasCinclair.carregar().forEach(tarefa => {
-        tarefa.origem = 'manual';
-        tarefa.mes = getMes(tarefa.data);
-        listaTarefas.push(tarefa);
-        if (!tarefa.concluida) renderizarTarefa(tarefa);
-    });
-} catch (erro) {
-    document.getElementById('storageWarning').hidden = false;
-}
 carregarConsultas();
 
 function openModal() {
@@ -113,30 +69,34 @@ function addTask(){
     const title = document.getElementById("taskTitle").value.trim();
     const date = document.getElementById("taskDate").value;
 
-    if(title === "" || date === "") {
+    if (title === "" || date === "") {
         alert("Preencha todos os campos!");
         return;
     }
 
-    const mesDaTarefa = getMes(date);
+    const dados = new FormData();
+    dados.append("titulo", title);
+    dados.append("data", date);
 
-    var novaTarefa = {
-        titulo: title,
-        data: date,
-        origem: 'manual',
-        mes: mesDaTarefa,
-        concluida: false
-    };
-    listaTarefas.push(novaTarefa);
+    fetch("salvar_tarefa.php", {
+        method: "POST",
+        body: dados
+    })
+    .then(response => response.json())
+    .then(resultado => {
+        if (!resultado.sucesso) {
+            alert("Não foi possível salvar a tarefa.");
+            return;
+        }
 
-    renderizarTarefa(novaTarefa);
-    salvarTarefas();
+        criarCardTarefa(resultado.id, title, date);
 
-    document.getElementById("taskTitle").value = "";
-    document.getElementById("taskDate").value = "";
-
-    closeModal();
-    pendencias();
+        document.getElementById("taskTitle").value = "";
+        document.getElementById("taskDate").value = "";
+        closeModal();
+        pendencias();
+    })
+    .catch(() => alert("Erro ao salvar a tarefa."));
 }
 
 function formatDate(dateString){
@@ -174,6 +134,46 @@ function getMes(dateString){
 
     return meses[mesNumero - 1];
 }
+
+
+function criarCardTarefa(id, titulo, data) {
+    const mesDaTarefa = getMes(data);
+
+    listaTarefas.push({
+    id: Number(id),
+    titulo: titulo,
+    mes: mesDaTarefa,
+    concluida: false,
+    tipo: "tarefa"
+});
+
+    const card = document.createElement("div");
+    card.classList.add("task-card");
+    card.dataset.id = id;
+    card.dataset.tipo = "tarefa";
+    card.innerHTML = `
+        <div class="task-header">${formatDate(data)}</div>
+        <div class="task-list">
+            <label class="task-item">
+                <input type="checkbox">
+                <span></span>
+            </label>
+        </div>
+    `;
+
+    card.querySelector(".task-item span").textContent = titulo;
+    tasksContainer.appendChild(card);
+}
+
+function carregarTarefas() {
+    for (const tarefa of tarefasBanco) {
+        criarCardTarefa(tarefa.id, tarefa.titulo_tarefa, tarefa.data);
+    }
+
+    pendencias();
+}
+
+carregarTarefas();
 
 ///////////////////////////////////////////////////////////////////////
 //BOTAO DO HAMBURGUINHO
@@ -257,29 +257,78 @@ function pendencias(){
 }
 
 document.addEventListener("change", function (event) {
-    if (event.target.type === "checkbox") {
-        const task = event.target.closest(".task-item");
-        const card = event.target.closest(".task-card");
-
-        if (event.target.checked && task) {
-            task.remove();
-
-            const taskList = card.querySelector(".task-list");
-
-            if (taskList.children.length === 0) {
-                card.remove();
-            }
-
-            pendencias();
-        }
+    if (event.target.type !== "checkbox" || !event.target.checked) {
+        return;
     }
+
+    const task = event.target.closest(".task-item");
+    const card = event.target.closest(".task-card");
+
+    if (!task || !card) return;
+
+    if (card.dataset.tipo === "tarefa") {
+        const dados = new FormData();
+        dados.append("id", card.dataset.id);
+
+        fetch("excluir_tarefa.php", {
+        method: "POST",
+        body: dados
+    })
+.then(response => response.text())
+.then(texto => {
+    let resultado;
+
+    try {
+        resultado = JSON.parse(texto);
+    } catch {
+        console.log("Resposta do PHP:", texto);
+        throw new Error("O PHP não retornou um JSON válido.");
+    }
+
+    if (!resultado.sucesso) {
+        event.target.checked = false;
+        console.log("Resultado da exclusão:", resultado);
+        alert("Não foi possível excluir a tarefa do banco.");
+        return;
+    }
+
+    const indice = listaTarefas.findIndex(function (item) {
+        return item.tipo === "tarefa" &&
+            item.id === Number(card.dataset.id);
+    });
+
+    if (indice !== -1) {
+        listaTarefas.splice(indice, 1);
+    }
+
+    card.remove();
+    pendencias();
+})
+.catch(erro => {
+    event.target.checked = false;
+    console.error("Erro ao excluir tarefa:", erro);
+    alert("Erro ao excluir a tarefa do banco. Confira o Console (F12).");
+});
+
+        return;
+    }
+
+    task.remove();
+
+    const taskList = card.querySelector(".task-list");
+
+    if (taskList.children.length === 0) {
+        card.remove();
+    }
+
+    pendencias();
 });
 
 document.getElementById("taskModal").addEventListener("click", function (event) {
     if (event.target.id === "taskModal") closeModal();
 });
 
-// Mantém a navegação pelo teclado no painel aberto.
+
 document.addEventListener("keydown", function (event) {
     const modal = document.getElementById("taskModal");
     const painel = menu.classList.contains("active-menu") ? menu : modal.style.display === "flex" ? modal : null;

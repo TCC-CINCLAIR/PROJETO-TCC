@@ -7,7 +7,8 @@
     function renderizar() {
         let tarefas;
         try {
-            tarefas = TarefasCinclair.carregar();
+            if (erroTarefasDashboard) throw new Error('Erro ao carregar tarefas.');
+            tarefas = tarefasDashboard;
             aviso.hidden = true;
         } catch (erro) {
             lista.hidden = true;
@@ -46,7 +47,5 @@
     }
     renderizar();
     window.addEventListener('pageshow', renderizar);
-    window.addEventListener('storage', event => {
-        if (event.key === TarefasCinclair.chave || event.key === null) renderizar();
-    });
+
 })();

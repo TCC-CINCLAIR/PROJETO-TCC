@@ -18,6 +18,14 @@ $stmt = $conn->prepare($sql);
 $stmt->execute(['usuario_id' => $usuario_id]);
 
 $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$sqlTarefas = "SELECT id, titulo_tarefa, data 
+              FROM agenda_tarefas 
+              WHERE  id_usuario = :usuario_id
+              ORDER BY data";
+$stmtTarefas = $conn->prepare($sqlTarefas);
+$stmtTarefas->execute(['usuario_id' => $usuario_id]);
+$tarefasBanco = $stmtTarefas->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +80,6 @@ $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <section class="tasks-section" aria-labelledby="tasks-heading">
         <h2 id="tasks-heading">Suas tarefas</h2>
-        <p id="storageWarning" role="status" hidden>Não foi possível acessar as tarefas salvas. As alterações podem não ser mantidas ao sair desta página.</p>
         <div class="tasks-grid" id="tasksContainer"></div>
         <div class="empty-state" id="emptyTasks">
           <div class="empty-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="11" width="30" height="29" rx="5"/><path d="M16 7v8m16-8v8M9 21h30m-23 8 5 5 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -363,11 +370,11 @@ $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </div>
   <script>
     const consultasBanco = <?= json_encode($consultas, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+    const tarefasBanco = <?= json_encode($tarefasBanco, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
   </script>
 
-  <script src="../assets/js/tarefas.js"></script>
   <script src="script.js?v=<?= filemtime(__DIR__ . '/script.js') ?>"></script>
   <script src="../modo_escuro.js"></script>
-
+  <script src="../lembretes.js?v=1"></script>
 </body>
 </html>
