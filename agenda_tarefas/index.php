@@ -70,9 +70,9 @@ $tarefasBanco = $stmtTarefas->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="agenda-actions">
           <button class="new-task" onclick="openModal()"><span aria-hidden="true">+</span> Nova tarefa</button>
-          <button type="button" class="menu-icon" onclick="openMenu()" aria-controls="sideMenu" aria-expanded="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6h12M9 12h12M9 18h12M3 6h1M3 12h1M3 18h1" stroke-linecap="round"/></svg>
-            Pendências
+          <button type="button" class="menu-icon" onclick="openMenu()" aria-controls="sideMenu" aria-expanded="false" aria-label="Ver pendências" title="Ver pendências">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+
           </button>
         </div>
 

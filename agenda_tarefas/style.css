@@ -8,26 +8,29 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.container { width: 100%; max-width: 1120px; }
+.container { width: 100%; max-width: 1120px; min-width: 0; }
 .agenda-box {
-  background: #f7f1ec;
-  border: 1px solid #ffffff80;
-  border-radius: 28px;
-  box-shadow: 0 18px 48px #49000020;
+  background: #d9c3b9;
+  border: 16px solid #ffffff45;
+  border-radius: 40px;
+  box-shadow: 0 18px 48px #49000030, inset 0 0 0 1px #ffffff50;
   overflow: hidden;
 }
 .top-area {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(0, 2fr) minmax(150px, 1fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 32px;
-  border-bottom: 1px solid #e7d9d1;
+  gap: 16px;
+  padding: 22px 28px;
+  background: #eeeadf;
+  box-shadow: 0 6px 18px #60382c14;
 }
-.title { min-width: 0; }
+.title { min-width: 0; grid-column: 2; grid-row: 1; text-align: center; }
 .title h1 { color: #7c1717; font-size: clamp(26px, 3vw, 34px); line-height: 1.2; letter-spacing: -.03em; }
-.title p { margin-top: 8px; color: #75645e; font-size: 15px; line-height: 1.5; }
-.agenda-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.title p { margin-top: 3px; color: #806b62; font-size: 13px; line-height: 1.5; }
+.agenda-actions { display: contents; }
+.new-task { grid-column: 1; grid-row: 1; justify-self: start; width: 100%; max-width: 190px; }
+.menu-icon { grid-column: 3; grid-row: 1; justify-self: end; width: 48px; padding: 10px; }
 .new-task, .menu-icon, .add-btn, .cancel-btn {
   display: inline-flex;
   justify-content: center;
@@ -35,25 +38,26 @@ body {
   gap: 8px;
   min-height: 48px;
   border: 1px solid #850000;
-  border-radius: 12px;
-  padding: 12px 18px;
+  border-radius: 7px;
+  padding: 10px 16px;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.3;
 }
 .new-task, .add-btn { color: #fff; background: #850000; }
 .new-task > span { font-size: 23px; line-height: 1; font-weight: 400; }
-.menu-icon, .cancel-btn { color: #850000; background: transparent; border-color: #d5bdb2; }
+.menu-icon { color: #fff; background: #790e06; border-color: #790e06; }
+.cancel-btn { color: #850000; background: transparent; border-color: #d5bdb2; }
 .menu-icon svg { width: 20px; height: 20px; flex-shrink: 0; }
-.tasks-section { padding: 28px 32px 32px; }
-.tasks-section > h2 { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
-.tasks-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.task-card { min-width: 0; border: 1px solid #e6d7ce; background: #fff; border-radius: 18px; overflow: hidden; }
-.task-header { padding: 16px 20px; background: #eee1d9; color: #7c1717; font-size: 15px; font-weight: 600; line-height: 1.5; }
-.task-list { padding: 8px 18px; }
-.task-item { display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; font-size: 16px; line-height: 1.6; }
+.tasks-section { padding: 28px; min-height: 420px; }
+.tasks-section > h2 { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.tasks-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; }
+.task-card { min-width: 0; border: 1px solid #ffffff30; background: #eeeadfd9; border-radius: 26px; overflow: hidden; box-shadow: 0 7px 16px #68423420; }
+.task-header { padding: 18px 20px; background: #790e06; color: #fff; text-align: center; font-size: 16px; font-weight: 400; line-height: 1.5; }
+.task-list { display: grid; gap: 12px; padding: 18px 20px; }
+.task-item { display: flex; align-items: center; gap: 12px; min-height: 54px; padding: 12px 14px; border: 1px solid #fff9; border-radius: 13px; font-size: 15px; line-height: 1.5; }
 .task-item span, .month-task-item { min-width: 0; overflow-wrap: anywhere; }
-.task-item input { flex-shrink: 0; width: 22px; height: 22px; margin-top: 2px; accent-color: #850000; cursor: pointer; }
+.task-item input { flex-shrink: 0; width: 22px; height: 22px; margin-top: 2px; accent-color: #279b50; cursor: pointer; }
 .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px; padding: 32px 20px; border: 1px dashed #d9c4b8; border-radius: 20px; text-align: center; background: #fffaf680; }
 .empty-state[hidden] { display: none; }
 .empty-icon { width: 72px; height: 72px; display: grid; place-items: center; background: #eee1d9; color: #8d3330; border-radius: 22px; margin-bottom: 20px; }
@@ -85,27 +89,26 @@ body {
 body.dialog-open { overflow: hidden; }
 @media (hover: hover) {
   .new-task:hover, .add-btn:hover { background: #6f0000; }
-  .menu-icon:hover, .cancel-btn:hover, .month-item:hover { background: #eaddd4; }
+  .cancel-btn:hover, .month-item:hover { background: #eaddd4; }
 }
-@media (max-width: 900px) {
-  .top-area { align-items: flex-start; flex-direction: column; }
-  .agenda-actions { width: 100%; }
+@media (max-width: 760px) {
+  .top-area { grid-template-columns: minmax(0, 1fr) auto; padding: 22px; gap: 18px 12px; }
+  .title { grid-column: 1 / -1; grid-row: 1; }
+  .new-task { grid-column: 1; grid-row: 2; max-width: 190px; }
+  .menu-icon { grid-column: 2; grid-row: 2; }
+  .tasks-grid { gap: 20px; }
 }
 @media (max-width: 640px) {
-  .agenda-box { border-radius: 22px; }
-  .top-area { padding: 24px 20px; gap: 22px; }
-  .title h1 { font-size: 27px; }
-  .title p { font-size: 14px; }
-  .agenda-actions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
-  .new-task, .menu-icon { padding: 12px 8px; font-size: 13px; }
-  .tasks-section { padding: 24px 20px; }
-  .tasks-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .agenda-box { border-width: 9px; border-radius: 28px; }
+  .top-area { padding: 20px 16px; }
+  .title h1 { font-size: clamp(24px, 6vw, 28px); }
+  .title p { font-size: 13px; }
+  .tasks-section { padding: 20px 14px; min-height: 320px; }
+  .tasks-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .task-card { border-radius: 22px; }
+  .task-header { padding: 16px 12px; }
+  .task-list { padding: 16px 12px; }
   .empty-state { min-height: 280px; padding: 24px 12px; }
   .modal { align-items: flex-end; padding: 0; }
   .modal-content { max-width: none; max-height: calc(100dvh - 16px); border-radius: 24px 24px 0 0; padding: 24px 20px calc(24px + env(safe-area-inset-bottom)); }
-}
-@media (max-width: 360px) {
-  .top-area, .tasks-section { padding: 22px 16px; }
-  .title h1 { font-size: 25px; }
-  .new-task, .menu-icon { gap: 6px; font-size: 12px; }
 }

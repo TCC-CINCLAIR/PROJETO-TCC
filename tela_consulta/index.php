@@ -102,7 +102,7 @@ if (!isset($_SESSION['sessao_id'])) {
                 <div class="form-group form-full">
                     <label for="observacoes">Observações <span class="optional">(opcional)</span></label>
                     <textarea id="observacoes"
-                        placeholder="Algo que o profissional precisa saber?"></textarea>
+                        placeholder="Adicione informações adicionais sobre a consulta..."></textarea>
                 </div>
 
                 <button class="confirmar-btn" onclick="confirmarConsulta()">

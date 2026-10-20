@@ -166,13 +166,14 @@ body.modo-escuro.pagina-chatbot .emoji-picker button:hover{
 }
 
 /* Consulta e agenda: complemento sem alterar as regras originais. */
-body.modo-escuro.pagina-consulta :is(.consulta-box, .aviso-box),
+body.modo-escuro.pagina-consulta :is(.consulta-box, .consulta-card, .aviso-box),
 body.modo-escuro.pagina-agenda :is(.agenda-box, .task-card, .modal-content, .side-menu, .empty-state){
   background:#252525;
   border-color:#444444;
   color:#ffffff;
 }
 body.modo-escuro:is(.pagina-consulta, .pagina-agenda) .top-area{
+  background:#252525;
   border-color:#444444;
 }
 body.modo-escuro.pagina-consulta :is(.title h1, .aviso-box h2, .consulta-card, .consulta-card label, .consulta-card strong),
