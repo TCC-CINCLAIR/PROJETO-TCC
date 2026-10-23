@@ -9,9 +9,11 @@ require_once "../conexao.php";
 
 $usuario_id = $_SESSION['sessao_id'];
 
-$sql = "SELECT profissional, data_consulta, horario, observacoes
+$sql = "SELECT id, profissional, data_consulta, horario, observacoes
         FROM marcar_consulta
         WHERE id_usuario = :usuario_id
+          AND concluida_agenda = FALSE
+          AND data_consulta >= (CURRENT_TIMESTAMP AT TIME ZONE 'America/Sao_Paulo')::date
         ORDER BY data_consulta, horario";
 
 $stmt = $conn->prepare($sql);

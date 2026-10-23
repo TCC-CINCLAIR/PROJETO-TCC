@@ -15,6 +15,8 @@ function carregarConsultas(){
         var mesDaConsulta = getMes(consulta.data_consulta);
 
         var consultaTarefa = {
+            id: Number(consulta.id),
+            tipo: "consulta",
             titulo: titulo,
             mes: mesDaConsulta,
             concluida: false
@@ -24,6 +26,8 @@ function carregarConsultas(){
 
         var card = document.createElement("div");
         card.classList.add("task-card");
+        card.dataset.id = consulta.id;
+        card.dataset.tipo = "consulta";
 
         card.innerHTML = `
             <div class="task-header">
@@ -32,17 +36,12 @@ function carregarConsultas(){
             <div class="task-list">
                 <div class="task-item">
                     <input type="checkbox">
-                    <span>${titulo}</span>
+                    <span></span>
                 </div>
             </div>
         `;
 
-        var checkbox = card.querySelector("input[type='checkbox']");
-
-        checkbox.onchange = function(){
-            consultaTarefa.concluida = checkbox.checked;
-            pendencias();
-        };
+        card.querySelector(".task-item span").textContent = titulo;
 
         tasksContainer.appendChild(card);
     }
@@ -256,72 +255,37 @@ function pendencias(){
     }
 }
 
-document.addEventListener("change", function (event) {
-    if (event.target.type !== "checkbox" || !event.target.checked) {
-        return;
-    }
+document.addEventListener("change", async function (event) {
+    const checkbox = event.target;
+    if (checkbox.type !== "checkbox" || !checkbox.checked) return;
 
-    const task = event.target.closest(".task-item");
-    const card = event.target.closest(".task-card");
+    const card = checkbox.closest(".task-card");
+    if (!card || !["tarefa", "consulta"].includes(card.dataset.tipo)) return;
 
-    if (!task || !card) return;
-
-    if (card.dataset.tipo === "tarefa") {
-        const dados = new FormData();
-        dados.append("id", card.dataset.id);
-
-        fetch("excluir_tarefa.php", {
-        method: "POST",
-        body: dados
-    })
-.then(response => response.text())
-.then(texto => {
-    let resultado;
+    const arquivo = card.dataset.tipo === "consulta"
+        ? "concluir_consulta.php"
+        : "excluir_tarefa.php";
+    const dados = new FormData();
+    dados.append("id", card.dataset.id);
+    checkbox.disabled = true;
 
     try {
-        resultado = JSON.parse(texto);
-    } catch {
-        console.log("Resposta do PHP:", texto);
-        throw new Error("O PHP não retornou um JSON válido.");
-    }
+        const resposta = await fetch(arquivo, { method: "POST", body: dados });
+        const resultado = await resposta.json();
+        if (!resposta.ok || !resultado.sucesso) throw new Error("Falha ao concluir.");
 
-    if (!resultado.sucesso) {
-        event.target.checked = false;
-        console.log("Resultado da exclusão:", resultado);
-        alert("Não foi possível excluir a tarefa do banco.");
-        return;
-    }
-
-    const indice = listaTarefas.findIndex(function (item) {
-        return item.tipo === "tarefa" &&
-            item.id === Number(card.dataset.id);
-    });
-
-    if (indice !== -1) {
-        listaTarefas.splice(indice, 1);
-    }
-
-    card.remove();
-    pendencias();
-})
-.catch(erro => {
-    event.target.checked = false;
-    console.error("Erro ao excluir tarefa:", erro);
-    alert("Erro ao excluir a tarefa do banco. Confira o Console (F12).");
-});
-
-        return;
-    }
-
-    task.remove();
-
-    const taskList = card.querySelector(".task-list");
-
-    if (taskList.children.length === 0) {
+        listaTarefas = listaTarefas.filter(item =>
+            item.tipo !== card.dataset.tipo || item.id !== Number(card.dataset.id)
+        );
         card.remove();
+        pendencias();
+    } catch (erro) {
+        checkbox.checked = false;
+        console.error(erro);
+        alert("Não foi possível concluir. Tente novamente.");
+    } finally {
+        checkbox.disabled = false;
     }
-
-    pendencias();
 });
 
 document.getElementById("taskModal").addEventListener("click", function (event) {
