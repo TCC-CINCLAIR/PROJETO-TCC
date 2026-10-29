@@ -40,7 +40,7 @@ if ($senha !== $confirmacao) {
     exit('As senhas não coincidem. Volte e tente novamente.');
 }
 
-// O limite em bytes evita truncamento no bcrypt.
+
 if (mb_strlen($senha, 'UTF-8') < 8 || strlen($senha) > 72) {
     exit('Use pelo menos 8 caracteres e no máximo 72 bytes.');
 }
@@ -52,7 +52,7 @@ try {
 
     $conn->beginTransaction();
 
-    // Obtém a conta a partir da solicitação autorizada.
+
     $consulta = $conn->prepare(
         'SELECT usuario_id
          FROM public.redefinicoes_senha
@@ -67,7 +67,7 @@ try {
         exit('Solicitação inválida. Solicite um novo código.');
     }
 
-    // Mantém a mesma ordem de bloqueio usada no envio do código.
+
     $bloquear = $conn->prepare(
         'SELECT id FROM public.usuarios WHERE id = :id FOR UPDATE'
     );
@@ -79,7 +79,7 @@ try {
         exit('Conta indisponível.');
     }
 
-    // Só permite consumir uma solicitação válida uma vez.
+
     $consumir = $conn->prepare(
         'UPDATE public.redefinicoes_senha
          SET utilizado_em = NOW()
@@ -113,7 +113,7 @@ try {
         'id' => $usuarioId,
     ]);
 
-    // Invalida outras solicitações dessa conta.
+
     $invalidar = $conn->prepare(
         'UPDATE public.redefinicoes_senha
          SET utilizado_em = NOW()
@@ -138,7 +138,7 @@ try {
     $_SESSION['senha_redefinida_sucesso'] = true;
     header('Location: index.php');
     exit;
-    
+
 } catch (Throwable $erro) {
     if (isset($conn) && $conn->inTransaction()) {
         $conn->rollBack();

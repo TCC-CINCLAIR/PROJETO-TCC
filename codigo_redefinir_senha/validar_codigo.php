@@ -25,7 +25,7 @@ if (!is_string($codigo) || !preg_match('/^[0-9]{6}$/', $codigo)) {
     avisarErroCodigo('Digite um código de 6 números.');
 }
 
-// A autorização só será concedida depois de validar o código.
+
 unset(
     $_SESSION['recuperacao_autorizada'],
     $_SESSION['recuperacao_expira']

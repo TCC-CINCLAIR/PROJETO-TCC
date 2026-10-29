@@ -5,11 +5,7 @@ $email = strtolower(trim($_POST['email']));
 $senha = $_POST['senha'];
 
 try {
-    $conn = new PDO ("pgsql:host = aws-1-us-east-2.pooler.supabase.com;dbname=postgres","postgres.oiqkryvqyoxjyaujrtcl", "cinclair@2026");
-    $conn -> setAttribute (
-        PDO::ATTR_ERRMODE,
-        PDO::ERRMODE_EXCEPTION
-    );
+    require __DIR__ . '/../conexao.php';
 
     $sql = "SELECT id, email, senha FROM usuarios WHERE email = :email";
 

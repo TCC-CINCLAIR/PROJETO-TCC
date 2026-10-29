@@ -1,4 +1,4 @@
-//BOTÃO NOVA TAREFA
+
 
 const tasksContainer = document.getElementById("tasksContainer");
 
@@ -174,8 +174,8 @@ function carregarTarefas() {
 
 carregarTarefas();
 
-///////////////////////////////////////////////////////////////////////
-//BOTAO DO HAMBURGUINHO
+
+
 
 var menu = document.getElementById("sideMenu");
 

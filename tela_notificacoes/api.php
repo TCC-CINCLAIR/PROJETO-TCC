@@ -112,7 +112,7 @@ try {
         );
 
         foreach ($lembretes as $lembrete) {
-            // A mesma consulta sempre produz a mesma chave.
+
             $chave = hash(
                 'sha256',
                 $lembrete['data'] . '|' .
@@ -142,7 +142,7 @@ try {
         }
     }
 
-    // Mostra somente o histórico do usuário que está logado.
+
     $consulta = $conn->prepare(
         'SELECT id, mensagem, criado_em
          FROM public.historico_notificacoes

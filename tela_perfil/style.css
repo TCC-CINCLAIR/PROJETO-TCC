@@ -22,7 +22,7 @@ main{
   flex-direction: row;
   padding-top: 25px;
   padding-bottom: 30px;
-  
+
 }
 .info-usuario{
   width: 385px;
@@ -33,7 +33,7 @@ main{
   border-left: solid 15px #bca29977;
   border-bottom: solid 15px #bca29977;
   padding-top: 18px;
-  
+
 }
 .img-perfil img{
   width: 165px;
@@ -87,7 +87,7 @@ main{
   background-color: #8d0000;
   color: #ece7e1;
   font-weight: 500;
-  
+
 }
 .opcoes-sistema{
   width: 640px;
@@ -191,7 +191,7 @@ main{
   color: #8D0000;
 }
 
-/* Perfil: duas colunas no desktop, cartões empilhados no celular. */
+
 body, body * { font-family: 'Poppins', Arial, sans-serif; }
 
 main {

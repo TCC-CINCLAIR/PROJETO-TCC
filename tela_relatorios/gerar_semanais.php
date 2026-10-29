@@ -9,11 +9,11 @@ try {
     $total = 0; $falhas = 0;
     foreach ($usuarios as $usuario) {
         try {
-            // Recupera períodos atrasados em ordem, sem misturar semanas ou gerar duplicatas.
+
             for ($i = 0; $i < 52 && gerarRelatorioPendente($conn, $usuario, $resumir); $i++) $total++;
         } catch (Throwable $e) {
             $falhas++;
-            // Registra apenas tipo/código; não imprime relatos, credenciais ou resposta da IA.
+
             fwrite(STDERR, 'Falha em um período: ' . get_class($e) . ' (código ' . (int) $e->getCode() . ").\n");
         }
     }

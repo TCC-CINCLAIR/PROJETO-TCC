@@ -31,12 +31,12 @@ function salvarDiaRelatorio(PDO $conn, int|string $usuario, int $dia): void
     $agora = new DateTimeImmutable('now', new DateTimeZone('America/Sao_Paulo'));
     $conn->beginTransaction();
     try {
-        // Mesmo lock do gerador; duas gravações concorrentes não reiniciam o período.
+
         $stmt = $conn->prepare('SELECT pg_advisory_xact_lock(1128878675, CAST(:usuario AS INTEGER))');
         $stmt->execute(['usuario' => $usuario]);
         $p = preferenciaRelatorio($conn, $usuario);
         $inicio = $p ? dataRelatorio($p['inicio_periodo']) : $agora;
-        // Na primeira configuração, garante ao menos sete dias de relatos.
+
         $minimo = $p ? $agora : $agora->modify('+7 days');
         if ($p) {
             $stmt = $conn->prepare('SELECT EXISTS (SELECT 1 FROM relatorios_semanais WHERE usuario_id = :usuario)');
@@ -55,7 +55,7 @@ function salvarDiaRelatorio(PDO $conn, int|string $usuario, int $dia): void
     } catch (Throwable $e) { if ($conn->inTransaction()) $conn->rollBack(); throw $e; }
 }
 
-// Gera e salva o resumo do período pendente.
+
 function gerarRelatorioPendente(PDO $conn, int|string $usuario, callable $resumir): bool
 {
     $conn->beginTransaction();
@@ -93,7 +93,7 @@ function comporRelatorioAcontecimentos(array $mensagens, array $acontecimentos, 
     $cobertos = []; $envios = []; $confirmados = [];
     foreach ($acontecimentos as $a) {
         foreach (json_decode($a['mensagem_ids'], true, 32, JSON_THROW_ON_ERROR) as $id) $cobertos[(int) $id] = true;
-        // Um acontecimento confirmado após o fechamento entra no próximo período.
+
         if (dataRelatorio($a['criado_em']) < dataRelatorio($fim)) {
             $confirmados[] = $a['titulo'] . ' — relato em ' . dataRelatorio($a['data_relato'])->format('d/m/Y H:i') . "\n" . $a['resumo'];
         }

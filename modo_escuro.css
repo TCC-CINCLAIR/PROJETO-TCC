@@ -84,10 +84,10 @@ body.modo-escuro .consulta-card textarea{
 }
 body.modo-escuro .consulta-card select option{
   color:#333333;
-  
+
 }
 
-/* Complemento para as páginas de acesso, boas-vindas e questionário. */
+
 body.modo-escuro.pagina-acesso form,
 body.modo-escuro.pagina-bemvindo main,
 body.modo-escuro .caixa-questionario{
@@ -130,7 +130,7 @@ body.modo-escuro .caixa-questionario .mensagem-erro{
   color:#ffb4b4;
 }
 
-/* Chatbot: usa a mesma paleta e a mesma classe do tema existente. */
+
 body.modo-escuro.pagina-chatbot .chat-moldura{
   border-color:#333333;
 }
@@ -165,7 +165,7 @@ body.modo-escuro.pagina-chatbot .emoji-picker button:hover{
   background:#505050;
 }
 
-/* Consulta e agenda: complemento sem alterar as regras originais. */
+
 body.modo-escuro.pagina-consulta .consulta-box,
 body.modo-escuro.pagina-consulta .consulta-card,
 body.modo-escuro.pagina-consulta .aviso-box,
@@ -232,7 +232,7 @@ body.modo-escuro.pagina-agenda .pending-dot{
   background:#ffb4b4;
 }
 
-/* Mantém o desenho e a transparência dos ícones, mudando só a cor no tema escuro. */
+
 body.modo-escuro .top-menu img,
 body.modo-escuro .input-icon,
 body.modo-escuro .aba-botoes img,
@@ -244,7 +244,7 @@ body.modo-escuro .clarice-icon{
   filter:brightness(0) invert(1);
 }
 
-/* Perfil: contraste dos dados e prioridade sobre a navegação responsiva. */
+
 body.modo-escuro.pagina-perfil .dados-usuario label,
 body.modo-escuro.pagina-perfil .contato p{
   color:#ffffff;
@@ -270,7 +270,7 @@ body.modo-escuro.pagina-perfil .top-menu > a:hover{
   background:#505050;
 }
 
-/* Agenda: mantém o item ativo no tema escuro sobre o estilo responsivo. */
+
 body.modo-escuro.pagina-agenda .top-menu > a[aria-current="page"]{
   background:#3a3a3a;
   color:#ffffff;
@@ -280,7 +280,7 @@ body.modo-escuro.pagina-agenda .top-menu > a[aria-current="page"]:hover{
   background:#505050;
 }
 
-/* Mantém o tema das telas do perfil ao compartilhar o menu responsivo. */
+
 body.modo-escuro.pagina-configuracao .top-menu{
   background:#252525;
 }
@@ -299,7 +299,7 @@ body.modo-escuro.pagina-configuracao .relatorio{
   border-color:#777777;
 }
 
-/* Notificacoes: acompanha a preferencia de tema das demais telas. */
+
 body.modo-escuro.pagina-notificacoes{
   background:#1a1a1a;
   color:#ffffff;

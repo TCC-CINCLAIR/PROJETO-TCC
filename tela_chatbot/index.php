@@ -6,7 +6,7 @@ if (!isset($_SESSION['sessao_id'])) {
     exit;
 }
 
-// Token da sessão: o PHP confere se o envio veio do formulário do usuário.
+
 if (empty($_SESSION['chat_csrf'])) {
     $_SESSION['chat_csrf'] = bin2hex(random_bytes(32));
 }

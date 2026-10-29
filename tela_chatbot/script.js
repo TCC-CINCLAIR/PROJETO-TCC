@@ -45,7 +45,7 @@ document.addEventListener('keydown', (evento) => {
     }
 });
 
-// Usa textContent para exibir mensagens como texto, sem executar HTML.
+
 function criarMensagem(texto, remetente, id = null) {
     const mensagem = document.createElement('div');
     mensagem.className = `mensagem mensagem-${remetente}`;
@@ -122,7 +122,7 @@ function mostrarDigitacao() {
 }
 
 formulario.addEventListener('submit', async (evento) => {
-    // Evita que o formulário recarregue a página.
+
     evento.preventDefault();
     if (enviando || carregandoHistorico || formulario.dataset.historicoPronto !== 'true') return;
 
@@ -132,8 +132,8 @@ formulario.addEventListener('submit', async (evento) => {
         return;
     }
 
-    // Reutiliza o identificador ao tentar novamente o mesmo texto após falha.
-    // Nenhuma conversa ou mensagem é gravada no armazenamento do navegador.
+
+
     if (!envioPendente || envioPendente.texto !== texto) {
         const bytes = crypto.getRandomValues(new Uint8Array(16));
         envioPendente = { texto, id: Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('') };
@@ -158,7 +158,7 @@ formulario.addEventListener('submit', async (evento) => {
     const tempoLimite = setTimeout(() => controle.abort(), 35000);
 
     try {
-        // O navegador chama nosso PHP. A chave da API fica no servidor.
+
         const retorno = await fetch(formulario.action, {
             method: 'POST',
             credentials: 'same-origin',
@@ -177,9 +177,9 @@ formulario.addEventListener('submit', async (evento) => {
             throw new Error('A resposta não chegou completa. Tente novamente.');
         }
 
-        // Mostra os pontos por 1,6 a 3 segundos, conforme o tamanho da resposta.
-        // O tempo que a API já levou conta nessa pausa, evitando espera extra
-        // quando a conexão estiver lenta. Falhas não recebem atraso artificial.
+
+
+
         clearTimeout(tempoLimite);
         const tempoMinimo = Math.min(3000, 1600 + dados.resposta.length * 8);
         const tempoRestante = tempoMinimo - (performance.now() - inicioResposta);
@@ -195,7 +195,7 @@ formulario.addEventListener('submit', async (evento) => {
         aviso.hidden = true;
         document.dispatchEvent(new CustomEvent('clarice:mensagem-enviada', { detail: { texto } }));
     } catch (erro) {
-        // Devolve o texto ao campo para tentar novamente sem duplicar a mensagem.
+
         mensagemEnviada.remove();
         campoMensagem.value = texto;
         aviso.classList.add('erro');

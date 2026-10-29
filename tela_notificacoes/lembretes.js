@@ -80,7 +80,7 @@
                 consulta.profissional,
             ].join("|");
 
-            // Evita repetir o aviso neste navegador após atualizar a página.
+
             if (localStorage.getItem(chave)) continue;
 
             const minutos = Math.max(1, Number(consulta.minutos));

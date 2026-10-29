@@ -1,4 +1,4 @@
-// Mostrar ou ocultar a senha.
+
 document.querySelectorAll(".alternar-senha").forEach(function (botao) {
   botao.addEventListener("click", function () {
     const campo = document.getElementById(botao.dataset.target);
@@ -12,7 +12,7 @@ document.querySelectorAll(".alternar-senha").forEach(function (botao) {
   });
 });
 
-// Impede o envio apenas quando os campos são inválidos.
+
 document
   .getElementById("form-redefinicao")
   .addEventListener("submit", function (evento) {

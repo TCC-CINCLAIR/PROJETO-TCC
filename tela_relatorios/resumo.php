@@ -25,7 +25,7 @@ REGRAS;
 
 function validarPontosResumo(string $resposta, array $originais): array
 {
-    // Alguns modelos cercam o JSON por uma única cerca de código.
+
     $resposta = trim($resposta);
     if (preg_match('/^```(?:json)?\s*(.*?)\s*```$/si', $resposta, $m)) $resposta = $m[1];
     $dados = json_decode($resposta, true, 32, JSON_THROW_ON_ERROR);
@@ -56,17 +56,17 @@ function resumirPeriodoSemanal(array $mensagens, ?callable $modelo = null): stri
     if (!$relatos) return 'Não houve relatos do usuário neste período.';
     $modelo ??= 'chamarModeloClarice';
     $originais = []; $lotes = []; $lote = []; $tamanho = 0;
-    // Todos os registros são processados em lotes limitados, sem descartar mensagens da semana.
+
     foreach ($mensagens as $m) {
         $id = (int) $m['id'];
         $originais[$id] = $m;
         $registro = ['id' => $id, 'data_relato' => dataRelatorio($m['criado_em'])->format('d/m/Y H:i'),
             'autor' => $m['remetente'], 'texto' => $m['conteudo'], 'destaque' => mensagemDestacadaRelatorio($m)];
         $peso = mb_strlen(json_encode($registro, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), 'UTF-8');
-        // Só separa antes da próxima mensagem do usuário, preservando a troca com a assistente.
+
         if ($lote && $m['remetente'] === 'user' && $tamanho + $peso > 10000) {
             $lotes[] = $lote;
-            // A última troca dá contexto a pedidos como "inclua isso", mesmo na virada de lote.
+
             $lote = array_slice($lote, -2);
             $tamanho = mb_strlen(json_encode($lote, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), 'UTF-8');
         }
@@ -91,7 +91,7 @@ function resumirPeriodoSemanal(array $mensagens, ?callable $modelo = null): stri
     if (!$partes) $partes[] = 'Não foram identificados acontecimentos relevantes para o resumo deste período.';
     $destaques = array_filter($relatos, 'mensagemDestacadaRelatorio');
     if ($destaques) {
-        // Garantia determinística: nenhum destaque desaparece por decisão ou omissão da IA.
+
         $partes[] = 'Acontecimentos que você selecionou (texto original):';
         foreach ($destaques as $m) $partes[] = 'Relato em ' . dataRelatorio($m['criado_em'])->format('d/m/Y H:i') . ' — ' . $m['conteudo'];
     }

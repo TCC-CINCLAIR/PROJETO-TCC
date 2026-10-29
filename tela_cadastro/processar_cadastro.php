@@ -5,7 +5,7 @@ $usuario = mb_convert_case(trim($_POST['usuario']), MB_CASE_TITLE, "UTF-8");
 $senha = $_POST['senha'];
 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-//validação de email
+
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     die("ERRO: Email inválido");
@@ -13,11 +13,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 
 try {
-    $conn = new PDO ("pgsql:host = aws-1-us-east-2.pooler.supabase.com;dbname=postgres","postgres.oiqkryvqyoxjyaujrtcl", "cinclair@2026");
-    $conn -> setAttribute(
-      PDO::ATTR_ERRMODE,
-      PDO::ERRMODE_EXCEPTION  
-    );
+    require __DIR__ . '/../conexao.php';
 
     $sqlSelect = "SELECT email FROM usuarios WHERE email = :email";
     $stmt = $conn -> prepare ($sqlSelect);
@@ -29,7 +25,7 @@ try {
         header("Location: ../tela_login/index.html?aviso=email-existente");
         exit;
     }
-    
+
     $sqlInsert = "INSERT INTO usuarios (email, usuario, senha) VALUES (:email, :usuario, :senha) RETURNING id";
 
     $stmt = $conn -> prepare($sqlInsert);
@@ -44,7 +40,7 @@ try {
         if ($usuarioId === false) {
             throw new RuntimeException('Cadastro sem identificador de usuário.');
         }
-        // Só autentica depois que o banco confirma a criação e devolve o ID.
+
         session_regenerate_id(true);
         $_SESSION = ['sessao_id' => $usuarioId];
         session_write_close();

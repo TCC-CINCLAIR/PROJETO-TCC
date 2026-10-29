@@ -3,7 +3,7 @@ require_once __DIR__ . '/personalidade_clarice.php';
 
 function buscarPreferenciasUsuario(PDO $conexao, int|string $usuarioId): array
 {
-    // Apelido e quatro escolhas de conversa. Não lê idade ou observações.
+
     $consulta = $conexao->prepare(
         'SELECT apelido, tom_conversa, reacao_chat, pergunta_chat, inicio_chat
          FROM preferencias_usuario
@@ -17,20 +17,9 @@ function buscarPreferenciasUsuario(PDO $conexao, int|string $usuarioId): array
 
 function conectarBancoPreferencias(): PDO
 {
-    $arquivo = __DIR__ . '/config.banco.local.php';
-    if (!is_file($arquivo)) {
-        // Em outra máquina, usa a mesma conexão da agenda e das consultas.
-        // Uma configuração local, quando existir, continua tendo prioridade.
-        require __DIR__ . '/../conexao.php';
-        if (!isset($conn) || !$conn instanceof PDO) {
-            throw new RuntimeException('Conexão compartilhada do banco indisponível.');
-        }
-        return $conn;
-    }
-    $config = require $arquivo;
-    return new PDO($config['dsn'], $config['usuario'], $config['senha'], [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    ]);
+    require __DIR__ . '/../conexao.php';
+
+    return $conn;
 }
 
 function carregarPreferenciasUsuario(int|string $usuarioId): array
@@ -38,8 +27,7 @@ function carregarPreferenciasUsuario(int|string $usuarioId): array
     try {
         return buscarPreferenciasUsuario(conectarBancoPreferencias(), $usuarioId);
     } catch (Throwable $erro) {
-        // Em falha do banco, a conversa continua com o padrão. O log não inclui
-        // credenciais nem valores de preferências.
+
         error_log('Clarice: preferências indisponíveis; usando padrão. Tipo: ' . get_class($erro));
         return normalizarPreferenciasClarice([]);
     }

@@ -19,7 +19,7 @@ if (!isset($_SESSION['sessao_id'])) {
 </head>
 <body class="pagina-questionario">
     <div class="caixa-questionario">
-        <!-- Progresso desta página -->
+
         <div class="informacoes-progresso">
             <p>Pergunta 7 de 7</p>
             <span>86% completo</span>
@@ -28,7 +28,7 @@ if (!isset($_SESSION['sessao_id'])) {
             <div class="progresso-6"></div>
         </div>
 
-        <!-- Envia a resposta para o processamento -->
+
         <form id="questionario" action="processar_pergunta.php" method="post">
             <h1 id="titulo-pergunta">Há alguma preferência que você gostaria que o assistente respeitasse?</h1>
             <div class="opcoes" role="group" aria-labelledby="titulo-pergunta">

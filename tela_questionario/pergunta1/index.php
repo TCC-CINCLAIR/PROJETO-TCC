@@ -19,7 +19,7 @@ if (!isset($_SESSION['sessao_id'])) {
 </head>
 <body class="pagina-questionario">
     <div class="caixa-questionario">
-        <!-- Progresso desta página -->
+
         <div class="informacoes-progresso">
             <p>Pergunta 1 de 7</p>
             <span>0% completo</span>
@@ -28,7 +28,7 @@ if (!isset($_SESSION['sessao_id'])) {
             <div class="progresso-0"></div>
         </div>
 
-        <!-- O action informa qual é a próxima página -->
+
         <form id="questionario" action="processar_pergunta.php" method="post">
             <h1 id="titulo-pergunta">Como você prefere ser chamado(a)?</h1>
             <div class="opcoes" role="group" aria-labelledby="titulo-pergunta">

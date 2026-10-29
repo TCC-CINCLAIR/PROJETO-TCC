@@ -1,7 +1,12 @@
 <?php
-$conn = new PDO ("pgsql:host = aws-1-us-east-2.pooler.supabase.com;dbname=postgres","postgres.oiqkryvqyoxjyaujrtcl", "cinclair@2026");
-    $conn -> setAttribute (
-        PDO::ATTR_ERRMODE,
-        PDO::ERRMODE_EXCEPTION
-    );
+$config = require dirname(__DIR__, 2) . '/config-tcc/banco.php';
+
+$conn = new PDO(
+    $config['dsn'],
+    $config['usuario'],
+    $config['senha'],
+    [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]
+);
 ?>

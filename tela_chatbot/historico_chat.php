@@ -1,6 +1,6 @@
 <?php
 
-// O usuário sempre vem da sessão. A consulta nunca recebe um ID de conversa do JS.
+
 function carregarHistoricoChat(PDO $banco, int|string $usuarioId, ?int $antes = null): array
 {
     $sql = 'SELECT m.id, m.remetente, m.conteudo, m.criado_em
@@ -23,8 +23,8 @@ function carregarHistoricoChat(PDO $banco, int|string $usuarioId, ?int $antes = 
     ];
 }
 
-// Mantém até seis pares completos, no máximo 6.000 caracteres de histórico.
-// É um limite de texto aproximado para consumo, não uma contagem de tokens.
+
+
 function limitarContextoChat(array $historico): array
 {
     $pares = [];
@@ -55,14 +55,14 @@ function limitarContextoChat(array $historico): array
     return $contexto;
 }
 
-// Salva somente trocas concluídas: mensagem + resposta, juntas na transação.
-// A função de IA é um parâmetro para permitir testes sem consumir a API.
+
+
 function processarTrocaChat(PDO $banco, int|string $usuarioId, string $envioId, string $texto, callable $gerarResposta): array
 {
     $banco->beginTransaction();
     try {
-        // Trava só os envios deste usuário. Funciona também no pool transacional
-        // do PostgreSQL. Outras pessoas podem conversar ao mesmo tempo.
+
+
         $banco->exec("SET LOCAL lock_timeout = '2s'");
         $trava = $banco->prepare('SELECT pg_try_advisory_xact_lock(1128878674, CAST(:usuario AS INTEGER))');
         $trava->execute(['usuario' => $usuarioId]);
@@ -76,8 +76,8 @@ function processarTrocaChat(PDO $banco, int|string $usuarioId, string $envioId, 
         $buscar->execute(['usuario' => $usuarioId]);
         $conversaId = $buscar->fetchColumn();
 
-        // Se a rede caiu depois de salvar, devolve a mesma resposta sem chamar
-        // a IA nem gravar novamente. O texto deve corresponder ao envio original.
+
+
         $repetido = $banco->prepare('SELECT id, remetente, conteudo FROM chat_mensagens WHERE conversa_id = :conversa AND envio_id = :envio ORDER BY id');
         $repetido->execute(['conversa' => $conversaId, 'envio' => $envioId]);
         $anteriores = $repetido->fetchAll(PDO::FETCH_ASSOC);

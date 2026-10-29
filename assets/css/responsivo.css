@@ -1,4 +1,4 @@
-/* Base compartilhada. Carregada depois do estilo de cada tela. */
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -12,7 +12,7 @@ body {
     height: auto;
     min-height: 100vh;
     min-height: 100svh;
-    /* Mesmo fundo em todas as telas, no desktop e no celular. */
+
     background:
         radial-gradient(ellipse at top left, #f0eee0 0%, transparent 57%),
         radial-gradient(ellipse at bottom right, #d9bcb1 0%, transparent 48%),
@@ -58,7 +58,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline-offset: 3px;
 }
 
-/* Login, cadastro e recuperação: cartões fluidos e altura pelo conteúdo. */
+
 .pagina-acesso {
     padding: 32px 20px;
 }
@@ -220,7 +220,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
     right: 2px;
 }
 
-/* Navegação comum ao perfil, agenda e consultas. */
+
 .pagina-interna {
     padding: 28px 24px 40px;
 }
@@ -291,7 +291,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline-color: #fff;
 }
 
-/* Telas acessadas pelo perfil: dimensões fluidas e conteúdo sem sobreposição. */
+
 .pagina-configuracao main {
     width: 100%;
     max-width: 1000px;
@@ -367,7 +367,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
     .pagina-configuracao .texto-privacidade { padding: 16px; }
 }
 
-/* As sete perguntas usam a mesma escala de espaçamento. */
+
 .pagina-questionario {
     padding: 32px 20px;
 }
@@ -492,7 +492,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 }
 
 @media (max-width: 768px) {
-    /* Campos de 16px evitam zoom automático ao digitar no celular. */
+
     .pagina-interna input,
     .pagina-interna select,
     .pagina-interna textarea {
@@ -506,7 +506,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
     }
 }
 
-/* Nas três telas, só o conteúdo rola; a navegação permanece no rodapé. */
+
 @media (max-width: 640px) {
     body.pagina-interna {
         padding: 20px 12px calc(96px + env(safe-area-inset-bottom));

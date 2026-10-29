@@ -1,4 +1,4 @@
-// A agenda e o dashboard compartilham apenas as tarefas deste usuário e navegador.
+
 window.TarefasCinclair = (() => {
     const usuario = document.body.dataset.usuarioId;
     const chave = `cinclair:tarefas:${usuario}`;

@@ -1,5 +1,5 @@
 <?php
-// PDF com fonte padrão e WinAnsi: dispensa dependências e não grava arquivos públicos.
+
 function gerarPdfRelatorio(string $titulo, string $periodo, string $texto): string
 {
     $linhas = [];
@@ -7,7 +7,7 @@ function gerarPdfRelatorio(string $titulo, string $periodo, string $texto): stri
     foreach ($paragrafos as $paragrafo) {
         $linha = '';
         foreach (preg_split('/\s+/u', trim($paragrafo), -1, PREG_SPLIT_NO_EMPTY) as $palavra) {
-            // Courier 11 usa 6,6 pontos por caractere: 72 caracteres cabem em 499 pontos.
+
             foreach (mb_str_split($palavra, 65, 'UTF-8') as $parte) {
                 if (mb_strlen($linha . ' ' . $parte, 'UTF-8') > 72) { $linhas[] = $linha; $linha = ''; }
                 $linha .= ($linha === '' ? '' : ' ') . $parte;

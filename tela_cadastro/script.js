@@ -22,7 +22,7 @@ botaoCadastrar.form.addEventListener ("submit", function(evento){
     botaoCadastrar.textContent = "Cadastrando…";
 });
 
-// Restaura o formulário se a pessoa voltar pelo histórico do navegador.
+
 window.addEventListener("pageshow", function () {
     botaoCadastrar.disabled = false;
     botaoCadastrar.textContent = "Cadastrar";
