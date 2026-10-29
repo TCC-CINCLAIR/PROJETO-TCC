@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 header('Content-Type: application/json; charset=utf-8');
 
-require_once "../conexao.php";
+require_once __DIR__ . '/../conexao.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -31,9 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $accountId = 'cCRrC1mUSyC8EHm8NRDMzA';
-    $clientId = 'WQtHlL3fT1OfZ4aeq_g4w';
-    $clientSecret = 'Uerhj08OzEHfB1UtXA99L49v4hwOwcZB';
+    $configZoom = require dirname(__DIR__, 3) . '/config-tcc/zoom.php';
+
+    $accountId = $configZoom['account_id'];
+    $clientId = $configZoom['client_id'];
+    $clientSecret = $configZoom['client_secret'];
 
     $zoomLink = '';
 
@@ -106,17 +108,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nomeUsuario = $usuarioData['usuario'];
             $emailUsuario = $usuarioData['email'];
 
+            $configEmail = require dirname(__DIR__, 3) . '/config-tcc/email.php';
             $mail = new PHPMailer(true);
             try {
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'cinclairzoom@gmail.com'; 
-                $mail->Password = 'dnlqbeuqbmzcyasy'; 
+                $mail->Username = $configEmail['email'];
+                $mail->Password = $configEmail['senha_app']; 
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
-                $mail->setFrom('cinclairzoom@gmail.com', 'Cinclair');
+                $mail->setFrom($configEmail['email'], 'Cinclair');
                 $mail->addAddress($emailUsuario, $nomeUsuario);
 
                 $mail->isHTML(true);
