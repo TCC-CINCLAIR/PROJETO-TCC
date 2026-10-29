@@ -25,7 +25,7 @@ function consultarIA(string $mensagem, array $preferencias = [], array $historic
 function chamarModeloClarice(array $mensagens, int $limiteTokens): string
 {
 
-    $arquivoConfig = __DIR__ . '/config.local.php';
+    $arquivoConfig = dirname(__DIR__, 3) . '/config-tcc/ia.php';
     if (!is_file($arquivoConfig)) {
         throw new RuntimeException('Configure a conexão com a IA no arquivo config.local.php.');
     }
