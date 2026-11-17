@@ -26,7 +26,8 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuário</title>
+    <title>Cinclair</title>
+    <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=1">
     <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
     <link rel="stylesheet" href="../modo_escuro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 error_reporting(E_ALL);
 
 header('Content-Type: application/json; charset=utf-8');
@@ -27,6 +27,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode([
             "sucesso" => false, 
             "mensagem" => "Preencha todos os campos obrigatórios."
+        ]);
+        exit;
+    }
+
+    // Verifica a agenda do profissional em todas as contas antes de criar a reunião.
+    try {
+        $disponibilidade = $conn->prepare(
+            'SELECT 1 FROM marcar_consulta
+             WHERE profissional = :profissional
+               AND data_consulta = :data_consulta
+               AND horario = :horario
+             LIMIT 1'
+        );
+        $disponibilidade->execute([
+            ':profissional' => $profissional,
+            ':data_consulta' => $dataConsulta,
+            ':horario' => $horario,
+        ]);
+
+        if ($disponibilidade->fetchColumn() !== false) {
+            http_response_code(409);
+            echo json_encode([
+                'sucesso' => false,
+                'codigo' => 'horario_indisponivel',
+                'mensagem' => 'Esse profissional já tem uma consulta marcada nesse dia e horário. Escolha outro horário ou profissional para continuar.',
+            ]);
+            exit;
+        }
+    } catch (PDOException $e) {
+        error_log('Erro ao verificar disponibilidade da consulta: ' . $e->getMessage());
+        http_response_code(500);
+        echo json_encode([
+            'sucesso' => false,
+            'mensagem' => 'Não foi possível verificar esse horário agora. Tente novamente em instantes.',
         ]);
         exit;
     }
@@ -135,12 +169,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        echo json_encode(["sucesso" => true, "mensagem" => "Consulta agendada com sucesso e e-mail enviado!"]);
+        echo json_encode(["sucesso" => true, "mensagem" => "Sua consulta foi agendada. Você pode conferir os detalhes na sua agenda."]);
 
     } catch (PDOException $e) {
-        echo json_encode(["sucesso" => false, "mensagem" => "Erro no Banco de Dados: " . $e->getMessage()]);
+        error_log('Erro ao agendar consulta: ' . $e->getMessage());
+        // A restrição do banco também protege contra agendamentos simultâneos.
+        if (in_array((string) $e->getCode(), ['23505', '23P01'], true)) {
+            http_response_code(409);
+            echo json_encode([
+                'sucesso' => false,
+                'codigo' => 'horario_indisponivel',
+                'mensagem' => 'Esse horário acabou de ser reservado. Escolha outro horário ou profissional para continuar.',
+            ]);
+        } else {
+            http_response_code(500);
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Não foi possível agendar sua consulta agora. Tente novamente em instantes.']);
+        }
     } catch (Exception $e) {
-        echo json_encode(["sucesso" => false, "mensagem" => "Erro Geral: " . $e->getMessage()]);
+        error_log('Erro ao processar consulta: ' . $e->getMessage());
+        http_response_code(500);
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Não foi possível concluir o agendamento agora. Tente novamente em instantes.']);
     }
 }
 ?>

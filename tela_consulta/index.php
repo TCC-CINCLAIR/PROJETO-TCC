@@ -13,7 +13,8 @@ if (!isset($_SESSION['sessao_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcar Consulta</title>
+    <title>Cinclair</title>
+    <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=1">
 
     <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
     <link rel="stylesheet" href="../assets/css/responsivo.css?v=<?= filemtime(__DIR__ . '/../assets/css/responsivo.css') ?>">
@@ -117,7 +118,7 @@ if (!isset($_SESSION['sessao_id'])) {
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="aviso-title">
     <div class="aviso-box">
         <h2 id="aviso-title">Política de cancelamento</h2>
-        <p>Cancelamentos devem ser feitos com pelo menos 24 horas de antecedência.</p>
+        <p id="aviso-mensagem">Cancelamentos devem ser feitos com pelo menos 24 horas de antecedência.</p>
         <button class="confirmar-btn" type="button" onclick="fecharAviso()">Entendi</button>
     </div>
 </div>

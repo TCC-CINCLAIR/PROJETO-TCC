@@ -36,7 +36,8 @@ $tarefasBanco = $stmtTarefas->fetchAll(PDO::FETCH_ASSOC);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Agenda de Tarefas</title>
+  <title>Cinclair</title>
+    <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=1">
 
   <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
     <link rel="stylesheet" href="../assets/css/responsivo.css?v=<?= filemtime(__DIR__ . '/../assets/css/responsivo.css') ?>">

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <title>Cinclair</title>
+  <rect width="256" height="256" rx="48" fill="#60140c"/>
+  <g transform="translate(0 20) scale(1.0756)" fill="none" stroke="#faf7e8" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 137 C39 108 39 78 51 54 C66 25 94 10 123 11 C158 11 181 34 189 63 L195 86 L215 131 L192 137 L187 169 C185 182 177 185 167 182 C134 174 105 151 98 121 C92 98 96 70 107 57 C115 48 126 52 132 67 C143 93 138 123 120 144 C101 166 76 178 45 183"/>
+  </g>
+</svg>

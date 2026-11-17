@@ -98,7 +98,7 @@ try {
     $_SESSION['recuperacao_expira'] =
         (int) $solicitacao['expira_timestamp'];
 
-    header('Location: ../Redefinir_senha/index.php');
+    header('Location: ../redefinir_senha/index.php');
     exit;
 } catch (Throwable $erro) {
     if (isset($conn) && $conn->inTransaction()) {

@@ -26,6 +26,10 @@ body { min-height: 100vh; font-family: Arial, Helvetica, sans-serif; color: #352
 .aviso-box h2 { font-size: 22px; color: #7c1717; line-height: 1.3; }
 .aviso-box p { margin: 16px 0 24px; color: #75645e; font-size: 16px; line-height: 1.6; }
 body.dialog-open { overflow: hidden; }
+.confirmar-btn:disabled { opacity: .65; cursor: wait; }
+.aviso-box[data-tipo="sucesso"] h2 { color: #28613b; }
+.aviso-box[data-tipo="atencao"] { border-top: 5px solid #a36b25; }
+.aviso-box[data-tipo="erro"] { border-top: 5px solid #790e06; }
 @media (hover: hover) {
   .confirmar-btn:hover { background: #6f0000; }
   .info-btn:hover { background: #5e0b05; }

@@ -22,7 +22,8 @@ $relatorios = array_slice($relatorios, 0, 10);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatórios — Cinclair</title>
+    <title>Cinclair</title>
+    <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=1">
     <link rel="stylesheet" href="style.css?v=<?= filemtime(__DIR__ . '/style.css') ?>">
     <link rel="stylesheet" href="../assets/css/responsivo.css">
     <link rel="stylesheet" href="../modo_escuro.css">

@@ -12,7 +12,8 @@ unset($_SESSION['erro_codigo']);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redefinição de Senha</title>
+  <title>Cinclair</title>
+    <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=1">
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
